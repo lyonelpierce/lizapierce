@@ -2,13 +2,13 @@ import prismadb from "@/lib/prismadb";
 import { notFound } from "next/navigation";
 
 const CategoryPage = async ({ params }: { params: { categoryId: string } }) => {
-  const category = await prismadb.category.findMany({
+  const category = await prismadb.category.findUnique({
     where: {
-      id: params.categoryId,
+      slug: params.categoryId,
     },
   });
 
-  if (category.length === 0) return notFound();
+  if (!category) return notFound();
 
   return (
     <div className="h-full bg-black pt-20">

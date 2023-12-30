@@ -6,13 +6,13 @@ const CollectionPage = async ({
 }: {
   params: { collectionId: string };
 }) => {
-  const collection = await prismadb.collection.findMany({
+  const collection = await prismadb.collection.findUnique({
     where: {
-      id: params.collectionId,
+      slug: params.collectionId,
     },
   });
 
-  if (collection.length === 0) return notFound();
+  if (!collection) return notFound();
 
   return (
     <div className="h-full bg-black pt-20">

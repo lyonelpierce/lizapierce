@@ -70,7 +70,7 @@ const Navbar = () => {
         )}
       >
         <Link href="/">
-          <h1 className="text-2xl font-semibold uppercase">Liza Pierce</h1>
+          <h1 className="text-2xl font-semibold uppercase">Eliza Pierce</h1>
         </Link>
         <ul className="flex items-center gap-8 font-medium uppercase h-full text-gray-500">
           {Menu.map((item) => (
@@ -85,19 +85,19 @@ const Navbar = () => {
             </li>
           ))}
         </ul>
-        <div className="flex items-center gap-4 border border-zinc-800 rounded-full pr-4">
+        <div className="flex items-center gap-4 border border-zinc-800 rounded-full pl-4">
+          <Link href="/">
+            <HeartIcon className="w-4 h-4 transition-transform ease-in-out hover:transform hover:scale-125" />
+          </Link>
+          <Link href="/">
+            <ShoppingBag className="w-4 h-4 transition-transform ease-in-out hover:transform hover:scale-125" />
+          </Link>
           <Link href="/sign-in">
             {userId ? (
               <UserButton />
             ) : (
               <Button variant="white">Member Login</Button>
             )}
-          </Link>
-          <Link href="/">
-            <HeartIcon className="w-4 h-4 transition-transform ease-in-out hover:transform hover:scale-125" />
-          </Link>
-          <Link href="/">
-            <ShoppingBag className="w-4 h-4 transition-transform ease-in-out hover:transform hover:scale-125" />
           </Link>
         </div>
       </div>
