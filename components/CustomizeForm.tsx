@@ -4,7 +4,7 @@ import * as z from "zod";
 import Image from "next/image";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Gem, Material, Size, Variant } from "@prisma/client";
+import { Gem, Material, Size } from "@prisma/client";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -18,22 +18,14 @@ import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { ShoppingBag } from "lucide-react";
 
-type VariantWithDetails = Variant & {
-  size: Size;
-  gem: Gem;
-  material: Material;
-};
-
 const CustomizeForm = ({
   gems,
   sizes,
   materials,
-  variants,
 }: {
   gems: Gem[];
   sizes: Size[];
   materials: Material[];
-  variants: VariantWithDetails[];
 }) => {
   const formSchema = z.object({
     size: z
@@ -57,15 +49,17 @@ const CustomizeForm = ({
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      size: sizes[0].value,
-      gem: gems[0].value,
-      material: materials[0].value,
+      size: "4",
+      gem: "diamond",
+      material: "gold",
     },
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
+    try {
+    } catch (error) {
+      console.log(error);
+    }
     console.log(values);
   }
 

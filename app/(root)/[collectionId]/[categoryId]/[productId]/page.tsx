@@ -55,19 +55,6 @@ const ProductPage = async ({ params }: { params: { productId: string } }) => {
   const product = await getProduct({ params });
   const productVariants = product.variants.map((variant) => variant.id);
 
-  const variants = await prismadb.variant.findMany({
-    where: {
-      id: {
-        in: productVariants,
-      },
-    },
-    include: {
-      gem: true,
-      material: true,
-      size: true,
-    },
-  });
-
   const gems = await prismadb.gem.findMany({
     where: {
       variants: {
@@ -125,12 +112,7 @@ const ProductPage = async ({ params }: { params: { productId: string } }) => {
               <h4 className="text-xl font-light">
                 {formatter.format(product.basePrice)}
               </h4>
-              <CustomizeForm
-                gems={gems}
-                sizes={sizes}
-                materials={materials}
-                variants={variants}
-              />
+              <CustomizeForm gems={gems} sizes={sizes} materials={materials} />
               {/* <div className="space-y-2">
                 <Label>Size</Label>
                 <ul className="flex gap-2">

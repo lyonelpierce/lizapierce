@@ -50,6 +50,8 @@ model Variant {
   gem           Gem       @relation(fields: [gemId], references: [id])
   materialId    String
   material      Material  @relation(fields: [materialId], references: [id])
+  karatId       String
+  karat         Karat     @relation(fields: [karatId], references: [id])
   productId     String
   product       Product   @relation(fields: [productId], references: [id])
 }
@@ -76,6 +78,13 @@ model Material {
   image         String
   value         String
   price         Int
+  variants      Variant[]
+}
+
+model Karat{
+  id            String  @id @default(uuid())
+  name          String
+  value         String
   variants      Variant[]
 }
 
