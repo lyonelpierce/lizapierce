@@ -8,9 +8,14 @@ import {
 } from "@react-three/drei";
 import { Suspense } from "react";
 import { EffectComposer, Bloom } from "@react-three/postprocessing";
-import ElizabethRing from "./ElizabethRing";
 
-const CanvasComponent = ({ children }: { children: React.ReactNode }) => {
+const CanvasComponent = ({
+  children,
+  level,
+}: {
+  children: React.ReactNode;
+  level: number;
+}) => {
   return (
     <Canvas
       camera={{ position: [5, 10, 5], fov: 45 }}
@@ -36,7 +41,7 @@ const CanvasComponent = ({ children }: { children: React.ReactNode }) => {
         enableZoom={false}
       />
       <EffectComposer>
-        <Bloom luminanceThreshold={1} intensity={1} levels={7} mipmapBlur />
+        <Bloom luminanceThreshold={1} intensity={1} levels={level} mipmapBlur />
       </EffectComposer>
     </Canvas>
   );

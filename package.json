@@ -26,6 +26,7 @@
     "embla-carousel-react": "^8.0.0-rc17",
     "geist": "^1.2.0",
     "lucide-react": "^0.302.0",
+    "maath": "^0.10.7",
     "next": "14.0.4",
     "react": "^18",
     "react-dom": "^18",

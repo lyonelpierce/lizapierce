@@ -1,8 +1,9 @@
 import * as THREE from "three";
 import React, { useRef } from "react";
 import { useGLTF, MeshRefractionMaterial } from "@react-three/drei";
-import { useLoader } from "@react-three/fiber";
+import { useLoader, useFrame } from "@react-three/fiber";
 import { RGBELoader } from "three-stdlib";
+import { easing } from "maath";
 
 import { GLTF } from "three-stdlib";
 
@@ -236,7 +237,12 @@ type ContextType = Record<
   React.ForwardRefExoticComponent<JSX.IntrinsicElements["mesh"]>
 >;
 
-export default function ElizabethRing(props: JSX.IntrinsicElements["group"]) {
+interface ElizabethRingProps {
+  material: string;
+}
+export default function ElizabethRing(
+  props: ElizabethRingProps & JSX.IntrinsicElements["group"]
+) {
   const { nodes, materials } = useGLTF("/models/scene.glb") as GLTFResult;
 
   const texture = useLoader(
@@ -244,22 +250,31 @@ export default function ElizabethRing(props: JSX.IntrinsicElements["group"]) {
     "https://demo-assets.pixotronics.com/pixo/presets/environment/env-gem-1.hdr"
   );
 
-  const goldMaterial = new THREE.MeshStandardMaterial({
-    color: new THREE.Color(1, 0.734, 0.255),
-    roughness: 0,
-    metalness: 1,
-  });
-
-  const silverMaterial = new THREE.MeshStandardMaterial({
+  let currentMaterial = new THREE.MeshStandardMaterial({
     color: new THREE.Color(0.5, 0.5, 0.5),
     roughness: 0,
     metalness: 1,
   });
 
+  let currentColor = "";
+
+  switch (props.material) {
+    case "rosegold":
+      currentColor = "#e7b2a4";
+      break;
+    case "silver":
+      currentColor = "#cccccc";
+      break;
+  }
+
+  useFrame((state, delta) =>
+    easing.dampC(currentMaterial.color, currentColor, 0.5, delta)
+  );
+
   return (
     <group {...props} dispose={null}>
-      <group position={[0.003, 1.32, 0]}>
-        <group position={[-0.003, -1.32, 0]} scale={1.098}>
+      <group position={[0, 0, 0]}>
+        <group position={[-0.003, -1.32, 0]} scale={1.5}>
           <group position={[0.24, 1.094, 0.001]} scale={0.025}>
             <mesh
               geometry={nodes["p-2-005"].geometry}
@@ -2944,7 +2959,7 @@ export default function ElizabethRing(props: JSX.IntrinsicElements["group"]) {
           />
           <mesh
             geometry={nodes.ring_3.geometry}
-            material={silverMaterial}
+            material={currentMaterial}
             position={[0.071, 1.115, 0]}
             rotation={[Math.PI / 2, 0, Math.PI / 2]}
             scale={0.025}

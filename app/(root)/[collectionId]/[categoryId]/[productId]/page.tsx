@@ -11,14 +11,9 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { ProductWithVariants } from "@/types/ProductWithVariants";
 
-import CanvasComponent from "@/components/CanvasComponent";
-import ElizabethRing from "@/components/ElizabethRing";
 import CustomizeForm from "@/components/CustomizeForm";
-
-type ProductWithVariants = Product & {
-  variants: Variant[];
-};
 
 async function getProduct({
   params,
@@ -30,7 +25,14 @@ async function getProduct({
       slug: params.productId,
     },
     include: {
-      variants: true,
+      variants: {
+        include: {
+          size: true,
+          gem: true,
+          material: true,
+          karat: true,
+        },
+      },
     },
   });
 
@@ -53,67 +55,14 @@ export async function generateMetadata({
 
 const ProductPage = async ({ params }: { params: { productId: string } }) => {
   const product = await getProduct({ params });
-  const productVariants = product.variants.map((variant) => variant.id);
-
-  const gems = await prismadb.gem.findMany({
-    where: {
-      variants: {
-        some: {
-          id: {
-            in: productVariants,
-          },
-        },
-      },
-    },
-    orderBy: {
-      value: "asc",
-    },
-  });
-
-  const sizes = await prismadb.size.findMany({
-    where: {
-      variants: {
-        some: {
-          id: {
-            in: productVariants,
-          },
-        },
-      },
-    },
-    orderBy: {
-      value: "asc",
-    },
-  });
-
-  const materials = await prismadb.material.findMany({
-    where: {
-      variants: {
-        some: {
-          id: {
-            in: productVariants,
-          },
-        },
-      },
-    },
-  });
 
   return (
     <div className="h-full bg-black pt-32">
       <TooltipProvider>
         <div className="max-w-7xl mx-auto px-4 text-sm font-medium h-full">
           <div className="flex h-full">
-            <div className="w-2/3 h-4/5">
-              {/* <CanvasComponent /> */}
-              {/* <ElizabethRing /> */}
-              {/* </CanvasComponent> */}
-            </div>
-            <div className="space-y-4 w-1/3">
-              <h3 className="text-3xl font-light leading-3">{product.name}</h3>
-              <h4 className="text-xl font-light">
-                {formatter.format(product.basePrice)}
-              </h4>
-              <CustomizeForm gems={gems} sizes={sizes} materials={materials} />
-              {/* <div className="space-y-2">
+            <CustomizeForm product={product} />
+            {/* <div className="space-y-2">
                 <Label>Size</Label>
                 <ul className="flex gap-2">
                   {sortedSizes.map((size) => (
@@ -161,7 +110,6 @@ const ProductPage = async ({ params }: { params: { productId: string } }) => {
                   ))}
                 </ul>
               </div> */}
-            </div>
           </div>
         </div>
       </TooltipProvider>

@@ -66,7 +66,7 @@ const Navbar = () => {
       <div
         className={cn(
           "flex items-center justify-between max-w-7xl w-full h-full mx-auto text-xs px-4",
-          scrolled && "rounded-full backdrop-blur-sm bg-black/70"
+          scrolled && "rounded-full backdrop-blur-[2px] bg-black/70"
         )}
       >
         <Link href="/">

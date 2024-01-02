@@ -11,17 +11,17 @@ import ElizabethRing from "@/components/ElizabethRing";
 const Hero = () => {
   return (
     <div className="bg-black h-full">
-      <div className="max-w-7xl mx-auto h-full px-4">
-        <div className="relative w-full h-full">
-          <CanvasComponent>
-            <ElizabethRing />
+      <div className="h-full px-4">
+        <div className="relative w-full h-dvh">
+          <CanvasComponent level={9}>
+            <ElizabethRing material="silver" />
           </CanvasComponent>
-          <div className="absolute top-60 left-1/2 transform -translate-x-1/2 max-w-7xl mx-auto z-0">
+          <div className="absolute top-60 left-1/2 transform -translate-x-1/2 z-0">
             <h2 className="text-[12rem] font-black uppercase text-end leading-none text-zinc-950">
               Elizabeth Ring
             </h2>
           </div>
-          <div className="absolute bottom-40 left-0 max-w-7xl mx-auto z-20">
+          <div className="absolute bottom-40 left-1/2 transform -translate-x-1/2 z-20">
             <h1 className="uppercase text-7xl font-semibold w-1/2">
               Craft your masterpiece in real time
             </h1>
