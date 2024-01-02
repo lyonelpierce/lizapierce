@@ -14,11 +14,14 @@ const CanvasComponent = ({
   children,
   className,
   level,
+  intensity,
 }: {
   children: React.ReactNode;
   className?: string;
   level: number;
+  intensity: number;
 }) => {
+  console.log(className);
   return (
     <Canvas
       camera={{ position: [5, 10, 5], fov: 45 }}
@@ -45,7 +48,12 @@ const CanvasComponent = ({
         enablePan={false}
       />
       <EffectComposer>
-        <Bloom luminanceThreshold={1} intensity={1} levels={level} mipmapBlur />
+        <Bloom
+          luminanceThreshold={1}
+          intensity={intensity}
+          levels={level}
+          mipmapBlur
+        />
       </EffectComposer>
     </Canvas>
   );

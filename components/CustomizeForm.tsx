@@ -104,7 +104,7 @@ const CustomizeForm = ({ product }: { product: ProductWithVariants }) => {
   return (
     <div className="flex w-full">
       <div className="w-2/3 h-2/3">
-        <CanvasComponent level={7}>
+        <CanvasComponent level={7} intensity={0.7}>
           <ElizabethRing material={material} positionY={-2.5} scale={1.5} />
         </CanvasComponent>
       </div>
@@ -215,18 +215,22 @@ const CustomizeForm = ({ product }: { product: ProductWithVariants }) => {
                           >
                             <div
                               className={cn(
-                                "w-6 h-6 rounded-full bg-gradient-to-tr",
+                                "w-6 h-6 rounded-full bg-gradient-to-tr flex-none",
                                 {
-                                  "from-gray-300 via-white to-gray-300":
-                                    material.value === "silver",
+                                  "from-gray-500 via-white to-gray-500":
+                                    material.value === "platinum",
+                                  "from-gray-700 via-white to-gray-700":
+                                    material.value === "whitegold",
                                   "from-rose-300 via-white to-rose-300":
                                     material.value === "rosegold",
                                   "from-amber-500 via-white to-amber-500":
                                     material.value === "gold",
+                                  "from-gray-900 via-white to gray-900":
+                                    material.value === "silver",
                                 }
                               )}
                             />
-                            <p className="text-sm font-semibold">
+                            <p className="text-sm font-semibold text-xs">
                               {material.name}
                             </p>
                           </Label>
