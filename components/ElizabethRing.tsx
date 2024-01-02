@@ -239,6 +239,8 @@ type ContextType = Record<
 
 interface ElizabethRingProps {
   material: string;
+  positionY: number;
+  scale: number;
 }
 export default function ElizabethRing(
   props: ElizabethRingProps & JSX.IntrinsicElements["group"]
@@ -274,7 +276,7 @@ export default function ElizabethRing(
   return (
     <group {...props} dispose={null}>
       <group position={[0, 0, 0]}>
-        <group position={[-0.003, -1.32, 0]} scale={1.5}>
+        <group position={[0, props.positionY, 0]} scale={props.scale}>
           <group position={[0.24, 1.094, 0.001]} scale={0.025}>
             <mesh
               geometry={nodes["p-2-005"].geometry}
@@ -283,6 +285,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -294,6 +297,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -305,6 +309,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -316,6 +321,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -327,6 +333,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -338,6 +345,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -349,6 +357,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -361,6 +370,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -373,6 +383,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -384,6 +395,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -397,6 +409,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -410,6 +423,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -421,6 +435,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -434,6 +449,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -447,6 +463,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -460,6 +477,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -471,6 +489,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -484,6 +503,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -497,6 +517,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -510,6 +531,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -521,6 +543,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -534,6 +557,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -547,6 +571,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -560,6 +585,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -573,6 +599,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -586,6 +613,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -597,6 +625,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -610,6 +639,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -621,6 +651,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -634,6 +665,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -646,6 +678,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -657,6 +690,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -670,6 +704,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -681,6 +716,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -692,6 +728,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -705,6 +742,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -716,6 +754,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -729,6 +768,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -741,6 +781,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -754,6 +795,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -765,6 +807,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -776,6 +819,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -789,6 +833,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -802,6 +847,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -815,6 +861,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -828,6 +875,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -841,6 +889,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -854,6 +903,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -867,6 +917,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -880,6 +931,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -893,6 +945,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -906,6 +959,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -919,6 +973,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -932,6 +987,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -945,6 +1001,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -958,6 +1015,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -971,6 +1029,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -984,6 +1043,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -997,6 +1057,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -1010,6 +1071,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -1023,6 +1085,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -1036,6 +1099,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -1049,6 +1113,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -1062,6 +1127,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -1075,6 +1141,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -1088,6 +1155,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -1101,6 +1169,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -1112,6 +1181,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -1123,6 +1193,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -1134,6 +1205,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -1145,6 +1217,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -1156,6 +1229,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -1167,6 +1241,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -1178,6 +1253,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -1191,6 +1267,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -1204,6 +1281,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -1217,6 +1295,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -1230,6 +1309,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -1243,6 +1323,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -1256,6 +1337,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -1269,6 +1351,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -1282,6 +1365,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -1295,6 +1379,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -1308,6 +1393,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -1321,6 +1407,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -1334,6 +1421,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -1347,6 +1435,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -1360,6 +1449,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -1373,6 +1463,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -1386,6 +1477,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -1399,6 +1491,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -1412,6 +1505,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -1425,6 +1519,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -1438,6 +1533,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -1451,6 +1547,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -1464,6 +1561,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -1477,6 +1575,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -1490,6 +1589,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -1503,6 +1603,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -1516,6 +1617,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -1529,6 +1631,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -1546,6 +1649,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -1557,6 +1661,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -1568,6 +1673,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -1579,6 +1685,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -1591,6 +1698,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -1604,6 +1712,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -1615,6 +1724,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -1628,6 +1738,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -1641,6 +1752,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -1654,6 +1766,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -1667,6 +1780,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -1680,6 +1794,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -1693,6 +1808,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -1706,6 +1822,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -1719,6 +1836,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -1732,6 +1850,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -1743,6 +1862,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -1754,6 +1874,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -1766,6 +1887,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -1777,6 +1899,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -1790,6 +1913,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -1803,6 +1927,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -1816,6 +1941,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -1829,6 +1955,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -1842,6 +1969,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -1855,6 +1983,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -1868,6 +1997,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -1881,6 +2011,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -1892,6 +2023,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -1905,6 +2037,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -1916,6 +2049,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -1929,6 +2063,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -1942,6 +2077,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -1953,6 +2089,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -1966,6 +2103,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -1977,6 +2115,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -1990,6 +2129,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -2001,6 +2141,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -2012,6 +2153,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -2024,6 +2166,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -2037,6 +2180,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -2050,6 +2194,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -2063,6 +2208,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -2076,6 +2222,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -2089,6 +2236,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -2102,6 +2250,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -2115,6 +2264,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -2128,6 +2278,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -2141,6 +2292,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -2154,6 +2306,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -2165,6 +2318,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -2176,6 +2330,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -2187,6 +2342,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -2200,6 +2356,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -2213,6 +2370,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -2226,6 +2384,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -2239,6 +2398,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -2252,6 +2412,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -2265,6 +2426,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -2278,6 +2440,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -2291,6 +2454,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -2304,6 +2468,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -2317,6 +2482,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -2330,6 +2496,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -2343,6 +2510,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -2356,6 +2524,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -2369,6 +2538,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -2380,6 +2550,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -2391,6 +2562,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -2402,6 +2574,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -2413,6 +2586,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -2426,6 +2600,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -2438,6 +2613,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -2449,6 +2625,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -2462,6 +2639,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -2475,6 +2653,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -2488,6 +2667,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -2501,6 +2681,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -2514,6 +2695,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -2527,6 +2709,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -2540,6 +2723,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -2553,6 +2737,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -2566,6 +2751,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -2577,6 +2763,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -2588,6 +2775,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -2599,6 +2787,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -2612,6 +2801,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -2623,6 +2813,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -2636,6 +2827,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -2649,6 +2841,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -2662,6 +2855,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -2675,6 +2869,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -2688,6 +2883,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -2701,6 +2897,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -2714,6 +2911,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -2727,6 +2925,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -2740,6 +2939,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -2753,6 +2953,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -2766,6 +2967,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -2779,6 +2981,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -2792,6 +2995,7 @@ export default function ElizabethRing(
             >
               <MeshRefractionMaterial
                 envMap={texture}
+                fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
               />
@@ -2805,6 +3009,7 @@ export default function ElizabethRing(
           >
             <MeshRefractionMaterial
               envMap={texture}
+              fastChroma={true}
               aberrationStrength={0.02}
               toneMapped={false}
             />
@@ -2818,6 +3023,7 @@ export default function ElizabethRing(
           >
             <MeshRefractionMaterial
               envMap={texture}
+              fastChroma={true}
               aberrationStrength={0.02}
               toneMapped={false}
             />
@@ -2831,6 +3037,7 @@ export default function ElizabethRing(
           >
             <MeshRefractionMaterial
               envMap={texture}
+              fastChroma={true}
               aberrationStrength={0.02}
               toneMapped={false}
             />
@@ -2843,6 +3050,7 @@ export default function ElizabethRing(
           >
             <MeshRefractionMaterial
               envMap={texture}
+              fastChroma={true}
               aberrationStrength={0.02}
               toneMapped={false}
             />
@@ -2856,6 +3064,7 @@ export default function ElizabethRing(
           >
             <MeshRefractionMaterial
               envMap={texture}
+              fastChroma={true}
               aberrationStrength={0.02}
               toneMapped={false}
             />
@@ -2869,6 +3078,7 @@ export default function ElizabethRing(
           >
             <MeshRefractionMaterial
               envMap={texture}
+              fastChroma={true}
               aberrationStrength={0.02}
               toneMapped={false}
             />
@@ -2882,6 +3092,7 @@ export default function ElizabethRing(
           >
             <MeshRefractionMaterial
               envMap={texture}
+              fastChroma={true}
               aberrationStrength={0.02}
               toneMapped={false}
             />
@@ -2895,6 +3106,7 @@ export default function ElizabethRing(
           >
             <MeshRefractionMaterial
               envMap={texture}
+              fastChroma={true}
               aberrationStrength={0.02}
               toneMapped={false}
             />
@@ -2908,6 +3120,7 @@ export default function ElizabethRing(
           >
             <MeshRefractionMaterial
               envMap={texture}
+              fastChroma={true}
               aberrationStrength={0.02}
               toneMapped={false}
             />
@@ -2921,6 +3134,7 @@ export default function ElizabethRing(
           >
             <MeshRefractionMaterial
               envMap={texture}
+              fastChroma={true}
               aberrationStrength={0.02}
               toneMapped={false}
             />
@@ -2933,27 +3147,28 @@ export default function ElizabethRing(
           >
             <MeshRefractionMaterial
               envMap={texture}
+              fastChroma={true}
               aberrationStrength={0.02}
               toneMapped={false}
             />
           </mesh>
           <mesh
             geometry={nodes["chaton-heart-2"].geometry}
-            material={materials.White}
+            material={currentMaterial}
             position={[0.003, 2.101, 0.564]}
             rotation={[0.698, 0, 0]}
             scale={0.025}
           />
           <mesh
             geometry={nodes["chaton-heart-1"].geometry}
-            material={materials.White}
+            material={currentMaterial}
             position={[0.003, 2.101, -0.566]}
             rotation={[2.443, 0, -Math.PI]}
             scale={0.025}
           />
           <mesh
             geometry={nodes.entourage.geometry}
-            material={materials.White}
+            material={currentMaterial}
             position={[0, 2.403, 0]}
             scale={0.022}
           />

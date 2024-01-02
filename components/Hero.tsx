@@ -14,7 +14,7 @@ const Hero = () => {
       <div className="h-full px-4">
         <div className="relative w-full h-dvh">
           <CanvasComponent level={9}>
-            <ElizabethRing material="silver" />
+            <ElizabethRing material="silver" positionY={-1} scale={1.3} />
           </CanvasComponent>
           <div className="absolute top-60 left-1/2 transform -translate-x-1/2 z-0">
             <h2 className="text-[12rem] font-black uppercase text-end leading-none text-zinc-950">

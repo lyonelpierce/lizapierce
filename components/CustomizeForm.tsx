@@ -30,6 +30,7 @@ const CustomizeForm = ({ product }: { product: ProductWithVariants }) => {
     size: z.string(),
     gem: z.string(),
     material: z.string(),
+    karat: z.string(),
   });
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -38,6 +39,7 @@ const CustomizeForm = ({ product }: { product: ProductWithVariants }) => {
       size: "4",
       gem: "diamond",
       material: "silver",
+      karat: "18k",
     },
   });
 
@@ -54,6 +56,7 @@ const CustomizeForm = ({ product }: { product: ProductWithVariants }) => {
   const uniqueSizeIds = new Set();
   const uniqueGemIds = new Set();
   const uniqueMaterialIds = new Set();
+  const uniqueKaratIds = new Set();
 
   const uniqueSizes = product.variants.filter((variant) => {
     if (!uniqueSizeIds.has(variant.sizeId)) {
@@ -79,11 +82,20 @@ const CustomizeForm = ({ product }: { product: ProductWithVariants }) => {
     return false;
   });
 
+  const uniqueKarats = product.variants.filter((variant) => {
+    if (!uniqueKaratIds.has(variant.karatId)) {
+      uniqueKaratIds.add(variant.karatId);
+      return true;
+    }
+    return false;
+  });
+
   const uniqueSizeObjects = uniqueSizes.map((variant) => variant.size);
   const uniqueGemObjects = uniqueGems.map((variant) => variant.gem);
   const uniqueMaterialObjects = uniqueMaterials.map(
     (variant) => variant.material
   );
+  const uniqueKaratObjects = uniqueKarats.map((variant) => variant.karat);
 
   const sortedSizes = uniqueSizeObjects.sort((a, b) =>
     a.value.localeCompare(b.value)
@@ -91,9 +103,9 @@ const CustomizeForm = ({ product }: { product: ProductWithVariants }) => {
 
   return (
     <div className="flex w-full">
-      <div className="w-2/3">
+      <div className="w-2/3 h-2/3">
         <CanvasComponent level={7}>
-          <ElizabethRing material={material} />
+          <ElizabethRing material={material} positionY={-2.5} scale={1.5} />
         </CanvasComponent>
       </div>
       <div className="flex flex-col gap-4 w-1/3">
@@ -184,7 +196,10 @@ const CustomizeForm = ({ product }: { product: ProductWithVariants }) => {
                   <FormControl>
                     <RadioGroup
                       defaultValue={"silver"}
-                      onValueChange={field.onChange}
+                      onValueChange={(value) => {
+                        field.onChange;
+                        setMaterial(value);
+                      }}
                       className="flex"
                     >
                       {uniqueMaterialObjects.map((material) => (
@@ -193,9 +208,6 @@ const CustomizeForm = ({ product }: { product: ProductWithVariants }) => {
                             value={material.value}
                             id={material.id}
                             className="peer sr-only"
-                            onClick={() => {
-                              setMaterial(material.value);
-                            }}
                           />
                           <Label
                             htmlFor={material.id}
@@ -214,7 +226,6 @@ const CustomizeForm = ({ product }: { product: ProductWithVariants }) => {
                                 }
                               )}
                             />
-
                             <p className="text-sm font-semibold">
                               {material.name}
                             </p>
@@ -226,7 +237,45 @@ const CustomizeForm = ({ product }: { product: ProductWithVariants }) => {
                 </FormItem>
               )}
             />
-            <Button type="submit" className="gap-1 uppercase" variant="white">
+            {(material === "gold" ||
+              material === "rosegold" ||
+              material === "whitegold") && (
+              <FormField
+                control={form.control}
+                name="karat"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Karat</FormLabel>
+                    <FormControl>
+                      <RadioGroup
+                        defaultValue={field.value}
+                        onValueChange={field.onChange}
+                        className="flex"
+                      >
+                        {uniqueKaratObjects.map((karat) => (
+                          <div className="flex items-center" key={karat.id}>
+                            <RadioGroupItem
+                              value={karat.value}
+                              id={karat.id}
+                              className="peer sr-only"
+                            />
+                            <Label
+                              htmlFor={karat.id}
+                              className="bg-zinc-800 rounded-full w-16 h-10 py-2.5 flex items-center justify-center transition-all ease-in-out hover:scale-105 hover:bg-zinc-700 cursor-pointer hover:border-zinc-200 peer-data-[state=checked]:bg-zinc-600 [&:has([data-state=checked])]:bg-zinc-600"
+                            >
+                              <p className="text-xs font-semibold">
+                                {karat.name}
+                              </p>
+                            </Label>
+                          </div>
+                        ))}
+                      </RadioGroup>
+                    </FormControl>
+                  </FormItem>
+                )}
+              />
+            )}
+            <Button type="submit" className="gap-1" variant="white">
               <ShoppingBag className="w-4 h-4" />
               Add to cart
             </Button>

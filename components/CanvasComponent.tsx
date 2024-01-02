@@ -8,18 +8,21 @@ import {
 } from "@react-three/drei";
 import { Suspense } from "react";
 import { EffectComposer, Bloom } from "@react-three/postprocessing";
+import { cn } from "@/lib/utils";
 
 const CanvasComponent = ({
   children,
+  className,
   level,
 }: {
   children: React.ReactNode;
+  className?: string;
   level: number;
 }) => {
   return (
     <Canvas
       camera={{ position: [5, 10, 5], fov: 45 }}
-      className="w-full h-96 z-10"
+      className={cn("w-full z-10", className)}
       gl={{ antialias: true }}
     >
       <ambientLight intensity={0.5} />
@@ -35,10 +38,11 @@ const CanvasComponent = ({
       <OrbitControls
         makeDefault
         autoRotate
-        autoRotateSpeed={5}
+        autoRotateSpeed={3}
         minPolarAngle={0}
         maxPolarAngle={Math.PI / 2}
         enableZoom={false}
+        enablePan={false}
       />
       <EffectComposer>
         <Bloom luminanceThreshold={1} intensity={1} levels={level} mipmapBlur />
