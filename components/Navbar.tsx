@@ -69,7 +69,7 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="fixed top-0 w-full h-20 z-30 py-2">
+      <nav className="fixed top-0 w-screen h-20 z-30 py-2">
         <div
           className={cn(
             "flex items-center justify-between max-w-7xl w-full h-full mx-auto text-xs px-4",
