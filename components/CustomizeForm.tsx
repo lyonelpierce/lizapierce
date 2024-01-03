@@ -5,7 +5,6 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ProductWithVariants } from "@/types/ProductWithVariants";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -18,12 +17,17 @@ import {
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { ShoppingBag } from "lucide-react";
+import Cart from "@/components/Cart";
 
+import useCart from "@/hooks/use-cart";
 import { cn, formatter } from "@/lib/utils";
+import { ProductWithVariants } from "@/types/ProductWithVariants";
 import CanvasComponent from "@/components/CanvasComponent";
 import ElizabethRing from "@/components/ElizabethRing";
 
 const CustomizeForm = ({ product }: { product: ProductWithVariants }) => {
+  const cart = useCart();
+
   const [material, setMaterial] = useState("whitegold");
   const [gem, setGem] = useState("diamond");
   const [karat, setKarat] = useState("16");
@@ -48,10 +52,10 @@ const CustomizeForm = ({ product }: { product: ProductWithVariants }) => {
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     try {
+      cart.addItem(product);
     } catch (error) {
       console.log(error);
     }
-    console.log(values);
   }
 
   //  Extract Options
@@ -103,6 +107,8 @@ const CustomizeForm = ({ product }: { product: ProductWithVariants }) => {
   const sortedSizes = uniqueSizeObjects.sort((a, b) =>
     a.value.localeCompare(b.value)
   );
+
+  // Calculate Price
 
   const variantPrice = () => {
     const getGemPrice = uniqueGemObjects.find((gems) => gems.value === gem);

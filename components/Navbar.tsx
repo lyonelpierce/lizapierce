@@ -7,11 +7,15 @@ import { useEffect, useState } from "react";
 import { UserButton, useAuth } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
 import { HeartIcon, ShoppingBag } from "lucide-react";
+import useCart from "@/hooks/use-cart";
+import { useCartTrigger } from "@/hooks/open-cart";
 
 const Navbar = () => {
   const pathname = usePathname();
+  const cart = useCart();
   const { userId } = useAuth();
   const [scrolled, setScrolled] = useState(false);
+  const cartTrigger = useCartTrigger();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -67,47 +71,54 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="fixed top-0 w-full h-20 z-30 py-2">
-      <div
-        className={cn(
-          "flex items-center justify-between max-w-7xl w-full h-full mx-auto text-xs px-4",
-          scrolled &&
-            "rounded-full backdrop-blur-[2px] bg-black/70 border border-zinc-800"
-        )}
-      >
-        <Link href="/">
-          <h1 className="text-2xl font-semibold uppercase">Eliza Pierce</h1>
-        </Link>
-        <ul className="flex items-center gap-8 font-medium uppercase h-full text-gray-500">
-          {Menu.map((item) => (
-            <li
-              key={item.label}
-              className={cn(
-                "text-zinc-500 transition-colors ease-in-out hover:text-white",
-                item.active && "text-white"
+    <>
+      <nav className="fixed top-0 w-full h-20 z-30 py-2">
+        <div
+          className={cn(
+            "flex items-center justify-between max-w-7xl w-full h-full mx-auto text-xs px-4",
+            scrolled && "rounded-full backdrop-blur-[2px] bg-black/70"
+          )}
+        >
+          <Link href="/">
+            <h1 className="text-2xl font-semibold uppercase">Eliza Pierce</h1>
+          </Link>
+          <ul className="flex items-center gap-8 font-medium uppercase h-full text-gray-500">
+            {Menu.map((item) => (
+              <li
+                key={item.label}
+                className={cn(
+                  "text-zinc-500 transition-colors ease-in-out hover:text-white",
+                  item.active && "text-white"
+                )}
+              >
+                <Link href={item.href}>{item.label}</Link>
+              </li>
+            ))}
+          </ul>
+          <div className="flex items-center gap-6 border border-zinc-800 rounded-full pr-5">
+            <Link href="/sign-in">
+              {userId ? (
+                <UserButton />
+              ) : (
+                <Button variant="white">Member Login</Button>
               )}
+            </Link>
+            <Link href="/">
+              <HeartIcon className="w-4 h-4 transition-transform ease-in-out hover:transform hover:scale-125" />
+            </Link>
+            <div
+              className="flex gap-2 cursor-pointer"
+              onClick={() => {
+                cartTrigger.onOpen();
+              }}
             >
-              <Link href={item.href}>{item.label}</Link>
-            </li>
-          ))}
-        </ul>
-        <div className="flex items-center gap-6 border border-zinc-800 rounded-full pr-5">
-          <Link href="/sign-in">
-            {userId ? (
-              <UserButton />
-            ) : (
-              <Button variant="white">Member Login</Button>
-            )}
-          </Link>
-          <Link href="/">
-            <HeartIcon className="w-4 h-4 transition-transform ease-in-out hover:transform hover:scale-125" />
-          </Link>
-          <Link href="/">
-            <ShoppingBag className="w-4 h-4 transition-transform ease-in-out hover:transform hover:scale-125" />
-          </Link>
+              <ShoppingBag className="w-4 h-4 transition-transform ease-in-out hover:transform hover:scale-125" />
+              <p className="font-semibold">{cart.items.length}</p>
+            </div>
+          </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+    </>
   );
 };
 

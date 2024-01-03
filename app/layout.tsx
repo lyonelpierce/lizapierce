@@ -4,6 +4,8 @@ import type { Metadata } from "next";
 import { GeistSans } from "geist/font/sans";
 import { ClerkProvider } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
+import { Toaster } from "@/components/ui/sonner";
+import Cart from "@/components/Cart";
 
 export const metadata: Metadata = {
   title: {
@@ -29,6 +31,8 @@ export default function RootLayout({
           className={`relative ${GeistSans.className} bg-zinc-900 text-white h-screen antialiased scrollbar`}
         >
           {children}
+          <Cart />
+          <Toaster position="top-center" richColors className="bg-zinc-800" />
         </body>
       </html>
     </ClerkProvider>
