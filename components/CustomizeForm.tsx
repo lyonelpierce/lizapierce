@@ -2,7 +2,7 @@
 
 import * as z from "zod";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ProductWithVariants } from "@/types/ProductWithVariants";
@@ -24,8 +24,10 @@ import CanvasComponent from "@/components/CanvasComponent";
 import ElizabethRing from "@/components/ElizabethRing";
 
 const CustomizeForm = ({ product }: { product: ProductWithVariants }) => {
-  const [material, setMaterial] = useState("silver");
+  const [material, setMaterial] = useState("whitegold");
   const [gem, setGem] = useState("diamond");
+  const [karat, setKarat] = useState("16");
+  const [price, setPrice] = useState(product.basePrice);
 
   const formSchema = z.object({
     size: z.string(),
@@ -39,8 +41,8 @@ const CustomizeForm = ({ product }: { product: ProductWithVariants }) => {
     defaultValues: {
       size: "4",
       gem: "diamond",
-      material: "silver",
-      karat: "18k",
+      material: "whitegold",
+      karat: "16",
     },
   });
 
@@ -102,22 +104,46 @@ const CustomizeForm = ({ product }: { product: ProductWithVariants }) => {
     a.value.localeCompare(b.value)
   );
 
+  const variantPrice = () => {
+    const getGemPrice = uniqueGemObjects.find((gems) => gems.value === gem);
+    const getMaterialPrice = uniqueMaterialObjects.find(
+      (materials) => materials.value === material
+    );
+    const getKaratPrice = uniqueKaratObjects.find(
+      (karats) => karats.value === karat
+    );
+
+    if (!getGemPrice || !getMaterialPrice || !getKaratPrice) {
+      return null;
+    }
+
+    const { price: gemPrice } = getGemPrice;
+    const { price: materialPrice } = getMaterialPrice;
+    const { price: karatPrice } = getKaratPrice;
+
+    setPrice(product.basePrice + gemPrice + materialPrice + karatPrice);
+  };
+
+  useEffect(() => {
+    variantPrice();
+  }, [gem, material, karat]);
+
   return (
     <div className="flex w-full">
-      <div className="w-2/3 h-3/4">
-        <CanvasComponent level={7} intensity={0.7}>
+      <div className="w-2/3 h-full">
+        <CanvasComponent level={6} intensity={0.3}>
           <ElizabethRing
             material={material}
             gem={gem}
-            positionY={-2.5}
-            scale={1.5}
+            positionY={-3}
+            scale={1.8}
           />
         </CanvasComponent>
       </div>
       <div className="flex flex-col gap-4 w-1/3">
         <div className="font-normal">
           <h2 className="text-4xl">{product.name}</h2>
-          <h3 className="text-xl">{formatter.format(product.basePrice)}</h3>
+          <h3 className="text-xl">{formatter.format(price)}</h3>
         </div>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
@@ -204,7 +230,7 @@ const CustomizeForm = ({ product }: { product: ProductWithVariants }) => {
                   <FormLabel>Material</FormLabel>
                   <FormControl>
                     <RadioGroup
-                      defaultValue={"silver"}
+                      defaultValue={field.value}
                       onValueChange={(value) => {
                         field.onChange;
                         setMaterial(value);
@@ -262,7 +288,10 @@ const CustomizeForm = ({ product }: { product: ProductWithVariants }) => {
                     <FormControl>
                       <RadioGroup
                         defaultValue={field.value}
-                        onValueChange={field.onChange}
+                        onValueChange={(value) => {
+                          field.onChange;
+                          setKarat(value);
+                        }}
                         className="flex"
                       >
                         {uniqueKaratObjects.map((karat) => (

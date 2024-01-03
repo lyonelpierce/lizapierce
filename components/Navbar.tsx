@@ -44,20 +44,25 @@ const Navbar = () => {
       href: "/rings",
       active: pathname === "/rings",
     },
+    // {
+    //   label: "Bracelets",
+    //   href: "/bracelets",
+    //   active: pathname === "/bracelets",
+    // },
+    // {
+    //   label: "Necklaces",
+    //   href: "/necklaces",
+    //   active: pathname === "/necklaces",
+    // },
+    // {
+    //   label: "Earrings",
+    //   href: "/earrings",
+    //   active: pathname === "/earrings",
+    // },
     {
-      label: "Bracelets",
-      href: "/bracelets",
-      active: pathname === "/bracelets",
-    },
-    {
-      label: "Necklaces",
-      href: "/necklaces",
-      active: pathname === "/necklaces",
-    },
-    {
-      label: "Earrings",
-      href: "/earrings",
-      active: pathname === "/earrings",
+      label: "Design Your Own",
+      href: "/customize",
+      active: pathname === "/customize",
     },
   ];
 
@@ -66,7 +71,8 @@ const Navbar = () => {
       <div
         className={cn(
           "flex items-center justify-between max-w-7xl w-full h-full mx-auto text-xs px-4",
-          scrolled && "rounded-full backdrop-blur-[2px] bg-black/70"
+          scrolled &&
+            "rounded-full backdrop-blur-[2px] bg-black/70 border border-zinc-800"
         )}
       >
         <Link href="/">
@@ -85,19 +91,19 @@ const Navbar = () => {
             </li>
           ))}
         </ul>
-        <div className="flex items-center gap-4 border border-zinc-800 rounded-full pl-4">
-          <Link href="/">
-            <HeartIcon className="w-4 h-4 transition-transform ease-in-out hover:transform hover:scale-125" />
-          </Link>
-          <Link href="/">
-            <ShoppingBag className="w-4 h-4 transition-transform ease-in-out hover:transform hover:scale-125" />
-          </Link>
+        <div className="flex items-center gap-6 border border-zinc-800 rounded-full pr-5">
           <Link href="/sign-in">
             {userId ? (
               <UserButton />
             ) : (
               <Button variant="white">Member Login</Button>
             )}
+          </Link>
+          <Link href="/">
+            <HeartIcon className="w-4 h-4 transition-transform ease-in-out hover:transform hover:scale-125" />
+          </Link>
+          <Link href="/">
+            <ShoppingBag className="w-4 h-4 transition-transform ease-in-out hover:transform hover:scale-125" />
           </Link>
         </div>
       </div>
