@@ -10,13 +10,13 @@ interface CartStore {
   removeAll: () => void;
 }
 
-interface cartTrigger {
+interface CartTrigger {
   isOpen: boolean;
   onOpen: () => void;
   onClose: () => void;
 }
 
-export const useCartTrigger = create<cartTrigger>((set) => ({
+export const useCartTrigger = create<CartTrigger>((set) => ({
   isOpen: false,
   onOpen: () => set({ isOpen: true }),
   onClose: () => set({ isOpen: false }),

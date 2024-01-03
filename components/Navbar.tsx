@@ -6,16 +6,13 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { UserButton, useAuth } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
-import { HeartIcon, ShoppingBag } from "lucide-react";
-import useCart from "@/hooks/use-cart";
-import { useCartTrigger } from "@/hooks/use-cart";
+import { HeartIcon } from "lucide-react";
+import NavbarActions from "./NavbarActions";
 
 const Navbar = () => {
   const pathname = usePathname();
-  const cart = useCart();
   const { userId } = useAuth();
   const [scrolled, setScrolled] = useState(false);
-  const cartTrigger = useCartTrigger();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -106,15 +103,7 @@ const Navbar = () => {
             <Link href="/">
               <HeartIcon className="w-4 h-4 transition-transform ease-in-out hover:transform hover:scale-125" />
             </Link>
-            <div
-              className="flex gap-2 cursor-pointer"
-              onClick={() => {
-                cartTrigger.onOpen();
-              }}
-            >
-              <ShoppingBag className="w-4 h-4 transition-transform ease-in-out hover:transform hover:scale-125" />
-              <p className="font-semibold">{cart.items.length}</p>
-            </div>
+            <NavbarActions />
           </div>
         </div>
       </nav>

@@ -17,7 +17,6 @@ import {
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { ShoppingBag } from "lucide-react";
-import Cart from "@/components/CartModal";
 
 import useCart from "@/hooks/use-cart";
 import { cn, formatter } from "@/lib/utils";
