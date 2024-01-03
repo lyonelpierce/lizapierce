@@ -25,6 +25,7 @@ import ElizabethRing from "@/components/ElizabethRing";
 
 const CustomizeForm = ({ product }: { product: ProductWithVariants }) => {
   const [material, setMaterial] = useState("silver");
+  const [gem, setGem] = useState("diamond");
 
   const formSchema = z.object({
     size: z.string(),
@@ -103,9 +104,14 @@ const CustomizeForm = ({ product }: { product: ProductWithVariants }) => {
 
   return (
     <div className="flex w-full">
-      <div className="w-2/3 h-2/3">
+      <div className="w-2/3 h-3/4">
         <CanvasComponent level={7} intensity={0.7}>
-          <ElizabethRing material={material} positionY={-2.5} scale={1.5} />
+          <ElizabethRing
+            material={material}
+            gem={gem}
+            positionY={-2.5}
+            scale={1.5}
+          />
         </CanvasComponent>
       </div>
       <div className="flex flex-col gap-4 w-1/3">
@@ -156,7 +162,10 @@ const CustomizeForm = ({ product }: { product: ProductWithVariants }) => {
                   <FormControl>
                     <RadioGroup
                       defaultValue={field.value}
-                      onValueChange={field.onChange}
+                      onValueChange={(value) => {
+                        field.onChange;
+                        setGem(value);
+                      }}
                       className="flex"
                     >
                       {uniqueGemObjects.map((gem) => (
@@ -230,7 +239,7 @@ const CustomizeForm = ({ product }: { product: ProductWithVariants }) => {
                                 }
                               )}
                             />
-                            <p className="text-sm font-semibold text-xs">
+                            <p className="text-xs font-semibold">
                               {material.name}
                             </p>
                           </Label>

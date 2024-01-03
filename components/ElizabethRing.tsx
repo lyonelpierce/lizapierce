@@ -239,6 +239,7 @@ type ContextType = Record<
 
 interface ElizabethRingProps {
   material: string;
+  gem: string;
   positionY: number;
   scale: number;
 }
@@ -246,7 +247,6 @@ export default function ElizabethRing(
   props: ElizabethRingProps & JSX.IntrinsicElements["group"]
 ) {
   const { nodes, materials } = useGLTF("/models/scene.glb") as GLTFResult;
-
   const texture = useLoader(
     RGBELoader,
     "https://demo-assets.pixotronics.com/pixo/presets/environment/env-gem-1.hdr"
@@ -265,13 +265,39 @@ export default function ElizabethRing(
       currentColor = "#e7b2a4";
       break;
     case "silver":
+      currentColor = "#999999";
+      break;
+    case "whitegold":
+      currentColor = "#e7e7e7";
+      break;
+    case "platinum":
       currentColor = "#cccccc";
+      break;
+    case "gold":
+      currentColor = "#e7b2a4";
       break;
   }
 
   useFrame((state, delta) =>
     easing.dampC(currentMaterial.color, currentColor, 0.5, delta)
   );
+
+  let gemColor = "#fff";
+
+  switch (props.gem) {
+    case "diamond":
+      gemColor = "#fff";
+      break;
+    case "ruby":
+      gemColor = "#ff0000";
+      break;
+    case "sapphire":
+      gemColor = "#0000ff";
+      break;
+    case "emerald":
+      gemColor = "#00ff00";
+      break;
+  }
 
   return (
     <group {...props} dispose={null}>
@@ -3053,6 +3079,7 @@ export default function ElizabethRing(
               fastChroma={true}
               aberrationStrength={0.02}
               toneMapped={false}
+              color={gemColor}
             />
           </mesh>
           <mesh

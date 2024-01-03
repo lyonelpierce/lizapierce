@@ -21,7 +21,6 @@ const CanvasComponent = ({
   level: number;
   intensity: number;
 }) => {
-  console.log(className);
   return (
     <Canvas
       camera={{ position: [5, 10, 5], fov: 45 }}
