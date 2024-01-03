@@ -10,6 +10,18 @@ interface CartStore {
   removeAll: () => void;
 }
 
+interface cartTrigger {
+  isOpen: boolean;
+  onOpen: () => void;
+  onClose: () => void;
+}
+
+export const useCartTrigger = create<cartTrigger>((set) => ({
+  isOpen: false,
+  onOpen: () => set({ isOpen: true }),
+  onClose: () => set({ isOpen: false }),
+}));
+
 const useCart = create(
   persist<CartStore>(
     (set, get) => ({
@@ -24,6 +36,7 @@ const useCart = create(
 
         set({ items: [...get().items, data] });
         toast.success("Item added to cart.");
+        useCartTrigger.getState().onOpen();
       },
       removeItem: (id: string) => {
         set({ items: [...get().items.filter((item) => item.id !== id)] });

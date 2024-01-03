@@ -8,7 +8,7 @@ import { UserButton, useAuth } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
 import { HeartIcon, ShoppingBag } from "lucide-react";
 import useCart from "@/hooks/use-cart";
-import { useCartTrigger } from "@/hooks/open-cart";
+import { useCartTrigger } from "@/hooks/use-cart";
 
 const Navbar = () => {
   const pathname = usePathname();

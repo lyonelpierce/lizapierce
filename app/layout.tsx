@@ -5,7 +5,7 @@ import { GeistSans } from "geist/font/sans";
 import { ClerkProvider } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
 import { Toaster } from "@/components/ui/sonner";
-import Cart from "@/components/Cart";
+import Cart from "@/components/CartModal";
 
 export const metadata: Metadata = {
   title: {
