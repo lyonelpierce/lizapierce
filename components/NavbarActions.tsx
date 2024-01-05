@@ -19,12 +19,12 @@ const NavbarActions = () => {
 
   return (
     <div
-      className="flex gap-1 cursor-pointer"
+      className="flex gap-1 cursor-pointer transition-transform ease-in-out hover:transform hover:scale-125"
       onClick={() => {
         cartTrigger.onOpen();
       }}
     >
-      <ShoppingBag className="w-4 h-4 transition-transform ease-in-out hover:transform hover:scale-125" />
+      <ShoppingBag className="w-4 h-4 " />
       <p className="font-semibold">{cart.items.length}</p>
     </div>
   );

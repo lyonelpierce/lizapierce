@@ -33,7 +33,7 @@ const Hero = () => {
             <div className="border rounded-full flex mt-8 w-fit">
               <Link href="/elizabeth/rings/elizabeth-ring" className="w-1/2">
                 <Button variant="white" className="flex gap-1 w-full">
-                  <Settings className="w-8 h-8" />
+                  <Settings className="w-4 h-4" />
                   Customize
                 </Button>
               </Link>
@@ -42,7 +42,7 @@ const Hero = () => {
                 className="w-1/2"
               >
                 <Button variant="link" className="text-white text-xs w-full">
-                  View More
+                  View Collection
                 </Button>
               </Link>
             </div>

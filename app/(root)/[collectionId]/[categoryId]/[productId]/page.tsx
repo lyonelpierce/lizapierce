@@ -19,20 +19,10 @@ async function getProduct({
   params,
 }: {
   params: { productId: string };
-}): Promise<ProductWithVariants> {
+}): Promise<Product> {
   const product = await prismadb.product.findUnique({
     where: {
       slug: params.productId,
-    },
-    include: {
-      variants: {
-        include: {
-          size: true,
-          gem: true,
-          material: true,
-          karat: true,
-        },
-      },
     },
   });
 
@@ -55,6 +45,56 @@ export async function generateMetadata({
 
 const ProductPage = async ({ params }: { params: { productId: string } }) => {
   const product = await getProduct({ params });
+  const productId = product.id;
+
+  const sizes = await prismadb.size.findMany({
+    where: {
+      variants: {
+        some: {
+          productId,
+        },
+      },
+    },
+    orderBy: {
+      value: "asc",
+    },
+  });
+
+  const gems = await prismadb.gem.findMany({
+    where: {
+      variants: {
+        some: {
+          productId,
+        },
+      },
+    },
+    orderBy: {
+      value: "asc",
+    },
+  });
+
+  const materials = await prismadb.material.findMany({
+    where: {
+      variants: {
+        some: {
+          productId,
+        },
+      },
+    },
+  });
+
+  const karats = await prismadb.karat.findMany({
+    where: {
+      variants: {
+        some: {
+          productId,
+        },
+      },
+    },
+    orderBy: {
+      value: "asc",
+    },
+  });
 
   return (
     <div className="h-full bg-black pt-32">
@@ -62,9 +102,15 @@ const ProductPage = async ({ params }: { params: { productId: string } }) => {
         <div className="max-w-7xl mx-auto px-4 text-sm font-medium h-full">
           <div className="flex flex-col gap-8 h-full">
             <div className="h-2/3">
-              <CustomizeForm product={product} />
+              <CustomizeForm
+                product={product}
+                gems={gems}
+                sizes={sizes}
+                karats={karats}
+                materials={materials}
+              />
             </div>
-            <div className="bg-zinc-900 h-1/3 w-full rounded-xl">Reviews</div>
+            {/* <div className="bg-zinc-900 h-1/3 w-full rounded-xl">Reviews</div> */}
           </div>
         </div>
       </TooltipProvider>

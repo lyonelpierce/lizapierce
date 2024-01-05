@@ -21,12 +21,25 @@ import { ShoppingBag } from "lucide-react";
 
 import useCart from "@/hooks/use-cart";
 import { cn, formatter } from "@/lib/utils";
-import { CartProduct, ProductWithVariants } from "@/types/ProductWithVariants";
+import { CartProduct } from "@/types/ProductWithVariants";
 import CanvasComponent from "@/components/CanvasComponent";
 import ElizabethRing from "@/components/ElizabethRing";
 import { generateUUID } from "three/src/math/MathUtils.js";
+import { Gem, Karat, Material, Product, Size } from "@prisma/client";
 
-const CustomizeForm = ({ product }: { product: ProductWithVariants }) => {
+const CustomizeForm = ({
+  product,
+  gems,
+  materials,
+  sizes,
+  karats,
+}: {
+  product: Product;
+  gems: Gem[];
+  materials: Material[];
+  sizes: Size[];
+  karats: Karat[];
+}) => {
   const cart = useCart();
   const pathname = usePathname();
 
@@ -55,7 +68,6 @@ const CustomizeForm = ({ product }: { product: ProductWithVariants }) => {
   function onSubmit(values: z.infer<typeof formSchema>) {
     try {
       const UUID = generateUUID();
-      console.log(UUID);
 
       const cartProduct: CartProduct = {
         id: UUID,
@@ -75,66 +87,14 @@ const CustomizeForm = ({ product }: { product: ProductWithVariants }) => {
     }
   }
 
-  //  Extract Options
-
-  const uniqueSizeIds = new Set();
-  const uniqueGemIds = new Set();
-  const uniqueMaterialIds = new Set();
-  const uniqueKaratIds = new Set();
-
-  const uniqueSizes = product.variants.filter((variant) => {
-    if (!uniqueSizeIds.has(variant.sizeId)) {
-      uniqueSizeIds.add(variant.sizeId);
-      return true;
-    }
-    return false;
-  });
-
-  const uniqueGems = product.variants.filter((variant) => {
-    if (!uniqueGemIds.has(variant.gemId)) {
-      uniqueGemIds.add(variant.gemId);
-      return true;
-    }
-    return false;
-  });
-
-  const uniqueMaterials = product.variants.filter((variant) => {
-    if (!uniqueMaterialIds.has(variant.materialId)) {
-      uniqueMaterialIds.add(variant.materialId);
-      return true;
-    }
-    return false;
-  });
-
-  const uniqueKarats = product.variants.filter((variant) => {
-    if (!uniqueKaratIds.has(variant.karatId)) {
-      uniqueKaratIds.add(variant.karatId);
-      return true;
-    }
-    return false;
-  });
-
-  const uniqueSizeObjects = uniqueSizes.map((variant) => variant.size);
-  const uniqueGemObjects = uniqueGems.map((variant) => variant.gem);
-  const uniqueMaterialObjects = uniqueMaterials.map(
-    (variant) => variant.material
-  );
-  const uniqueKaratObjects = uniqueKarats.map((variant) => variant.karat);
-
-  const sortedSizes = uniqueSizeObjects.sort((a, b) =>
-    a.value.localeCompare(b.value)
-  );
-
   // Calculate Price
 
   const variantPrice = () => {
-    const getGemPrice = uniqueGemObjects.find((gems) => gems.value === gem);
-    const getMaterialPrice = uniqueMaterialObjects.find(
+    const getGemPrice = gems.find((gems) => gems.value === gem);
+    const getMaterialPrice = materials.find(
       (materials) => materials.value === material
     );
-    const getKaratPrice = uniqueKaratObjects.find(
-      (karats) => karats.value === karat
-    );
+    const getKaratPrice = karats.find((karats) => karats.value === karat);
 
     if (!getGemPrice || !getMaterialPrice || !getKaratPrice) {
       return null;
@@ -182,7 +142,7 @@ const CustomizeForm = ({ product }: { product: ProductWithVariants }) => {
                       onValueChange={field.onChange}
                       className="flex"
                     >
-                      {sortedSizes.map((size) => (
+                      {sizes.map((size) => (
                         <div className="flex items-center" key={size.id}>
                           <RadioGroupItem
                             value={size.value}
@@ -214,7 +174,7 @@ const CustomizeForm = ({ product }: { product: ProductWithVariants }) => {
                       onValueChange={field.onChange}
                       className="flex"
                     >
-                      {uniqueGemObjects.map((gem) => (
+                      {gems.map((gem) => (
                         <div className="flex items-center" key={gem.id}>
                           <RadioGroupItem
                             value={gem.value}
@@ -255,7 +215,7 @@ const CustomizeForm = ({ product }: { product: ProductWithVariants }) => {
                       onValueChange={field.onChange}
                       className="flex"
                     >
-                      {uniqueMaterialObjects.map((material) => (
+                      {materials.map((material) => (
                         <div className="flex items-center" key={material.id}>
                           <RadioGroupItem
                             value={material.value}
@@ -310,7 +270,7 @@ const CustomizeForm = ({ product }: { product: ProductWithVariants }) => {
                         onValueChange={field.onChange}
                         className="flex"
                       >
-                        {uniqueKaratObjects.map((karat) => (
+                        {karats.map((karat) => (
                           <div className="flex items-center" key={karat.id}>
                             <RadioGroupItem
                               value={karat.value}
