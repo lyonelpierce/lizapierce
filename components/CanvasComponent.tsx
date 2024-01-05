@@ -8,6 +8,7 @@ import {
 } from "@react-three/drei";
 import { Suspense } from "react";
 import { EffectComposer, Bloom } from "@react-three/postprocessing";
+
 import { cn } from "@/lib/utils";
 
 const CanvasComponent = ({
@@ -46,9 +47,10 @@ const CanvasComponent = ({
         enableZoom={false}
         enablePan={false}
       />
-      <EffectComposer>
+      <EffectComposer multisampling={0} disableNormalPass={true}>
         <Bloom
           luminanceThreshold={1}
+          luminanceSmoothing={0.9}
           intensity={intensity}
           levels={level}
           mipmapBlur
