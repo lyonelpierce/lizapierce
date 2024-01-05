@@ -61,8 +61,10 @@ const ProductPage = async ({ params }: { params: { productId: string } }) => {
       <TooltipProvider>
         <div className="max-w-7xl mx-auto px-4 text-sm font-medium h-full">
           <div className="flex flex-col gap-8 h-full">
-            <CustomizeForm product={product} />
-            <div className="bg-zinc-900 h-full w-full rounded-xl">Reviews</div>
+            <div className="h-2/3">
+              <CustomizeForm product={product} />
+            </div>
+            <div className="bg-zinc-900 h-1/3 w-full rounded-xl">Reviews</div>
           </div>
         </div>
       </TooltipProvider>

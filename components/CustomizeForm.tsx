@@ -4,6 +4,7 @@ import * as z from "zod";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { usePathname } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { Button } from "@/components/ui/button";
@@ -20,14 +21,16 @@ import { ShoppingBag } from "lucide-react";
 
 import useCart from "@/hooks/use-cart";
 import { cn, formatter } from "@/lib/utils";
-import { ProductWithVariants } from "@/types/ProductWithVariants";
+import { CartProduct, ProductWithVariants } from "@/types/ProductWithVariants";
 import CanvasComponent from "@/components/CanvasComponent";
 import ElizabethRing from "@/components/ElizabethRing";
+import { generateUUID } from "three/src/math/MathUtils.js";
 
 const CustomizeForm = ({ product }: { product: ProductWithVariants }) => {
   const cart = useCart();
+  const pathname = usePathname();
 
-  const [material, setMaterial] = useState("whitegold");
+  const [material, setMaterial] = useState("white-gold");
   const [gem, setGem] = useState("diamond");
   const [karat, setKarat] = useState("16");
   const [price, setPrice] = useState(product.basePrice);
@@ -44,14 +47,29 @@ const CustomizeForm = ({ product }: { product: ProductWithVariants }) => {
     defaultValues: {
       size: "4",
       gem: "diamond",
-      material: "whitegold",
+      material: "white-gold",
       karat: "16",
     },
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     try {
-      cart.addItem(product);
+      const UUID = generateUUID();
+      console.log(UUID);
+
+      const cartProduct: CartProduct = {
+        id: UUID,
+        name: product.name,
+        slug: pathname,
+        price: price,
+        size: values.size,
+        gem: values.gem,
+        material: values.material,
+      };
+      if (values.material.includes("gold")) {
+        cartProduct.karat = values.karat;
+      }
+      cart.addItem(cartProduct);
     } catch (error) {
       console.log(error);
     }
@@ -134,14 +152,14 @@ const CustomizeForm = ({ product }: { product: ProductWithVariants }) => {
   }, [gem, material, karat]);
 
   return (
-    <div className="flex w-full">
+    <div className="flex w-full h-full">
       <div className="w-2/3 h-full">
         <CanvasComponent level={6} intensity={0.3}>
           <ElizabethRing
             material={material}
             gem={gem}
-            positionY={-3}
-            scale={1.8}
+            positionY={-2}
+            scale={1.6}
           />
         </CanvasComponent>
       </div>
@@ -193,10 +211,7 @@ const CustomizeForm = ({ product }: { product: ProductWithVariants }) => {
                   <FormControl>
                     <RadioGroup
                       defaultValue={field.value}
-                      onValueChange={(value) => {
-                        field.onChange;
-                        setGem(value);
-                      }}
+                      onValueChange={field.onChange}
                       className="flex"
                     >
                       {uniqueGemObjects.map((gem) => (
@@ -204,6 +219,7 @@ const CustomizeForm = ({ product }: { product: ProductWithVariants }) => {
                           <RadioGroupItem
                             value={gem.value}
                             id={gem.id}
+                            onClick={() => setGem(gem.value)}
                             className="peer sr-only"
                           />
                           <Label
@@ -236,10 +252,7 @@ const CustomizeForm = ({ product }: { product: ProductWithVariants }) => {
                   <FormControl>
                     <RadioGroup
                       defaultValue={field.value}
-                      onValueChange={(value) => {
-                        field.onChange;
-                        setMaterial(value);
-                      }}
+                      onValueChange={field.onChange}
                       className="flex"
                     >
                       {uniqueMaterialObjects.map((material) => (
@@ -247,6 +260,7 @@ const CustomizeForm = ({ product }: { product: ProductWithVariants }) => {
                           <RadioGroupItem
                             value={material.value}
                             id={material.id}
+                            onClick={() => setMaterial(material.value)}
                             className="peer sr-only"
                           />
                           <Label
@@ -260,9 +274,9 @@ const CustomizeForm = ({ product }: { product: ProductWithVariants }) => {
                                   "from-gray-500 via-white to-gray-500":
                                     material.value === "platinum",
                                   "from-gray-700 via-white to-gray-700":
-                                    material.value === "whitegold",
+                                    material.value === "white-gold",
                                   "from-rose-300 via-white to-rose-300":
-                                    material.value === "rosegold",
+                                    material.value === "rose-gold",
                                   "from-amber-500 via-white to-amber-500":
                                     material.value === "gold",
                                   "from-gray-900 via-white to gray-900":
@@ -282,8 +296,8 @@ const CustomizeForm = ({ product }: { product: ProductWithVariants }) => {
               )}
             />
             {(material === "gold" ||
-              material === "rosegold" ||
-              material === "whitegold") && (
+              material === "rose-gold" ||
+              material === "white-gold") && (
               <FormField
                 control={form.control}
                 name="karat"
@@ -293,10 +307,7 @@ const CustomizeForm = ({ product }: { product: ProductWithVariants }) => {
                     <FormControl>
                       <RadioGroup
                         defaultValue={field.value}
-                        onValueChange={(value) => {
-                          field.onChange;
-                          setKarat(value);
-                        }}
+                        onValueChange={field.onChange}
                         className="flex"
                       >
                         {uniqueKaratObjects.map((karat) => (
@@ -304,6 +315,7 @@ const CustomizeForm = ({ product }: { product: ProductWithVariants }) => {
                             <RadioGroupItem
                               value={karat.value}
                               id={karat.id}
+                              onClick={() => setKarat(karat.value)}
                               className="peer sr-only"
                             />
                             <Label

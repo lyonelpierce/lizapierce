@@ -32,7 +32,12 @@ export default function RootLayout({
         >
           {children}
           <Cart />
-          <Toaster position="top-center" richColors className="bg-zinc-800" />
+          <Toaster
+            position="top-center"
+            richColors
+            className="bg-zinc-800"
+            theme="dark"
+          />
         </body>
       </html>
     </ClerkProvider>

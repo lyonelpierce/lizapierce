@@ -261,13 +261,13 @@ export default function ElizabethRing(
   let currentColor = "";
 
   switch (props.material) {
-    case "rosegold":
+    case "rose-gold":
       currentColor = "#e7b2a4";
       break;
     case "silver":
       currentColor = "#999999";
       break;
-    case "whitegold":
+    case "white-gold":
       currentColor = "#e7e7e7";
       break;
     case "platinum":
@@ -277,10 +277,6 @@ export default function ElizabethRing(
       currentColor = "#e7b2a4";
       break;
   }
-
-  useFrame((state, delta) =>
-    easing.dampC(currentMaterial.color, currentColor, 0.5, delta)
-  );
 
   let gemColor = "#fff";
 
@@ -298,6 +294,10 @@ export default function ElizabethRing(
       gemColor = "#00ff00";
       break;
   }
+
+  useFrame((state, delta) => {
+    easing.dampC(currentMaterial.color, currentColor, 0.5, delta);
+  });
 
   return (
     <group {...props} dispose={null}>
@@ -3038,6 +3038,7 @@ export default function ElizabethRing(
               fastChroma={true}
               aberrationStrength={0.02}
               toneMapped={false}
+              color={gemColor}
             />
           </mesh>
           <mesh
@@ -3076,9 +3077,9 @@ export default function ElizabethRing(
           >
             <MeshRefractionMaterial
               envMap={texture}
-              fastChroma={true}
-              aberrationStrength={0.02}
               toneMapped={false}
+              aberrationStrength={0.02}
+              fastChroma={true}
               color={gemColor}
             />
           </mesh>
@@ -3177,6 +3178,7 @@ export default function ElizabethRing(
               fastChroma={true}
               aberrationStrength={0.02}
               toneMapped={false}
+              color={gemColor}
             />
           </mesh>
           <mesh

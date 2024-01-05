@@ -14,3 +14,16 @@ type VariantsWithOptions = Variant & {
 };
 
 export type { VariantsWithOptions };
+
+type CartProduct = {
+  id: string;
+  name: string;
+  slug: string;
+  price: number;
+  gem: string;
+  material: string;
+  size: string;
+  karat?: string;
+};
+
+export type { CartProduct };

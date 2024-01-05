@@ -32,6 +32,7 @@ model Product{
   basePrice     Int
   isFeatured    Boolean @default(false)
   slug          String  @unique
+  image         String
   categoryId    String
   category      Category @relation("CategoryToProduct", fields: [categoryId], references: [id])
   collectionId  String

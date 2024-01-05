@@ -1,11 +1,11 @@
-import { Product } from "@prisma/client";
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 import { toast } from "sonner";
+import { CartProduct } from "@/types/ProductWithVariants";
 
 interface CartStore {
-  items: Product[];
-  addItem: (data: Product) => void;
+  items: CartProduct[];
+  addItem: (data: CartProduct) => void;
   removeItem: (id: string) => void;
   removeAll: () => void;
 }
@@ -26,9 +26,17 @@ const useCart = create(
   persist<CartStore>(
     (set, get) => ({
       items: [],
-      addItem: (data: Product) => {
+      addItem: (data: CartProduct) => {
         const currentItems = get().items;
-        const existingItem = currentItems.find((item) => item.id === data.id);
+        const existingItem = currentItems.find(
+          (item) =>
+            // item.id === data.id &&
+            item.gem === data.gem &&
+            item.material === data.material &&
+            item.size === data.size &&
+            item.slug === data.slug &&
+            item.karat === data.karat
+        );
 
         if (existingItem) {
           return toast("Item is already in cart.");
