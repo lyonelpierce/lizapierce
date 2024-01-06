@@ -18,13 +18,20 @@ import {
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { ShoppingBag } from "lucide-react";
+import {
+  FaCcAmex,
+  FaCcDinersClub,
+  FaCcDiscover,
+  FaCcMastercard,
+  FaCcStripe,
+  FaCcVisa,
+} from "react-icons/fa";
 
 import useCart from "@/hooks/use-cart";
 import { cn, formatter } from "@/lib/utils";
 import { CartProduct } from "@/types/ProductWithVariants";
 import CanvasComponent from "@/components/CanvasComponent";
 import ElizabethRing from "@/components/ElizabethRing";
-import { generateUUID } from "three/src/math/MathUtils.js";
 import { Gem, Karat, Material, Product, Size } from "@prisma/client";
 
 const CustomizeForm = ({
@@ -67,8 +74,6 @@ const CustomizeForm = ({
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     try {
-      const UUID = generateUUID();
-
       const cartProduct: CartProduct = {
         id: product.id,
         name: product.name,
@@ -125,7 +130,7 @@ const CustomizeForm = ({
       </div>
       <div className="flex flex-col gap-4 w-1/3">
         <div className="font-normal">
-          <h2 className="text-4xl">{product.name}</h2>
+          <h2 className="text-3xl">{product.name}</h2>
           <h3 className="text-xl">{formatter.format(price)}</h3>
         </div>
         <Form {...form}>
@@ -294,12 +299,23 @@ const CustomizeForm = ({
                 )}
               />
             )}
-            <Button type="submit" className="gap-1" variant="white">
+            <Button type="submit" className="gap-1 w-full" variant="white">
               <ShoppingBag className="w-4 h-4" />
               Add to cart
             </Button>
           </form>
         </Form>
+        <div className="space-y-4 border border-zinc-800 rounded-md p-4">
+          <h4 className="text-xs text-center">Guaranteed Safe Checkout</h4>
+          <div className="flex items-center justify-center gap-4">
+            <FaCcStripe className="w-10 h-10" />
+            <FaCcVisa className="w-10 h-10" />
+            <FaCcMastercard className="w-10 h-10" />
+            <FaCcAmex className="w-10 h-10" />
+            <FaCcDiscover className="w-10 h-10" />
+            <FaCcDinersClub className="w-10 h-10" />
+          </div>
+        </div>
       </div>
     </div>
   );
