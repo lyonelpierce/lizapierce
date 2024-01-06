@@ -70,7 +70,7 @@ const CustomizeForm = ({
       const UUID = generateUUID();
 
       const cartProduct: CartProduct = {
-        id: UUID,
+        id: product.id,
         name: product.name,
         slug: pathname,
         price: price,

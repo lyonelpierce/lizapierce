@@ -6,7 +6,7 @@ import { CartProduct } from "@/types/ProductWithVariants";
 interface CartStore {
   items: CartProduct[];
   addItem: (data: CartProduct) => void;
-  removeItem: (id: string) => void;
+  removeItem: (data: CartProduct) => void;
   removeAll: () => void;
 }
 
@@ -30,7 +30,7 @@ const useCart = create(
         const currentItems = get().items;
         const existingItem = currentItems.find(
           (item) =>
-            // item.id === data.id &&
+            item.id === data.id &&
             item.gem === data.gem &&
             item.material === data.material &&
             item.size === data.size &&
@@ -46,11 +46,25 @@ const useCart = create(
         toast.success("Item added to cart.");
         useCartTrigger.getState().onOpen();
       },
-      removeItem: (id: string) => {
-        set({ items: [...get().items.filter((item) => item.id !== id)] });
+      removeItem: (data: CartProduct) => {
+        set({
+          items: [
+            ...get().items.filter(
+              (item) =>
+                item.id !== data.id ||
+                item.gem !== data.gem ||
+                item.material !== data.material ||
+                item.size !== data.size ||
+                item.slug !== data.slug ||
+                item.karat !== data.karat
+            ),
+          ],
+        });
+        toast.success("Item removed from cart.");
       },
       removeAll: () => {
         set({ items: [] });
+        toast.success("Cart cleared.");
       },
     }),
     {

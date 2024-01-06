@@ -24,8 +24,8 @@ const NavbarActions = () => {
         cartTrigger.onOpen();
       }}
     >
-      <ShoppingBag className="w-4 h-4 " />
-      <p className="font-semibold">{cart.items.length}</p>
+      <ShoppingBag className="w-4 h-4" />
+      <p>{cart.items.length}</p>
     </div>
   );
 };

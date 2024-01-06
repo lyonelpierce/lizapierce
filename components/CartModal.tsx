@@ -24,6 +24,15 @@ const Cart = () => {
     return total + Number(item.price);
   }, 0);
 
+  const onCheckout = async () => {
+    const response = await fetch("/api/checkout", {
+      method: "POST",
+      body: JSON.stringify({
+        items,
+      }),
+    });
+  };
+
   return (
     <Sheet open={cartTrigger.isOpen} onOpenChange={cartTrigger.onClose}>
       <SheetContent className="flex flex-col justify-between h-full">
@@ -49,7 +58,7 @@ const Cart = () => {
         {cart.items.length > 0 && (
           <>
             <div className="space-y-4 w-full mb-2">
-              <Separator />
+              <Separator className="bg-zinc-800" />
               <p className="flex justify-between text-white text-sm font-semibold w-full">
                 <span>Subtotal:</span>
                 {formatter.format(totalPrice)}
@@ -59,6 +68,7 @@ const Cart = () => {
               <Button
                 className="flex items-center gap-1 w-full"
                 variant="white"
+                onClick={onCheckout}
               >
                 <BadgeCheck className="w-4 h-4" />
                 Continue to Checkout

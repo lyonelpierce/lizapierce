@@ -26,7 +26,7 @@ const Hero = () => {
               Elizabeth Ring
             </h2>
           </div>
-          <div className="absolute max-w-7xl px-4 lg:bottom-20 2xl:bottom-40 z-20">
+          <div className="absolute max-w-7xl px-4 md:bottom-12 lg:bottom-20 2xl:bottom-40 z-20">
             <h1 className="uppercase text-7xl font-semibold w-1/2">
               Craft your masterpiece in real time
             </h1>
@@ -37,10 +37,7 @@ const Hero = () => {
                   Customize
                 </Button>
               </Link>
-              <Link
-                href="/elizabeth/rings/elizabeth-ring/customize"
-                className="w-1/2"
-              >
+              <Link href="/elizabeth" className="w-1/2">
                 <Button variant="link" className="text-white text-xs w-full">
                   View Collection
                 </Button>
