@@ -1,17 +1,19 @@
-import prismadb from "@/lib/prismadb";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
+import prismadb from "@/lib/prismadb";
 
 import { formatter } from "@/lib/utils";
-import { Label } from "@/components/ui/label";
 import { ProductDetails } from "@/types/ProductVariants";
 
-import { Separator } from "@/components/ui/separator";
 import SafePayment from "@/components/SafePayment";
-
 import Variants from "@/components/Variants";
 import Render from "@/components/Render";
-import AddToCart from "@/components/AddToCart";
+import AddToCart from "@/components/AddToCartButton";
+
+import { Label } from "@/components/ui/label";
+import { Separator } from "@/components/ui/separator";
+import { Button } from "@/components/ui/button";
+import ClearButton from "@/components/ClearButton";
 
 async function getProduct({
   params,
@@ -73,11 +75,14 @@ const ProductPage = async ({ params }: { params: { productId: string } }) => {
             </div>
             <Separator className="bg-zinc-800 my-4" />
             <Variants options={product.options} variants={product.variants} />
-            <AddToCart
-              forSale={product.forSale}
-              variants={product.variants}
-              name={product.name}
-            />
+            <div className="flex gap-1 items-center">
+              <AddToCart
+                forSale={product.forSale}
+                variants={product.variants}
+                name={product.name}
+              />
+              <ClearButton variants={product.variants} />
+            </div>
             <Separator className="bg-zinc-800 my-4" />
             <SafePayment />
           </div>

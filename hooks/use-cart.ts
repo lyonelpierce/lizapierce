@@ -40,7 +40,6 @@ const useCart = create(
         useCartTrigger.getState().onOpen();
       },
       removeItem: (data: string) => {
-        console.log(data);
         set({
           items: [...get().items.filter((item) => item.id !== data)],
         });

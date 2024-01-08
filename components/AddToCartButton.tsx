@@ -24,7 +24,7 @@ function SubmitButton({
 
   if (!variant)
     return (
-      <Button variant="white" className="mt-2" disabled>
+      <Button variant="white" className=" w-full" disabled>
         Select Options
       </Button>
     );
@@ -34,7 +34,7 @@ function SubmitButton({
   return (
     <Button
       variant="white"
-      className="gap-1 mt-2"
+      className="gap-1 w-full"
       disabled={!forSale}
       onClick={() => cart.addItem(product)}
     >
