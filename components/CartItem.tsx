@@ -3,22 +3,28 @@
 import Link from "next/link";
 import Image from "next/image";
 
-import useCart from "@/hooks/use-cart";
-import { formatter, materialFormatter } from "@/lib/utils";
-import { CartProduct } from "@/types/ProductVariants";
+import useCart, { useCartTrigger } from "@/hooks/use-cart";
+import { formatter } from "@/lib/utils";
 
 import { Trash } from "lucide-react";
+import { Variant } from "@prisma/client";
 
 interface CartItemProps {
-  data: CartProduct;
+  data: Variant & {
+    name?: string;
+    href?: string;
+  };
 }
 
 const CartItem: React.FC<CartItemProps> = ({ data }) => {
   const cart = useCart();
+  const cartTrigger = useCartTrigger();
 
   const onRemove = () => {
-    cart.removeItem(data);
+    cart.removeItem(data.id);
   };
+
+  if (!data.href) return null;
 
   return (
     <li className="flex text-xs w-full py-6 font-medium">
@@ -28,7 +34,9 @@ const CartItem: React.FC<CartItemProps> = ({ data }) => {
       <div className="flex flex-col gap-1 w-4/5">
         <div>
           <h3 className="flex items-center justify-between text-base font-medium">
-            <Link href={data.slug}>{data.name}</Link>
+            <Link href={data.href} onClick={cartTrigger.onClose}>
+              {data.name}
+            </Link>
             <Trash
               className="w-4 h-4 cursor-pointer transition-transform ease-in-out hover:scale-125"
               onClick={onRemove}
@@ -36,12 +44,7 @@ const CartItem: React.FC<CartItemProps> = ({ data }) => {
           </h3>
           <h4 className="text-sm">{formatter.format(data.price)}</h4>
         </div>
-        <p>
-          {data.size} -{" "}
-          <span className="capitalize">{materialFormatter(data.material)}</span>{" "}
-          - <span className="capitalize">{data.gem}</span>
-          {data.material.includes("gold") && ` - ${data.karat}k`}
-        </p>
+        <p>{data.title}</p>
       </div>
     </li>
   );

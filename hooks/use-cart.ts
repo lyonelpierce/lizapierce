@@ -1,12 +1,13 @@
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 import { toast } from "sonner";
-import { CartProduct } from "@/types/ProductVariants";
+import { Variant } from "@prisma/client";
+import { CartItem } from "@/types/ProductVariants";
 
 interface CartStore {
-  items: CartProduct[];
-  addItem: (data: CartProduct) => void;
-  removeItem: (data: CartProduct) => void;
+  items: CartItem[];
+  addItem: (data: CartItem) => void;
+  removeItem: (data: string) => void;
   removeAll: () => void;
 }
 
@@ -26,17 +27,9 @@ const useCart = create(
   persist<CartStore>(
     (set, get) => ({
       items: [],
-      addItem: (data: CartProduct) => {
+      addItem: (data: CartItem) => {
         const currentItems = get().items;
-        const existingItem = currentItems.find(
-          (item) =>
-            item.id === data.id &&
-            item.gem === data.gem &&
-            item.material === data.material &&
-            item.size === data.size &&
-            item.slug === data.slug &&
-            item.karat === data.karat
-        );
+        const existingItem = currentItems.find((item) => item.id === data.id);
 
         if (existingItem) {
           return toast("Item is already in cart.");
@@ -46,19 +39,10 @@ const useCart = create(
         toast.success("Item added to cart.");
         useCartTrigger.getState().onOpen();
       },
-      removeItem: (data: CartProduct) => {
+      removeItem: (data: string) => {
+        console.log(data);
         set({
-          items: [
-            ...get().items.filter(
-              (item) =>
-                item.id !== data.id ||
-                item.gem !== data.gem ||
-                item.material !== data.material ||
-                item.size !== data.size ||
-                item.slug !== data.slug ||
-                item.karat !== data.karat
-            ),
-          ],
+          items: [...get().items.filter((item) => item.id !== data)],
         });
         toast.success("Item removed from cart.");
       },

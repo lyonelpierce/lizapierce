@@ -10,7 +10,7 @@ import {
 import { useCartTrigger } from "@/hooks/use-cart";
 import useCart from "@/hooks/use-cart";
 import { Button } from "@/components/ui/button";
-import { ShoppingBag, Trash, BadgeCheck } from "lucide-react";
+import { ShoppingBag, BadgeCheck } from "lucide-react";
 import CartItem from "@/components/CartItem";
 import { Separator } from "./ui/separator";
 import { formatter } from "@/lib/utils";

@@ -73,7 +73,11 @@ const ProductPage = async ({ params }: { params: { productId: string } }) => {
             </div>
             <Separator className="bg-zinc-800 my-4" />
             <Variants options={product.options} variants={product.variants} />
-            <AddToCart forSale={product.forSale} variants={product.variants} />
+            <AddToCart
+              forSale={product.forSale}
+              variants={product.variants}
+              name={product.name}
+            />
             <Separator className="bg-zinc-800 my-4" />
             <SafePayment />
           </div>

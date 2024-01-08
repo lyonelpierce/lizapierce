@@ -12,3 +12,10 @@ type VariantOptions = Variant & {
 };
 
 export type { VariantOptions };
+
+type CartItem = Variant & {
+  name: string;
+  href: string;
+};
+
+export type { CartItem };
