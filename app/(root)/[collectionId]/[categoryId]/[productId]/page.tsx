@@ -7,12 +7,11 @@ import { Label } from "@/components/ui/label";
 import { ProductDetails } from "@/types/ProductVariants";
 
 import { Separator } from "@/components/ui/separator";
-import { Button } from "@/components/ui/button";
-import { ShoppingBag } from "lucide-react";
 import SafePayment from "@/components/SafePayment";
 
 import Variants from "@/components/Variants";
 import Render from "@/components/Render";
+import AddToCart from "@/components/AddToCart";
 
 async function getProduct({
   params,
@@ -74,10 +73,7 @@ const ProductPage = async ({ params }: { params: { productId: string } }) => {
             </div>
             <Separator className="bg-zinc-800 my-4" />
             <Variants options={product.options} variants={product.variants} />
-            <Button variant="white" className="gap-1">
-              <ShoppingBag className="w-4 h-4" />
-              Add to cart
-            </Button>
+            <AddToCart forSale={product.forSale} variants={product.variants} />
             <Separator className="bg-zinc-800 my-4" />
             <SafePayment />
           </div>
