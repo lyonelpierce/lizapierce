@@ -238,8 +238,8 @@ type ContextType = Record<
 >;
 
 interface ElizabethRingProps {
-  material: string;
-  gem: string;
+  material?: string;
+  gem?: string;
   positionY: number;
   scale: number;
 }

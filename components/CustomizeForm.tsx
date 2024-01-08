@@ -29,7 +29,7 @@ import {
 
 import useCart from "@/hooks/use-cart";
 import { cn, formatter } from "@/lib/utils";
-import { CartProduct } from "@/types/ProductWithVariants";
+import { CartProduct } from "@/types/ProductVariants";
 import CanvasComponent from "@/components/CanvasComponent";
 import ElizabethRing from "@/components/ElizabethRing";
 import { Gem, Karat, Material, Product, Size } from "@prisma/client";
@@ -118,8 +118,8 @@ const CustomizeForm = ({
   }, [gem, material, karat]);
 
   return (
-    <div className="flex w-full h-full">
-      <div className="w-2/3 h-full">
+    <div className="flex w-full h-[40rem]">
+      <div className="w-2/3">
         <CanvasComponent level={6} intensity={0.3}>
           <ElizabethRing
             material={material}
@@ -129,7 +129,7 @@ const CustomizeForm = ({
           />
         </CanvasComponent>
       </div>
-      <div className="flex flex-col justify-between gap-4 w-1/3 border bg-zinc-950 border-zinc-800 rounded-lg p-6">
+      <div className="flex flex-col gap-4 w-1/3 border bg-zinc-950 border-zinc-800 rounded-lg p-6 h-fit">
         <div className="space-y-4">
           <div className="font-normal">
             <h2 className="text-3xl">{product.name}</h2>
@@ -311,7 +311,7 @@ const CustomizeForm = ({
             </form>
           </Form>
         </div>
-        <div className="space-y-4 bg-black rounded-md p-4">
+        <div className="space-y-4 rounded-md p-4">
           <h4 className="text-xs text-center">Guaranteed Safe Checkout</h4>
           <div className="flex items-center justify-center gap-4">
             <FaCcStripe className="w-10 h-10" />

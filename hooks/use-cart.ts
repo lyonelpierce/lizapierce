@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 import { toast } from "sonner";
-import { CartProduct } from "@/types/ProductWithVariants";
+import { CartProduct } from "@/types/ProductVariants";
 
 interface CartStore {
   items: CartProduct[];

@@ -1,28 +1,40 @@
 import prismadb from "@/lib/prismadb";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { Product, Variant } from "@prisma/client";
 
-import { cn, formatter } from "@/lib/utils";
+import { formatter } from "@/lib/utils";
 import { Label } from "@/components/ui/label";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
-import { ProductWithVariants } from "@/types/ProductWithVariants";
+import { ProductDetails } from "@/types/ProductVariants";
 
-import CustomizeForm from "@/components/CustomizeForm";
+import { Separator } from "@/components/ui/separator";
+import { Button } from "@/components/ui/button";
+import { ShoppingBag } from "lucide-react";
+import SafePayment from "@/components/SafePayment";
+
+import Variants from "@/components/Variants";
+import Render from "@/components/Render";
 
 async function getProduct({
   params,
 }: {
   params: { productId: string };
-}): Promise<Product> {
+}): Promise<ProductDetails> {
   const product = await prismadb.product.findUnique({
     where: {
       slug: params.productId,
+    },
+    include: {
+      options: true,
+      variants: {
+        include: {
+          options: {
+            select: {
+              name: true,
+              value: true,
+            },
+          },
+        },
+      },
     },
   });
 
@@ -45,75 +57,32 @@ export async function generateMetadata({
 
 const ProductPage = async ({ params }: { params: { productId: string } }) => {
   const product = await getProduct({ params });
-  const productId = product.id;
-
-  const sizes = await prismadb.size.findMany({
-    where: {
-      variants: {
-        some: {
-          productId,
-        },
-      },
-    },
-    orderBy: {
-      value: "asc",
-    },
-  });
-
-  const gems = await prismadb.gem.findMany({
-    where: {
-      variants: {
-        some: {
-          productId,
-        },
-      },
-    },
-    orderBy: {
-      value: "asc",
-    },
-  });
-
-  const materials = await prismadb.material.findMany({
-    where: {
-      variants: {
-        some: {
-          productId,
-        },
-      },
-    },
-  });
-
-  const karats = await prismadb.karat.findMany({
-    where: {
-      variants: {
-        some: {
-          productId,
-        },
-      },
-    },
-    orderBy: {
-      value: "asc",
-    },
-  });
 
   return (
     <div className="h-full bg-black pt-32">
-      <TooltipProvider>
-        <div className="max-w-7xl mx-auto px-4 text-sm font-medium h-full">
-          <div className="flex flex-col gap-8 h-full">
-            <div className="h-2/3">
-              <CustomizeForm
-                product={product}
-                gems={gems}
-                sizes={sizes}
-                karats={karats}
-                materials={materials}
-              />
+      <div className="max-w-7xl mx-auto px-4 text-sm font-medium h-full">
+        <div className="flex gap-8">
+          <div className="w-2/3">
+            <Render />
+          </div>
+          <div className="flex flex-col w-1/3 bg-zinc-950 border border-zinc-800 p-5 rounded-lg">
+            <div className="flex flex-col">
+              <Label className="text-2xl">{product.name}</Label>
+              <Label className="text-lg">
+                {formatter.format(product.basePrice)}
+              </Label>
             </div>
-            {/* <div className="bg-zinc-900 h-1/3 w-full rounded-xl">Reviews</div> */}
+            <Separator className="bg-zinc-800 my-4" />
+            <Variants options={product.options} variants={product.variants} />
+            <Button variant="white" className="gap-1">
+              <ShoppingBag className="w-4 h-4" />
+              Add to cart
+            </Button>
+            <Separator className="bg-zinc-800 my-4" />
+            <SafePayment />
           </div>
         </div>
-      </TooltipProvider>
+      </div>
     </div>
   );
 };

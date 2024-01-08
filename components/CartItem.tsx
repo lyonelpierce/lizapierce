@@ -5,7 +5,7 @@ import Image from "next/image";
 
 import useCart from "@/hooks/use-cart";
 import { formatter, materialFormatter } from "@/lib/utils";
-import { CartProduct } from "@/types/ProductWithVariants";
+import { CartProduct } from "@/types/ProductVariants";
 
 import { Trash } from "lucide-react";
 
