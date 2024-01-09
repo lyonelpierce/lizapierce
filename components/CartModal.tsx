@@ -27,7 +27,7 @@ const Cart = () => {
     <Sheet open={cartTrigger.isOpen} onOpenChange={cartTrigger.onClose}>
       <SheetContent className="flex flex-col justify-between h-full">
         <SheetHeader>
-          <SheetTitle className="flex gap-1 items-center text-white">
+          <SheetTitle className="flex gap-1 items-center text-white font-medium text-base">
             <ShoppingBag className="w-5 h-5" />
             Shopping Bag ({cart.items.length})
           </SheetTitle>
