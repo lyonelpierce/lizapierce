@@ -3,7 +3,6 @@
 import Link from "next/link";
 
 import useCart from "@/hooks/use-cart";
-import { formatter } from "@/lib/utils";
 import { useCartTrigger } from "@/hooks/use-cart";
 
 import CartItem from "@/components/CartItem";
@@ -16,16 +15,12 @@ import {
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { ShoppingBag, BadgeCheck } from "lucide-react";
-import { Separator } from "@/components/ui/separator";
+import CartSummary from "./CartSummary";
 
 const Cart = () => {
   const cartTrigger = useCartTrigger();
   const cart = useCart();
   const items = useCart((state) => state.items);
-
-  const totalPrice = items.reduce((total, item) => {
-    return total + Number(item.price);
-  }, 0);
 
   const onCheckout = async () => {
     const response = await fetch("/api/checkout", {
@@ -63,13 +58,7 @@ const Cart = () => {
         </div>
         {cart.items.length > 0 && (
           <div className="flex flex-col gap-4">
-            <div className="space-y-4 w-full mb-2">
-              <Separator className="bg-zinc-800" />
-              <p className="flex justify-between text-white text-sm font-semibold w-full">
-                <span>Subtotal:</span>
-                {formatter.format(totalPrice)}
-              </p>
-            </div>
+            <CartSummary items={items} />
             <Link href="/cart" className="w-full">
               <Button
                 className="bg-transparent rounded-full text-xs delay-150 w-full"
