@@ -12,21 +12,21 @@ import { Variant } from "@prisma/client";
 import { ShoppingBag } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { AiOutlineClear } from "react-icons/ai";
+import { useUrl } from "@/hooks/use-url";
 
 function SubmitButton({
   forSale,
   variant,
   name,
+  image,
 }: {
   forSale: boolean;
   variant: Variant | undefined;
   name: string;
+  image: string;
 }) {
   const cart = useCart();
-  const origin = useOrigin();
-  const pathname = usePathname();
-
-  const href = `${origin}${pathname}`;
+  const url = useUrl();
 
   if (!variant)
     return (
@@ -35,7 +35,7 @@ function SubmitButton({
       </Button>
     );
 
-  const product = { ...variant, name, href };
+  const product = { ...variant, name, url, image };
 
   return (
     <Button
@@ -60,10 +60,12 @@ const AddToCart = ({
   forSale,
   variants,
   name,
+  image,
 }: {
   forSale: boolean;
   variants: VariantOptions[];
   name: string;
+  image: string;
 }) => {
   const router = useRouter();
   const pathname = usePathname();
@@ -77,7 +79,12 @@ const AddToCart = ({
 
   return (
     <div className="flex gap-1">
-      <SubmitButton forSale={forSale} variant={variant} name={name} />
+      <SubmitButton
+        forSale={forSale}
+        variant={variant}
+        name={name}
+        image={image}
+      />
       <Button
         onClick={() => router.replace(pathname)}
         variant="outline"

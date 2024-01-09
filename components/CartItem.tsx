@@ -12,7 +12,8 @@ import { Variant } from "@prisma/client";
 interface CartItemProps {
   data: Variant & {
     name?: string;
-    href?: string;
+    url?: string;
+    image?: string;
   };
 }
 
@@ -24,17 +25,27 @@ const CartItem: React.FC<CartItemProps> = ({ data }) => {
     cart.removeItem(data.id);
   };
 
-  if (!data.href) return null;
+  if (!data.url || !data.image || !data.name) return null;
 
   return (
-    <li className="flex text-xs w-full py-6 font-medium">
-      <div className="w-1/5">
-        {/* <Image src="/" alt="" width={50} height={50} /> */}
+    <li className="flex gap-2 text-xs w-full py-6 font-medium">
+      <div className="border border-zinc-800 rounded-lg overflow-hidden w-24 h-fit">
+        <Image
+          src={data.image}
+          alt={data.name}
+          width={800}
+          height={800}
+          className="object-cover aspect-square"
+        />
       </div>
-      <div className="flex flex-col gap-1 w-4/5">
+      <div className="flex flex-col gap-1 w-full">
         <div>
           <h3 className="flex items-center justify-between text-base font-medium">
-            <Link href={data.href} onClick={cartTrigger.onClose}>
+            <Link
+              href={data.url}
+              className="cursor-pointer"
+              onClick={cartTrigger.onClose}
+            >
               {data.name}
             </Link>
             <Trash
@@ -44,7 +55,7 @@ const CartItem: React.FC<CartItemProps> = ({ data }) => {
           </h3>
           <h4 className="text-sm">{formatter.format(data.price)}</h4>
         </div>
-        <p>{data.title}</p>
+        <p className="text-zinc-500">{data.title}</p>
       </div>
     </li>
   );

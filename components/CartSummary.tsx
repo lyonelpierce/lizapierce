@@ -1,20 +1,8 @@
-"use client";
-
-import { useEffect, useState } from "react";
-
 import { formatter } from "@/lib/utils";
 import { Separator } from "./ui/separator";
 import { CartItem } from "@/types/ProductVariants";
 
 const CartSummary = ({ items }: { items: CartItem[] }) => {
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
-  if (!isMounted) return null;
-
   const totalPrice = items.reduce((total, item) => {
     return total + Number(item.price);
   }, 0);

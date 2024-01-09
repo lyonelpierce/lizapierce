@@ -4,12 +4,10 @@ import prismadb from "@/lib/prismadb";
 
 import { ProductDetails } from "@/types/ProductVariants";
 
-import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import {
   Card,
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
@@ -91,6 +89,7 @@ const ProductPage = async ({ params }: { params: { productId: string } }) => {
                 forSale={product.forSale}
                 variants={product.variants}
                 name={product.name}
+                image={product.image}
               />
               <Separator className="bg-zinc-800 my-4" />
             </CardContent>

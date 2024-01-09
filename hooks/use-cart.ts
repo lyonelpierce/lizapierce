@@ -1,7 +1,6 @@
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 import { toast } from "sonner";
-import { Variant } from "@prisma/client";
 import { CartItem } from "@/types/ProductVariants";
 
 interface CartStore {

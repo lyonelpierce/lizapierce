@@ -15,7 +15,8 @@ export type { VariantOptions };
 
 type CartItem = Variant & {
   name: string;
-  href: string;
+  url: string;
+  image: string;
 };
 
 export type { CartItem };
