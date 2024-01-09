@@ -24,7 +24,7 @@ const ClearButton = ({ variants }: { variants: VariantOptions[] }) => {
       className="bg-black rounded-full h-10 w-10 p-2.5"
       disabled={!variant}
     >
-      <AiOutlineClear className="w-6 h-6" />
+      <AiOutlineClear className="w-5 h-5" />
     </Button>
   );
 };

@@ -29,7 +29,7 @@ const CartItem: React.FC<CartItemProps> = ({ data }) => {
   return (
     <li className="flex text-xs w-full py-6 font-medium">
       <div className="w-1/5">
-        <Image src="/" alt="" width={50} height={50} />
+        {/* <Image src="/" alt="" width={50} height={50} /> */}
       </div>
       <div className="flex flex-col gap-1 w-4/5">
         <div>

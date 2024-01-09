@@ -1,10 +1,11 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 
 import { VariantOptions } from "@/types/ProductVariants";
 
 import useCart from "@/hooks/use-cart";
+import { useOrigin } from "@/hooks/use-origin";
 
 import { ShoppingBag } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -20,7 +21,10 @@ function SubmitButton({
   name: string;
 }) {
   const cart = useCart();
-  const { href } = new URL(window.location.href);
+  const origin = useOrigin();
+  const pathname = usePathname();
+
+  const href = `${origin}${pathname}`;
 
   if (!variant)
     return (

@@ -1,19 +1,22 @@
 "use client";
 
+import Link from "next/link";
+
+import useCart from "@/hooks/use-cart";
+import { formatter } from "@/lib/utils";
+import { useCartTrigger } from "@/hooks/use-cart";
+
+import CartItem from "@/components/CartItem";
+
 import {
   Sheet,
   SheetContent,
   SheetHeader,
   SheetTitle,
-  SheetFooter,
 } from "@/components/ui/sheet";
-import { useCartTrigger } from "@/hooks/use-cart";
-import useCart from "@/hooks/use-cart";
 import { Button } from "@/components/ui/button";
 import { ShoppingBag, BadgeCheck } from "lucide-react";
-import CartItem from "@/components/CartItem";
-import { Separator } from "./ui/separator";
-import { formatter } from "@/lib/utils";
+import { Separator } from "@/components/ui/separator";
 
 const Cart = () => {
   const cartTrigger = useCartTrigger();
@@ -28,9 +31,12 @@ const Cart = () => {
     const response = await fetch("/api/checkout", {
       method: "POST",
       body: JSON.stringify({
-        items,
+        productIds: items.map((item) => item.id),
       }),
     });
+
+    const data = await response.json();
+    window.location = data.url;
   };
 
   return (
@@ -56,7 +62,7 @@ const Cart = () => {
           )}
         </div>
         {cart.items.length > 0 && (
-          <>
+          <div className="flex flex-col gap-4">
             <div className="space-y-4 w-full mb-2">
               <Separator className="bg-zinc-800" />
               <p className="flex justify-between text-white text-sm font-semibold w-full">
@@ -64,17 +70,23 @@ const Cart = () => {
                 {formatter.format(totalPrice)}
               </p>
             </div>
-            <SheetFooter>
+            <Link href="/cart" className="w-full">
               <Button
-                className="flex items-center gap-1 w-full"
-                variant="white"
-                onClick={onCheckout}
+                className="bg-transparent rounded-full text-xs delay-150 w-full"
+                variant="outline"
               >
-                <BadgeCheck className="w-4 h-4" />
-                Continue to Checkout
+                View cart
               </Button>
-            </SheetFooter>
-          </>
+            </Link>
+            <Button
+              className="flex items-center gap-1 w-full"
+              variant="white"
+              onClick={onCheckout}
+            >
+              <BadgeCheck className="w-4 h-4" />
+              Continue to checkout
+            </Button>
+          </div>
         )}
       </SheetContent>
     </Sheet>
