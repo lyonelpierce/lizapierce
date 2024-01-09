@@ -6,6 +6,8 @@ import useCart from "@/hooks/use-cart";
 import { useCartTrigger } from "@/hooks/use-cart";
 
 import CartItem from "@/components/CartItem";
+import CartSummary from "@/components/CartSummary";
+import Checkout from "@/components/Checkout";
 
 import {
   Sheet,
@@ -14,25 +16,12 @@ import {
   SheetTitle,
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
-import { ShoppingBag, BadgeCheck } from "lucide-react";
-import CartSummary from "./CartSummary";
+import { ShoppingBag } from "lucide-react";
 
 const Cart = () => {
   const cartTrigger = useCartTrigger();
   const cart = useCart();
   const items = useCart((state) => state.items);
-
-  const onCheckout = async () => {
-    const response = await fetch("/api/checkout", {
-      method: "POST",
-      body: JSON.stringify({
-        productIds: items.map((item) => item.id),
-      }),
-    });
-
-    const data = await response.json();
-    window.location = data.url;
-  };
 
   return (
     <Sheet open={cartTrigger.isOpen} onOpenChange={cartTrigger.onClose}>
@@ -59,7 +48,7 @@ const Cart = () => {
         {cart.items.length > 0 && (
           <div className="flex flex-col gap-4">
             <CartSummary items={items} />
-            <Link href="/cart" className="w-full">
+            <Link href="/cart" className="w-full" onClick={cartTrigger.onClose}>
               <Button
                 className="bg-transparent rounded-full text-xs delay-150 w-full"
                 variant="outline"
@@ -67,14 +56,7 @@ const Cart = () => {
                 View cart
               </Button>
             </Link>
-            <Button
-              className="flex items-center gap-1 w-full"
-              variant="white"
-              onClick={onCheckout}
-            >
-              <BadgeCheck className="w-4 h-4" />
-              Continue to checkout
-            </Button>
+            <Checkout items={items} />
           </div>
         )}
       </SheetContent>
