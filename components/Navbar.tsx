@@ -1,13 +1,15 @@
 "use client";
 
 import Link from "next/link";
-import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { UserButton, useAuth } from "@clerk/nextjs";
-import { Button } from "@/components/ui/button";
-import { HeartIcon } from "lucide-react";
+
+import { cn } from "@/lib/utils";
+
 import NavbarActions from "./NavbarActions";
+
+import { Button } from "@/components/ui/button";
 
 const Navbar = () => {
   const pathname = usePathname();
@@ -20,10 +22,8 @@ const Navbar = () => {
       setScrolled(isScrolled);
     };
 
-    // Attach the scroll event listener
     window.addEventListener("scroll", handleScroll);
 
-    // Detach the scroll event listener when the component is unmounted
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
@@ -72,7 +72,7 @@ const Navbar = () => {
       <nav className="fixed top-0 w-screen h-20 z-30 py-2">
         <div
           className={cn(
-            "flex items-center justify-between border-black rounded-full max-w-7xl w-full h-full mx-auto text-xs px-4 transition-all ease-in-out duration-300",
+            "flex items-center justify-between border-black rounded-full max-w-7xl w-full h-full mx-auto text-xs px-4 transition-all ease-in-out duration-500",
             scrolled &&
               "my-2 border border-zinc-800 backdrop-blur-[2px] bg-black/70"
           )}
@@ -93,18 +93,15 @@ const Navbar = () => {
               </li>
             ))}
           </ul>
-          <div className="flex items-center gap-6 border border-zinc-800 rounded-full pr-5">
+          <div className="flex items-center gap-6 border border-zinc-800 rounded-full pl-6">
+            <NavbarActions />
             <Link href="/sign-in">
               {userId ? (
-                <UserButton />
+                <UserButton afterSignOutUrl="/" />
               ) : (
                 <Button variant="white">Member Login</Button>
               )}
             </Link>
-            <Link href="/">
-              <HeartIcon className="w-4 h-4 transition-transform ease-in-out hover:transform hover:scale-125" />
-            </Link>
-            <NavbarActions />
           </div>
         </div>
       </nav>

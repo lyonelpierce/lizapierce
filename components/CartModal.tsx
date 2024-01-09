@@ -29,13 +29,13 @@ const Cart = () => {
         <SheetHeader>
           <SheetTitle className="flex gap-1 items-center text-white">
             <ShoppingBag className="w-5 h-5" />
-            Your Cart ({cart.items.length})
+            Shopping Bag ({cart.items.length})
           </SheetTitle>
         </SheetHeader>
         <div className="h-full w-full">
           {cart.items.length === 0 ? (
             <div className="text-sm flex items-center justify-center h-full">
-              No Items added to the cart
+              No items added to your shopping bag.
             </div>
           ) : (
             <ul className="divide-y divide-zinc-800 h-full">
@@ -53,7 +53,7 @@ const Cart = () => {
                 className="bg-transparent rounded-full text-xs delay-150 w-full"
                 variant="outline"
               >
-                View cart
+                View shopping bag
               </Button>
             </Link>
             <Checkout items={items} />
