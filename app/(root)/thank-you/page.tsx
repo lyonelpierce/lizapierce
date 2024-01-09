@@ -1,12 +1,13 @@
-import ThankYouComponent from "@/components/ThankYouComponent";
 import { Metadata } from "next";
+
+import ThankYouComponent from "@/components/ThankYouComponent";
 
 export const metadata: Metadata = {
   title: "Thank You",
 };
 
 const ThankYou = () => {
-  return <ThankYou />;
+  return <ThankYouComponent />;
 };
 
 export default ThankYou;
