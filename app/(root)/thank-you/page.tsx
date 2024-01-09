@@ -1,21 +1,12 @@
-"use client";
+import ThankYouComponent from "@/components/ThankYouComponent";
+import { Metadata } from "next";
 
-import { useEffect } from "react";
-import { useSearchParams } from "next/navigation";
-
-import useCart from "@/hooks/use-cart";
+export const metadata: Metadata = {
+  title: "Thank You",
+};
 
 const ThankYou = () => {
-  const searchParams = useSearchParams();
-  const removeAll = useCart((state) => state.removeAll);
-
-  useEffect(() => {
-    if (searchParams.get("success")) {
-      removeAll();
-    }
-  });
-
-  return <div>ThankYou</div>;
+  return <ThankYou />;
 };
 
 export default ThankYou;
