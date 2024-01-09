@@ -2,7 +2,6 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import prismadb from "@/lib/prismadb";
 
-import { formatter } from "@/lib/utils";
 import { ProductDetails } from "@/types/ProductVariants";
 
 import { Label } from "@/components/ui/label";
@@ -12,7 +11,6 @@ import SafePayment from "@/components/SafePayment";
 import Variants from "@/components/Variants";
 import Render from "@/components/Render";
 import AddToCart from "@/components/AddToCartButton";
-import ClearButton from "@/components/ClearButton";
 import DynamicPrice from "@/components/DynamicPrice";
 
 async function getProduct({
@@ -76,14 +74,11 @@ const ProductPage = async ({ params }: { params: { productId: string } }) => {
             </div>
             <Separator className="bg-zinc-800 my-4" />
             <Variants options={product.options} variants={product.variants} />
-            <div className="flex gap-1 items-center">
-              <AddToCart
-                forSale={product.forSale}
-                variants={product.variants}
-                name={product.name}
-              />
-              <ClearButton variants={product.variants} />
-            </div>
+            <AddToCart
+              forSale={product.forSale}
+              variants={product.variants}
+              name={product.name}
+            />
             <Separator className="bg-zinc-800 my-4" />
             <SafePayment />
           </div>

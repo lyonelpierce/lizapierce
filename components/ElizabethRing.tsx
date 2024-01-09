@@ -261,7 +261,7 @@ export default function ElizabethRing(
   let currentColor = "";
 
   switch (props.material) {
-    case "rose-gold":
+    case "rose gold":
       currentColor = "#e7b2a4";
       break;
     case "silver":
@@ -274,7 +274,10 @@ export default function ElizabethRing(
       currentColor = "#cccccc";
       break;
     case "gold":
-      currentColor = "#e7b2a4";
+      currentColor = "#e1b74d";
+      break;
+    default:
+      currentColor = "#ffffff";
       break;
   }
 
@@ -292,6 +295,9 @@ export default function ElizabethRing(
       break;
     case "emerald":
       gemColor = "#00ff00";
+      break;
+    default:
+      gemColor = "#fff";
       break;
   }
 

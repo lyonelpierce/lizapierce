@@ -1,15 +1,17 @@
 "use client";
 
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 import { VariantOptions } from "@/types/ProductVariants";
 
 import useCart from "@/hooks/use-cart";
 import { useOrigin } from "@/hooks/use-origin";
 
+import { Variant } from "@prisma/client";
+
 import { ShoppingBag } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Variant } from "@prisma/client";
+import { AiOutlineClear } from "react-icons/ai";
 
 function SubmitButton({
   forSale,
@@ -28,7 +30,7 @@ function SubmitButton({
 
   if (!variant)
     return (
-      <Button variant="white" className=" w-full" disabled>
+      <Button variant="white" className="w-full" disabled>
         Select Options
       </Button>
     );
@@ -63,6 +65,8 @@ const AddToCart = ({
   variants: VariantOptions[];
   name: string;
 }) => {
+  const router = useRouter();
+  const pathname = usePathname();
   const searchParams = useSearchParams();
 
   const variant = variants.find((variant: VariantOptions) =>
@@ -71,7 +75,19 @@ const AddToCart = ({
     )
   );
 
-  return <SubmitButton forSale={forSale} variant={variant} name={name} />;
+  return (
+    <div className="flex gap-1">
+      <SubmitButton forSale={forSale} variant={variant} name={name} />
+      <Button
+        onClick={() => router.replace(pathname)}
+        variant="outline"
+        className="bg-black rounded-full h-10 w-10 p-2.5"
+        disabled={!variant}
+      >
+        <AiOutlineClear className="w-5 h-5" />
+      </Button>
+    </div>
+  );
 };
 
 export default AddToCart;
