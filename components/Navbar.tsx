@@ -72,8 +72,9 @@ const Navbar = () => {
       <nav className="fixed top-0 w-screen h-20 z-30 py-2">
         <div
           className={cn(
-            "flex items-center justify-between max-w-7xl w-full h-full mx-auto text-xs px-4",
-            scrolled && "rounded-full backdrop-blur-[2px] bg-black/70"
+            "flex items-center justify-between border-black rounded-full max-w-7xl w-full h-full mx-auto text-xs px-4 transition-all ease-in-out duration-300",
+            scrolled &&
+              "my-2 border border-zinc-800 backdrop-blur-[2px] bg-black/70"
           )}
         >
           <Link href="/">
