@@ -55,11 +55,11 @@ const Navbar = () => {
     //   href: "/necklaces",
     //   active: pathname === "/necklaces",
     // },
-    // {
-    //   label: "Earrings",
-    //   href: "/earrings",
-    //   active: pathname === "/earrings",
-    // },
+    {
+      label: "Earrings",
+      href: "/earrings",
+      active: pathname === "/earrings",
+    },
     {
       label: "Design Your Own",
       href: "/customize",

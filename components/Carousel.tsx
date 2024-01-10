@@ -61,7 +61,7 @@ const CarouselComponent = ({
                   key={product.id}
                 >
                   <Link
-                    href={`${product.collection.slug}/${product.category.slug}/${product.slug}`}
+                    href={`/${product.collection.slug}/${product.category.slug}/${product.slug}`}
                   >
                     <Card className="bg-zinc-950 border rounded-3xl text-white overflow-hidden transition-all hover:bg-zinc-900 hover:border-white hover:scale-105 cursor-pointer">
                       <Image

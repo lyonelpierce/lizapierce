@@ -1,11 +1,13 @@
 import Stripe from "stripe";
+import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 
-import { stripe } from "@/lib/stripe";
 import prismadb from "@/lib/prismadb";
+import { stripe } from "@/lib/stripe";
 
 export async function POST(req: Request) {
   const { productIds } = await req.json();
+  const { userId } = auth();
 
   if (!productIds || productIds.length === 0) {
     return new NextResponse("Product ID is required", { status: 400 });
@@ -38,20 +40,61 @@ export async function POST(req: Request) {
     });
   });
 
-  const order = await prismadb.order.create({
-    data: {
-      isPaid: false,
-      orderItems: {
-        create: productIds.map((variantId: string) => ({
-          variant: {
+  let order;
+
+  if (userId) {
+    const user = await prismadb.user.findUnique({
+      where: {
+        externalId: userId,
+      },
+      select: {
+        id: true,
+      },
+    });
+
+    if (user) {
+      order = await prismadb.order.create({
+        data: {
+          isPaid: false,
+          user: {
             connect: {
-              id: variantId,
+              id: user.id,
             },
           },
-        })),
+          orderItems: {
+            create: productIds.map((variantId: string) => ({
+              variant: {
+                connect: {
+                  id: variantId,
+                },
+              },
+            })),
+          },
+        },
+      });
+    } else {
+      return NextResponse.json("Internal Server Error", { status: 500 });
+    }
+  } else {
+    order = await prismadb.order.create({
+      data: {
+        isPaid: false,
+        orderItems: {
+          create: productIds.map((variantId: string) => ({
+            variant: {
+              connect: {
+                id: variantId,
+              },
+            },
+          })),
+        },
       },
-    },
-  });
+    });
+  }
+
+  if (!order) {
+    return NextResponse.json("Internal Server Error", { status: 500 });
+  }
 
   const session = await stripe.checkout.sessions.create({
     line_items,

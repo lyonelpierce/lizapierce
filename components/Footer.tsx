@@ -30,7 +30,10 @@ const Footer = () => {
           </Link>
           <ul className="flex gap-3">
             {socialItems.map((item) => (
-              <li className="bg-white text-zinc-900 rounded-full p-1 transition-transform ease-in-out hover:scale-125 duration-300">
+              <li
+                className="bg-white text-zinc-900 rounded-full p-1 transition-transform ease-in-out hover:scale-125 duration-300"
+                key={item.name}
+              >
                 <Link href={item.link} target="_blank">
                   {item.icon}
                 </Link>

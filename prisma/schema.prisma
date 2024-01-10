@@ -8,6 +8,15 @@ datasource db {
   directUrl = env("POSTGRES_URL_NON_POOLING")
 }
 
+model User {
+  id            String  @id @default(uuid())
+  externalId    String @unique
+  attributes    Json
+  orders        Order[]
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
 model Category {
   id            String  @id @default(uuid())
   name          String
@@ -47,11 +56,11 @@ model Product{
 }
 
 model ProductOptions {
-  id         String    @id @default(uuid())
-  name       String
-  productId  String
-  product    Product[]
-  values     String[]
+  id            String    @id @default(uuid())
+  name          String
+  productId     String
+  product       Product[]
+  values        String[]
 }
 
 model Rating {
@@ -97,6 +106,8 @@ model Order {
   address       String  @default("")
   email         String  @default("")
   isPaid        Boolean @default(false)
+  user          User?   @relation(fields: [userId], references: [id])
+  userId        String?
   orderItems    OrderItem[]
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
