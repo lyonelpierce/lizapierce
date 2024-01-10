@@ -23,7 +23,7 @@ const containerStyles = {
 
 const textStyles = {
   color: "white",
-  fontSize: "0.75rem",
+  fontSize: "0.7rem",
   fontWeight: 500,
   textTransform: "uppercase",
 };

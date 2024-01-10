@@ -6,7 +6,7 @@ import { Settings } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 import CanvasComponent from "./CanvasComponent";
-import ElizabethRing from "@/components/ElizabethRing";
+import ElizabethRing from "@/components/models/ElizabethRing";
 
 const Hero = () => {
   return (

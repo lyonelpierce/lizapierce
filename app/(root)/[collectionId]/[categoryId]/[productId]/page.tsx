@@ -4,7 +4,6 @@ import prismadb from "@/lib/prismadb";
 
 import { ProductDetails } from "@/types/ProductVariants";
 
-import { Separator } from "@/components/ui/separator";
 import {
   Card,
   CardContent,
@@ -12,10 +11,11 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
 
-import SafePayment from "@/components/SafePayment";
-import Variants from "@/components/Variants";
 import Render from "@/components/Render";
+import Variants from "@/components/Variants";
+import SafePayment from "@/components/SafePayment";
 import AddToCart from "@/components/AddToCartButton";
 import DynamicPrice from "@/components/DynamicPrice";
 
