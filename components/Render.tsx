@@ -1,9 +1,9 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useParams, useSearchParams } from "next/navigation";
 
 import CanvasComponent from "./CanvasComponent";
-import ElizabethRing from "./models/ElizabethRing";
 
 const Render = () => {
   const params = useParams();
@@ -14,9 +14,14 @@ const Render = () => {
 
   const { productId } = params;
 
+  const ElizabethComponent =
+    productId === "elizabeth-ring"
+      ? dynamic(() => import("./models/ElizabethRing"))
+      : dynamic(() => import("./models/ElizabethEarrings"));
+
   return (
     <CanvasComponent level={6} intensity={0.3}>
-      <ElizabethRing
+      <ElizabethComponent
         positionY={-2.5}
         scale={1.6}
         gem={gem as string}

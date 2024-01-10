@@ -1,7 +1,9 @@
 import * as THREE from "three";
 import React, { useRef } from "react";
-import { useGLTF } from "@react-three/drei";
+import { MeshRefractionMaterial, useGLTF } from "@react-three/drei";
 import { GLTF } from "three-stdlib";
+import { useLoader } from "@react-three/fiber";
+import { RGBELoader } from "three-stdlib";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -65,8 +67,15 @@ type ContextType = Record<
   React.ForwardRefExoticComponent<JSX.IntrinsicElements["mesh"]>
 >;
 
-export function ElizabethEarrings(props: JSX.IntrinsicElements["group"]) {
-  const { nodes, materials } = useGLTF("/earrings.glb") as GLTFResult;
+export default function ElizabethEarrings(
+  props: JSX.IntrinsicElements["group"]
+) {
+  const { nodes, materials } = useGLTF("/models/earrings.glb") as GLTFResult;
+  const texture = useLoader(
+    RGBELoader,
+    "https://demo-assets.pixotronics.com/pixo/presets/environment/env-gem-1.hdr"
+  );
+
   return (
     <group {...props} dispose={null}>
       <group position={[0.111, 0.004, -0.132]}>
@@ -74,158 +83,290 @@ export function ElizabethEarrings(props: JSX.IntrinsicElements["group"]) {
           <group position={[-0.104, -0.059, -0.132]} scale={0.025}>
             <mesh
               geometry={nodes.Brillant_011.geometry}
-              material={nodes.Brillant_011.material}
               position={[-4.657, -9.144, 6.51]}
               rotation={[Math.PI / 2, 0, 0]}
               scale={[0.018, 0.019, 0.018]}
-            />
+            >
+              <MeshRefractionMaterial
+                envMap={texture}
+                fastChroma={true}
+                aberrationStrength={0.02}
+                toneMapped={false}
+              />
+            </mesh>
             <mesh
               geometry={nodes.Brillant_010.geometry}
-              material={nodes.Brillant_010.material}
               position={[-0.219, -5.042, 6.463]}
               rotation={[Math.PI / 2, 0, 0]}
               scale={[0.018, 0.019, 0.018]}
-            />
+            >
+              <MeshRefractionMaterial
+                envMap={texture}
+                fastChroma={true}
+                aberrationStrength={0.02}
+                toneMapped={false}
+              />
+            </mesh>
             <mesh
               geometry={nodes.Brillant_003.geometry}
-              material={nodes.Brillant_003.material}
               position={[-6.708, 18.614, 6.695]}
               rotation={[Math.PI / 2, 0, 0]}
               scale={[0.018, 0.019, 0.018]}
-            />
+            >
+              <MeshRefractionMaterial
+                envMap={texture}
+                fastChroma={true}
+                aberrationStrength={0.02}
+                toneMapped={false}
+              />
+            </mesh>
             <mesh
               geometry={nodes.Diamond_Pear001.geometry}
-              material={nodes.Diamond_Pear001.material}
               position={[4.238, 17.733, 6.4]}
               rotation={[-Math.PI / 2, -0.337, Math.PI]}
               scale={0.041}
-            />
+            >
+              <MeshRefractionMaterial
+                envMap={texture}
+                fastChroma={true}
+                aberrationStrength={0.02}
+                toneMapped={false}
+              />
+            </mesh>
             <mesh
               geometry={nodes.Diamond_Pear005.geometry}
-              material={nodes.Diamond_Pear005.material}
               position={[-4.816, -3.602, 6.277]}
               rotation={[1.433, 0.668, 0]}
               scale={[0.039, 0.039, 0.036]}
-            />
+            >
+              <MeshRefractionMaterial
+                envMap={texture}
+                fastChroma={true}
+                aberrationStrength={0.02}
+                toneMapped={false}
+              />
+            </mesh>
             <mesh
               geometry={nodes.Brillant_007.geometry}
-              material={nodes.Brillant_007.material}
               position={[-2.95, 2.034, 5.771]}
               rotation={[1.426, 0, 0]}
               scale={[0.018, 0.019, 0.018]}
-            />
+            >
+              <MeshRefractionMaterial
+                envMap={texture}
+                fastChroma={true}
+                aberrationStrength={0.02}
+                toneMapped={false}
+              />
+            </mesh>
             <mesh
               geometry={nodes.Brillant_006.geometry}
-              material={nodes.Brillant_006.material}
               position={[6.724, 18.614, 6.695]}
               rotation={[Math.PI / 2, 0, 0]}
               scale={[0.018, 0.019, 0.018]}
-            />
+            >
+              <MeshRefractionMaterial
+                envMap={texture}
+                fastChroma={true}
+                aberrationStrength={0.02}
+                toneMapped={false}
+              />
+            </mesh>
             <mesh
               geometry={nodes.Diamond_Pear007.geometry}
-              material={nodes.Diamond_Pear007.material}
               position={[1.057, -21.381, 5.202]}
               rotation={[-1.194, 1.26, 2.891]}
               scale={[0.039, 0.039, 0.036]}
-            />
+            >
+              <MeshRefractionMaterial
+                envMap={texture}
+                fastChroma={true}
+                aberrationStrength={0.02}
+                toneMapped={false}
+              />
+            </mesh>
             <mesh
               geometry={nodes.Brillant_013.geometry}
-              material={nodes.Brillant_013.material}
               position={[-2.674, -16.297, 5.598]}
               rotation={[1.765, 0, 0]}
               scale={[0.018, 0.019, 0.018]}
-            />
+            >
+              <MeshRefractionMaterial
+                envMap={texture}
+                fastChroma={true}
+                aberrationStrength={0.02}
+                toneMapped={false}
+              />
+            </mesh>
             <mesh
               geometry={nodes.Brillant_012.geometry}
-              material={nodes.Brillant_012.material}
               position={[3.198, -13.663, 5.157]}
               rotation={[1.771, 0, 0]}
               scale={[0.018, 0.019, 0.018]}
-            />
+            >
+              <MeshRefractionMaterial
+                envMap={texture}
+                fastChroma={true}
+                aberrationStrength={0.02}
+                toneMapped={false}
+              />
+            </mesh>
             <mesh
               geometry={nodes.Brillant_004.geometry}
-              material={nodes.Brillant_004.material}
               position={[-4.143, 10.718, 6.695]}
               rotation={[Math.PI / 2, 0, 0]}
               scale={[0.018, 0.019, 0.018]}
-            />
+            >
+              <MeshRefractionMaterial
+                envMap={texture}
+                fastChroma={true}
+                aberrationStrength={0.02}
+                toneMapped={false}
+              />
+            </mesh>
             <mesh
               geometry={nodes.Diamond_Pear003.geometry}
-              material={nodes.Diamond_Pear003.material}
               position={[2.487, 13.023, 6.4]}
               rotation={[-1.571, 0.912, Math.PI]}
               scale={0.041}
-            />
+            >
+              <MeshRefractionMaterial
+                envMap={texture}
+                fastChroma={true}
+                aberrationStrength={0.02}
+                toneMapped={false}
+              />
+            </mesh>
             <mesh
               geometry={nodes.Diamond_Pear006.geometry}
-              material={nodes.Diamond_Pear006.material}
               position={[0.948, -12.51, 5.735]}
               rotation={[-1.545, 0.523, -2.969]}
               scale={[0.039, 0.039, 0.036]}
-            />
+            >
+              <MeshRefractionMaterial
+                envMap={texture}
+                fastChroma={true}
+                aberrationStrength={0.02}
+                toneMapped={false}
+              />
+            </mesh>
             <mesh
               geometry={nodes.Diamond_Pear.geometry}
-              material={nodes.Diamond_Pear.material}
               position={[0.008, 20.836, 6.4]}
               rotation={[0.892, -1.57, -0.408]}
               scale={0.041}
-            />
+            >
+              <MeshRefractionMaterial
+                envMap={texture}
+                fastChroma={true}
+                aberrationStrength={0.02}
+                toneMapped={false}
+              />
+            </mesh>
             <mesh
               geometry={nodes.Brillant_008.geometry}
-              material={nodes.Brillant_008.material}
               position={[0.953, 0.098, 5.85]}
               rotation={[1.461, 0, 0]}
               scale={[0.018, 0.019, 0.018]}
-            />
+            >
+              <MeshRefractionMaterial
+                envMap={texture}
+                fastChroma={true}
+                aberrationStrength={0.02}
+                toneMapped={false}
+              />
+            </mesh>
             <mesh
               geometry={nodes.Brillant_009.geometry}
-              material={nodes.Brillant_009.material}
               position={[-6.849, -5.306, 6.147]}
               rotation={[1.52, 0, 0]}
               scale={[0.018, 0.019, 0.018]}
-            />
+            >
+              <MeshRefractionMaterial
+                envMap={texture}
+                fastChroma={true}
+                aberrationStrength={0.02}
+                toneMapped={false}
+              />
+            </mesh>
             <mesh
               geometry={nodes.Brillant_005.geometry}
-              material={nodes.Brillant_005.material}
               position={[4.159, 10.718, 6.695]}
               rotation={[Math.PI / 2, 0, 0]}
               scale={[0.018, 0.019, 0.018]}
-            />
+            >
+              <MeshRefractionMaterial
+                envMap={texture}
+                fastChroma={true}
+                aberrationStrength={0.02}
+                toneMapped={false}
+              />
+            </mesh>
             <mesh
               geometry={nodes.Brillant_014.geometry}
-              material={nodes.Brillant_014.material}
               position={[1.679, -23.511, 4.385]}
               rotation={[1.789, 0.023, 0.105]}
               scale={[0.018, 0.019, 0.018]}
-            />
+            >
+              <MeshRefractionMaterial
+                envMap={texture}
+                fastChroma={true}
+                aberrationStrength={0.02}
+                toneMapped={false}
+              />
+            </mesh>
             <mesh
               geometry={nodes.Brillant_1.geometry}
-              material={nodes.Brillant_1.material}
               position={[0.008, 16.432, 7.935]}
               rotation={[Math.PI / 2, 0, 0]}
               scale={[0.025, 0.026, 0.025]}
-            />
+            >
+              <MeshRefractionMaterial
+                envMap={texture}
+                fastChroma={true}
+                aberrationStrength={0.02}
+                toneMapped={false}
+              />
+            </mesh>
             <mesh
               geometry={nodes.Diamond_Pear002.geometry}
-              material={nodes.Diamond_Pear002.material}
               position={[-4.166, 17.845, 6.4]}
               rotation={[Math.PI / 2, -0.326, 0]}
               scale={0.041}
-            />
+            >
+              <MeshRefractionMaterial
+                envMap={texture}
+                fastChroma={true}
+                aberrationStrength={0.02}
+                toneMapped={false}
+              />
+            </mesh>
             <mesh
               geometry={nodes.Diamond_Pear004.geometry}
-              material={nodes.Diamond_Pear004.material}
               position={[-2.594, 12.867, 6.4]}
               rotation={[1.571, 0.936, 0]}
               scale={0.041}
-            />
+            >
+              <MeshRefractionMaterial
+                envMap={texture}
+                fastChroma={true}
+                aberrationStrength={0.02}
+                toneMapped={false}
+              />
+            </mesh>
             <mesh
               geometry={nodes.Brillant_002.geometry}
-              material={nodes.Brillant_002.material}
               position={[0.008, 23.493, 6.695]}
               rotation={[Math.PI / 2, 0, 0]}
               scale={[0.018, 0.019, 0.018]}
-            />
+            >
+              <MeshRefractionMaterial
+                envMap={texture}
+                fastChroma={true}
+                aberrationStrength={0.02}
+                toneMapped={false}
+              />
+            </mesh>
             <mesh
               geometry={nodes["earpendant-down"].geometry}
               material={materials["Gold White"]}
@@ -245,158 +386,296 @@ export function ElizabethEarrings(props: JSX.IntrinsicElements["group"]) {
           >
             <mesh
               geometry={nodes.Brillant_017.geometry}
-              material={nodes.Brillant_017.material}
               position={[-4.143, 10.718, 6.695]}
               rotation={[Math.PI / 2, 0, 0]}
               scale={[0.018, 0.019, 0.018]}
-            />
+            >
+              <MeshRefractionMaterial
+                envMap={texture}
+                fastChroma={true}
+                aberrationStrength={0.02}
+                toneMapped={false}
+              />
+            </mesh>
             <mesh
               geometry={nodes.Diamond_Pear013.geometry}
-              material={nodes.Diamond_Pear013.material}
               position={[-4.816, -3.602, 6.277]}
               rotation={[1.433, 0.668, 0]}
               scale={[0.039, 0.039, 0.036]}
-            />
+            >
+              <MeshRefractionMaterial
+                envMap={texture}
+                fastChroma={true}
+                aberrationStrength={0.02}
+                toneMapped={false}
+              />
+            </mesh>
             <mesh
               geometry={nodes.Brillant_018.geometry}
-              material={nodes.Brillant_018.material}
               position={[4.159, 10.718, 6.695]}
               rotation={[Math.PI / 2, 0, 0]}
               scale={[0.018, 0.019, 0.018]}
-            />
+            >
+              <MeshRefractionMaterial
+                envMap={texture}
+                fastChroma={true}
+                aberrationStrength={0.02}
+                toneMapped={false}
+              />
+            </mesh>
             <mesh
               geometry={nodes.Diamond_Pear012.geometry}
-              material={nodes.Diamond_Pear012.material}
               position={[-2.594, 12.867, 6.4]}
               rotation={[1.571, 0.936, 0]}
               scale={0.041}
-            />
+            >
+              <MeshRefractionMaterial
+                envMap={texture}
+                fastChroma={true}
+                aberrationStrength={0.02}
+                toneMapped={false}
+              />
+            </mesh>
             <mesh
               geometry={nodes.Brillant_023.geometry}
-              material={nodes.Brillant_023.material}
               position={[-0.219, -5.042, 6.463]}
               rotation={[Math.PI / 2, 0, 0]}
               scale={[0.018, 0.019, 0.018]}
-            />
+            >
+              <MeshRefractionMaterial
+                envMap={texture}
+                fastChroma={true}
+                aberrationStrength={0.02}
+                toneMapped={false}
+              />
+            </mesh>
             <mesh
               geometry={nodes.Diamond_Pear011.geometry}
-              material={nodes.Diamond_Pear011.material}
               position={[2.487, 13.023, 6.4]}
               rotation={[-1.571, 0.912, Math.PI]}
               scale={0.041}
-            />
+            >
+              <MeshRefractionMaterial
+                envMap={texture}
+                fastChroma={true}
+                aberrationStrength={0.02}
+                toneMapped={false}
+              />
+            </mesh>
             <mesh
               geometry={nodes.Brillant_021.geometry}
-              material={nodes.Brillant_021.material}
               position={[0.953, 0.098, 5.85]}
               rotation={[1.461, 0, 0]}
               scale={[0.018, 0.019, 0.018]}
-            />
+            >
+              <MeshRefractionMaterial
+                envMap={texture}
+                fastChroma={true}
+                aberrationStrength={0.02}
+                toneMapped={false}
+              />
+            </mesh>
             <mesh
               geometry={nodes.Diamond_Pear010.geometry}
-              material={nodes.Diamond_Pear010.material}
               position={[-4.166, 17.845, 6.4]}
               rotation={[Math.PI / 2, -0.326, 0]}
               scale={0.041}
-            />
+            >
+              <MeshRefractionMaterial
+                envMap={texture}
+                fastChroma={true}
+                aberrationStrength={0.02}
+                toneMapped={false}
+              />
+            </mesh>
             <mesh
               geometry={nodes.Diamond_Pear009.geometry}
-              material={nodes.Diamond_Pear009.material}
               position={[4.238, 17.733, 6.4]}
               rotation={[-Math.PI / 2, -0.337, Math.PI]}
               scale={0.041}
-            />
+            >
+              <MeshRefractionMaterial
+                envMap={texture}
+                fastChroma={true}
+                aberrationStrength={0.02}
+                toneMapped={false}
+              />
+            </mesh>
             <mesh
               geometry={nodes.Brillant_015.geometry}
-              material={nodes.Brillant_015.material}
               position={[0.008, 23.493, 6.695]}
               rotation={[Math.PI / 2, 0, 0]}
               scale={[0.018, 0.019, 0.018]}
-            />
+            >
+              <MeshRefractionMaterial
+                envMap={texture}
+                fastChroma={true}
+                aberrationStrength={0.02}
+                toneMapped={false}
+              />
+            </mesh>
             <mesh
               geometry={nodes.Brillant_025.geometry}
-              material={nodes.Brillant_025.material}
               position={[3.198, -13.663, 5.157]}
               rotation={[1.771, 0, 0]}
               scale={[0.018, 0.019, 0.018]}
-            />
+            >
+              <MeshRefractionMaterial
+                envMap={texture}
+                fastChroma={true}
+                aberrationStrength={0.02}
+                toneMapped={false}
+              />
+            </mesh>
             <mesh
               geometry={nodes.Brillant_020.geometry}
-              material={nodes.Brillant_020.material}
               position={[-2.95, 2.034, 5.771]}
               rotation={[1.426, 0, 0]}
               scale={[0.018, 0.019, 0.018]}
-            />
+            >
+              <MeshRefractionMaterial
+                envMap={texture}
+                fastChroma={true}
+                aberrationStrength={0.02}
+                toneMapped={false}
+              />
+            </mesh>
             <mesh
               geometry={nodes.Brillant_027.geometry}
               material={nodes.Brillant_027.material}
               position={[1.679, -23.511, 4.385]}
               rotation={[1.789, 0.023, 0.105]}
               scale={[0.018, 0.019, 0.018]}
-            />
+            >
+              <MeshRefractionMaterial
+                envMap={texture}
+                fastChroma={true}
+                aberrationStrength={0.02}
+                toneMapped={false}
+              />
+            </mesh>
             <mesh
               geometry={nodes.Brillant_026.geometry}
-              material={nodes.Brillant_026.material}
               position={[-2.674, -16.297, 5.598]}
               rotation={[1.765, 0, 0]}
               scale={[0.018, 0.019, 0.018]}
-            />
+            >
+              <MeshRefractionMaterial
+                envMap={texture}
+                fastChroma={true}
+                aberrationStrength={0.02}
+                toneMapped={false}
+              />
+            </mesh>
             <mesh
               geometry={nodes.Diamond_Pear015.geometry}
               material={nodes.Diamond_Pear015.material}
               position={[1.057, -21.381, 5.202]}
               rotation={[-1.194, 1.26, 2.891]}
               scale={[0.039, 0.039, 0.036]}
-            />
+            >
+              <MeshRefractionMaterial
+                envMap={texture}
+                fastChroma={true}
+                aberrationStrength={0.02}
+                toneMapped={false}
+              />
+            </mesh>
             <mesh
               geometry={nodes.Brillant_022.geometry}
-              material={nodes.Brillant_022.material}
               position={[-6.849, -5.306, 6.147]}
               rotation={[1.52, 0, 0]}
               scale={[0.018, 0.019, 0.018]}
-            />
+            >
+              <MeshRefractionMaterial
+                envMap={texture}
+                fastChroma={true}
+                aberrationStrength={0.02}
+                toneMapped={false}
+              />
+            </mesh>
             <mesh
               geometry={nodes.Brillant_024.geometry}
-              material={nodes.Brillant_024.material}
               position={[-4.657, -9.144, 6.51]}
               rotation={[Math.PI / 2, 0, 0]}
               scale={[0.018, 0.019, 0.018]}
-            />
+            >
+              <MeshRefractionMaterial
+                envMap={texture}
+                fastChroma={true}
+                aberrationStrength={0.02}
+                toneMapped={false}
+              />
+            </mesh>
             <mesh
               geometry={nodes.Diamond_Pear008.geometry}
               material={nodes.Diamond_Pear008.material}
               position={[0.008, 20.836, 6.4]}
               rotation={[0.892, -1.57, -0.408]}
               scale={0.041}
-            />
+            >
+              <MeshRefractionMaterial
+                envMap={texture}
+                fastChroma={true}
+                aberrationStrength={0.02}
+                toneMapped={false}
+              />
+            </mesh>
             <mesh
               geometry={nodes.Brillant_019.geometry}
               material={nodes.Brillant_019.material}
               position={[6.724, 18.614, 6.695]}
               rotation={[Math.PI / 2, 0, 0]}
               scale={[0.018, 0.019, 0.018]}
-            />
+            >
+              <MeshRefractionMaterial
+                envMap={texture}
+                fastChroma={true}
+                aberrationStrength={0.02}
+                toneMapped={false}
+              />
+            </mesh>
             <mesh
               geometry={nodes.Brillant_016.geometry}
               material={nodes.Brillant_016.material}
               position={[-6.708, 18.614, 6.695]}
               rotation={[Math.PI / 2, 0, 0]}
               scale={[0.018, 0.019, 0.018]}
-            />
+            >
+              <MeshRefractionMaterial
+                envMap={texture}
+                fastChroma={true}
+                aberrationStrength={0.02}
+                toneMapped={false}
+              />
+            </mesh>
             <mesh
               geometry={nodes.Diamond_Pear014.geometry}
-              material={nodes.Diamond_Pear014.material}
               position={[0.948, -12.51, 5.735]}
               rotation={[-1.545, 0.523, -2.969]}
               scale={[0.039, 0.039, 0.036]}
-            />
+            >
+              <MeshRefractionMaterial
+                envMap={texture}
+                fastChroma={true}
+                aberrationStrength={0.02}
+                toneMapped={false}
+              />
+            </mesh>
             <mesh
               geometry={nodes.Brillant_028.geometry}
               material={nodes.Brillant_028.material}
               position={[0.008, 16.432, 7.935]}
               rotation={[Math.PI / 2, 0, 0]}
               scale={[0.025, 0.026, 0.025]}
-            />
+            >
+              <MeshRefractionMaterial
+                envMap={texture}
+                fastChroma={true}
+                aberrationStrength={0.02}
+                toneMapped={false}
+              />
+            </mesh>
             <mesh
               geometry={nodes["earpendant-down001"].geometry}
               material={materials["Gold White"]}
@@ -416,4 +695,4 @@ export function ElizabethEarrings(props: JSX.IntrinsicElements["group"]) {
   );
 }
 
-useGLTF.preload("/earrings.glb");
+useGLTF.preload("/models/earrings.glb");
