@@ -21,6 +21,7 @@ import { Product } from "@prisma/client";
 import { Button } from "./ui/button";
 import { Settings } from "lucide-react";
 import { useParams } from "next/navigation";
+import { formatter } from "@/lib/utils";
 
 const CarouselComponent = ({ products }: { products: Product[] }) => {
   return (
@@ -47,13 +48,19 @@ const CarouselComponent = ({ products }: { products: Product[] }) => {
                     />
                     <CardHeader>
                       <CardTitle className="text-lg">{product.name}</CardTitle>
-                      <CardDescription>Card Description</CardDescription>
+                      <CardDescription>{product.description}</CardDescription>
                     </CardHeader>
                     <CardFooter>
-                      <Button variant="white" className="gap-1">
-                        <Settings className="w-4 h-4" />
-                        Customize
-                      </Button>
+                      <div className="flex items-center border rounded-full w-full gap-3">
+                        <Button variant="white" className="gap-1">
+                          <Settings className="w-4 h-4" />
+                          Customize
+                        </Button>
+                        <span className="text-xs font-medium">
+                          {formatter.format(product.minPrice)} -{" "}
+                          {formatter.format(product.maxPrice)}
+                        </span>
+                      </div>
                     </CardFooter>
                   </Card>
                 </CarouselItem>

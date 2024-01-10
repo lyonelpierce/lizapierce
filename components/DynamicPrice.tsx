@@ -6,6 +6,7 @@ import { formatter } from "@/lib/utils";
 import { VariantOptions } from "@/types/ProductVariants";
 
 import { Label } from "@/components/ui/label";
+import { useEffect, useState } from "react";
 
 const DynamicPrice = ({
   variants,
@@ -16,6 +17,9 @@ const DynamicPrice = ({
   minPrice: number;
   maxPrice: number;
 }) => {
+  const [isMounted, setIsMounted] = useState(false);
+  useEffect(() => setIsMounted(true), []);
+
   const searchParams = useSearchParams();
 
   const variant = variants.find((variant: VariantOptions) =>
@@ -24,6 +28,7 @@ const DynamicPrice = ({
     )
   );
 
+  if (!isMounted) return null;
   return (
     <>
       {!variant ? (
