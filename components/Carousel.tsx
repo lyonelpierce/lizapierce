@@ -57,7 +57,7 @@ const CarouselComponent = ({
             <CarouselContent className="h-full">
               {products.map((product) => (
                 <CarouselItem
-                  className="basis-1/5 h-96 flex items-center"
+                  className="basis-1/5 flex items-center"
                   key={product.id}
                 >
                   <Link

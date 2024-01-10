@@ -12,6 +12,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 import Render from "@/components/Render";
 import Variants from "@/components/Variants";
@@ -101,7 +102,7 @@ const ProductPage = async ({ params }: { params: { productId: string } }) => {
 
   return (
     <div className="h-full bg-black pt-32">
-      <div className="max-w-7xl mx-auto px-4 text-sm font-medium h-full space-y-12">
+      <div className="max-w-7xl mx-auto text-sm font-medium h-full space-y-4">
         <div className="flex gap-8">
           <div className="w-2/3">
             <Render />
@@ -133,9 +134,19 @@ const ProductPage = async ({ params }: { params: { productId: string } }) => {
             </CardFooter>
           </Card>
         </div>
-        <div className="border border-zinc-800 bg-zinc-950 rounded-lg p-5 flex-grow h-full">
-          Reviews
-        </div>
+        <Tabs>
+          <TabsList className="border-t border-x border-zinc-800 overflow-hidden">
+            <TabsTrigger value="Description">Description</TabsTrigger>
+            <TabsTrigger value="Reviews">Reviews</TabsTrigger>
+          </TabsList>
+          <TabsContent
+            value="Description"
+            className="border rounded-t-none border-zinc-800 rounded-b-lg rounded-r-lg p-5 bg-zinc-950"
+          >
+            {product.description}
+          </TabsContent>
+          <TabsContent value="Reviews">Rev</TabsContent>
+        </Tabs>
         <CarouselComponent
           products={relatedProducts}
           className="text-2xl"
