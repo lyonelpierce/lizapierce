@@ -38,7 +38,7 @@ const CartItem: React.FC<CartItemProps> = ({ data }) => {
           className="object-cover aspect-square"
         />
       </div>
-      <div className="flex flex-col gap-1 w-full">
+      <div className="flex flex-col justify-around gap-1 w-full">
         <div>
           <h3 className="flex items-center justify-between text-base font-medium">
             <Link
