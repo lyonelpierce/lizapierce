@@ -76,10 +76,13 @@ const ProductPage = async ({ params }: { params: { productId: string } }) => {
           </div>
           <Card className="w-1/3 h-full">
             <CardHeader>
-              <CardTitle>{product.name}</CardTitle>
+              <CardTitle className="text-2xl font-medium">
+                {product.name}
+              </CardTitle>
               <DynamicPrice
                 variants={product.variants}
-                basePrice={product.basePrice}
+                minPrice={product.minPrice}
+                maxPrice={product.maxPrice}
               />
               <Separator className="bg-zinc-800 my-4" />
             </CardHeader>

@@ -4,6 +4,7 @@ import { useGLTF, MeshRefractionMaterial } from "@react-three/drei";
 import { useLoader, useFrame } from "@react-three/fiber";
 import { RGBELoader } from "three-stdlib";
 import { easing } from "maath";
+import { gemOptions, materialOptions } from "@/constants/options";
 
 import { GLTF } from "three-stdlib";
 
@@ -258,51 +259,18 @@ export default function ElizabethRing(
     metalness: 1,
   });
 
-  let currentColor = "";
+  const selectedMaterial = materialOptions.find(
+    (mat) => mat.name === props.material
+  );
 
-  switch (props.material) {
-    case "rose gold":
-      currentColor = "#e7b2a4";
-      break;
-    case "silver":
-      currentColor = "#999999";
-      break;
-    case "white-gold":
-      currentColor = "#e7e7e7";
-      break;
-    case "platinum":
-      currentColor = "#cccccc";
-      break;
-    case "gold":
-      currentColor = "#e1b74d";
-      break;
-    default:
-      currentColor = "#ffffff";
-      break;
-  }
+  const selectedMaterialColor = (selectedMaterial?.color as string) || "#fff";
 
-  let gemColor = "#fff";
+  const selectedColor = gemOptions.find((gem) => gem.name === props.gem);
 
-  switch (props.gem) {
-    case "diamond":
-      gemColor = "#fff";
-      break;
-    case "ruby":
-      gemColor = "#ff0000";
-      break;
-    case "sapphire":
-      gemColor = "#0000ff";
-      break;
-    case "emerald":
-      gemColor = "#00ff00";
-      break;
-    default:
-      gemColor = "#fff";
-      break;
-  }
+  let gemColor = selectedColor?.color as string;
 
   useFrame((state, delta) => {
-    easing.dampC(currentMaterial.color, currentColor, 0.5, delta);
+    easing.dampC(currentMaterial.color, selectedMaterialColor, 0.5, delta);
   });
 
   return (

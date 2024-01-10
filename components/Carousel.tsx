@@ -17,8 +17,12 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "./ui/badge";
+import { Product } from "@prisma/client";
+import { Button } from "./ui/button";
+import { Settings } from "lucide-react";
+import { useParams } from "next/navigation";
 
-const CarouselComponent = () => {
+const CarouselComponent = ({ products }: { products: Product[] }) => {
   return (
     <div className="bg-black">
       <div className="max-w-7xl mx-auto px-4">
@@ -31,27 +35,29 @@ const CarouselComponent = () => {
           </div>
           <Carousel className="w-full">
             <CarouselContent>
-              <CarouselItem className="basis-1/4">
-                <Card className="bg-zinc-900 border-none rounded-3xl text-white overflow-hidden">
-                  <Image
-                    src="/images/rings/heart.webp"
-                    alt="Heart Ring"
-                    width={600}
-                    height={800}
-                    className="w-full h-full overflow-hidden rounded-3xl"
-                  />
-                  <CardHeader>
-                    <CardTitle>Card Title</CardTitle>
-                    <CardDescription>Card Description</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <p>Card Content</p>
-                  </CardContent>
-                  <CardFooter>
-                    <p>Card Footer</p>
-                  </CardFooter>
-                </Card>
-              </CarouselItem>
+              {products.map((product) => (
+                <CarouselItem className="basis-1/4">
+                  <Card className="bg-zinc-950 border rounded-3xl text-white overflow-hidden">
+                    <Image
+                      src={product.image}
+                      alt="Heart Ring"
+                      width={600}
+                      height={600}
+                      className="w-full h-full rounded-3xl aspect-square object-cover"
+                    />
+                    <CardHeader>
+                      <CardTitle className="text-lg">{product.name}</CardTitle>
+                      <CardDescription>Card Description</CardDescription>
+                    </CardHeader>
+                    <CardFooter>
+                      <Button variant="white" className="gap-1">
+                        <Settings className="w-4 h-4" />
+                        Customize
+                      </Button>
+                    </CardFooter>
+                  </Card>
+                </CarouselItem>
+              ))}
             </CarouselContent>
           </Carousel>
         </div>

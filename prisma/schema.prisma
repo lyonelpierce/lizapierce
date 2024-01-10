@@ -29,7 +29,9 @@ model Collection {
 model Product{
   id            String  @id @default(uuid())
   name          String
-  basePrice     Int
+  minPrice      Int
+  maxPrice      Int
+  description   String
   slug          String  @unique
   image         String
   forSale       Boolean @default(true)

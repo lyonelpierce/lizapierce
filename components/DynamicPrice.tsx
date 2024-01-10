@@ -9,10 +9,12 @@ import { Label } from "@/components/ui/label";
 
 const DynamicPrice = ({
   variants,
-  basePrice,
+  minPrice,
+  maxPrice,
 }: {
   variants: VariantOptions[];
-  basePrice: number;
+  minPrice: number;
+  maxPrice: number;
 }) => {
   const searchParams = useSearchParams();
 
@@ -25,9 +27,11 @@ const DynamicPrice = ({
   return (
     <>
       {!variant ? (
-        <Label className="text-lg">{formatter.format(basePrice)}</Label>
+        <Label className="text-base">
+          {formatter.format(minPrice)} - {formatter.format(maxPrice)}
+        </Label>
       ) : (
-        <Label className="text-lg">{formatter.format(variant.price)}</Label>
+        <Label className="text-base">{formatter.format(variant.price)}</Label>
       )}
     </>
   );
