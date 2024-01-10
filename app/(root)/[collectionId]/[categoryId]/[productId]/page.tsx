@@ -18,6 +18,7 @@ import Variants from "@/components/Variants";
 import SafePayment from "@/components/SafePayment";
 import AddToCart from "@/components/AddToCartButton";
 import DynamicPrice from "@/components/DynamicPrice";
+import CarouselComponent from "@/components/Carousel";
 
 async function getProduct({
   params,
@@ -67,9 +68,40 @@ export async function generateMetadata({
 const ProductPage = async ({ params }: { params: { productId: string } }) => {
   const product = await getProduct({ params });
 
+  const relatedProducts = await prismadb.product.findMany({
+    take: 4,
+    where: {
+      AND: [
+        {
+          OR: [
+            { categoryId: product.categoryId },
+            { collectionId: product.collectionId },
+          ],
+        },
+        {
+          NOT: {
+            slug: product.slug,
+          },
+        },
+      ],
+    },
+    include: {
+      category: {
+        select: {
+          slug: true,
+        },
+      },
+      collection: {
+        select: {
+          slug: true,
+        },
+      },
+    },
+  });
+
   return (
-    <div className="h-screen bg-black pt-32">
-      <div className="max-w-7xl mx-auto px-4 text-sm font-medium h-full">
+    <div className="h-full bg-black pt-32">
+      <div className="max-w-7xl mx-auto px-4 text-sm font-medium h-full space-y-12">
         <div className="flex gap-8">
           <div className="w-2/3">
             <Render />
@@ -101,6 +133,14 @@ const ProductPage = async ({ params }: { params: { productId: string } }) => {
             </CardFooter>
           </Card>
         </div>
+        <div className="border border-zinc-800 bg-zinc-950 rounded-lg p-5 flex-grow h-full">
+          Reviews
+        </div>
+        <CarouselComponent
+          products={relatedProducts}
+          className="text-2xl"
+          title="Related Products"
+        />
       </div>
     </div>
   );

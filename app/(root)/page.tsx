@@ -23,12 +23,14 @@ export default async function Home() {
     },
   });
 
-  console.log(products);
-
   return (
     <>
       <Hero />
-      <CarouselComponent products={products} />
+      <CarouselComponent
+        products={products}
+        className="text-4xl"
+        title="New Collection"
+      />
       <Partnership />
     </>
   );

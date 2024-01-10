@@ -1,79 +1,15 @@
 "use client";
 
 import Link from "next/link";
+import {
+  Categories,
+  Collections,
+  WeAre,
+  Contracts,
+  Help,
+} from "@/constants/footerMenu";
 
 const FooterMenu = () => {
-  const Categories = [
-    {
-      label: "Collections",
-      href: "/",
-    },
-    {
-      label: "Rings",
-      href: "/rings",
-    },
-    {
-      label: "Bracelets",
-      href: "/bracelets",
-    },
-    {
-      label: "Necklaces",
-      href: "/necklaces",
-    },
-    {
-      label: "Earrings",
-      href: "/earrings",
-    },
-  ];
-
-  const Collections = [
-    {
-      label: "Elizabeth",
-      href: "/elizabeth",
-    },
-  ];
-
-  const WeAre = [
-    {
-      label: "About Us",
-      href: "/about",
-    },
-    {
-      label: "Contact Us",
-      href: "/contact",
-    },
-  ];
-
-  const Contracts = [
-    {
-      label: "Terms & Conditions",
-      href: "/terms",
-    },
-    {
-      label: "Privacy Policy",
-      href: "/privacy",
-    },
-    {
-      label: "Cookie Policy",
-      href: "/cookie",
-    },
-  ];
-
-  const Help = [
-    {
-      label: "FAQ",
-      href: "/faq",
-    },
-    {
-      label: "Shipping & Returns",
-      href: "/shipping",
-    },
-    {
-      label: "Ring Size Guide",
-      href: "/ring-size-guide",
-    },
-  ];
-
   return (
     <div className="rounded-b-3xl bg-black">
       <div className="max-w-7xl mx-auto py-8 px-4">

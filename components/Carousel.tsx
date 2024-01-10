@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { formatter } from "@/lib/utils";
+import { cn, formatter } from "@/lib/utils";
 import { Product } from "@prisma/client";
 
 import {
@@ -29,18 +29,29 @@ interface ProductWithDetails extends Product {
 
 const CarouselComponent = ({
   products,
+  className,
+  title,
 }: {
   products: ProductWithDetails[];
+  className?: string;
+  title: string;
 }) => {
   return (
     <div className="bg-black">
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex flex-col items-center justify-center w-full space-y-8">
           <div className="flex h-20">
-            <Badge className="text-4xl px-8 py-0 h-12 bg-zinc-900 hover:bg-zinc-900 font-normal">
-              New
+            <Badge
+              className={cn(
+                "px-6 py-0 h-10 bg-zinc-900 hover:bg-zinc-900 font-normal",
+                className
+              )}
+            >
+              {title.split(" ")[0]}
             </Badge>
-            <span className="text-4xl mt-8 -ml-8">Collection</span>
+            <span className={cn("mt-6 -ml-4", className)}>
+              {title.split(" ")[1]}
+            </span>
           </div>
           <Carousel className="w-full h-full">
             <CarouselContent className="h-full">

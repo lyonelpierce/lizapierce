@@ -28,7 +28,7 @@ export default function RootLayout({
     >
       <html lang="en">
         <body
-          className={`relative ${GeistSans.className} bg-zinc-900 text-white h-screen antialiased scrollbar`}
+          className={`relative ${GeistSans.className} bg-zinc-900 text-white min-h-screen antialiased scrollbar`}
         >
           {children}
           <Cart />

@@ -1,9 +1,10 @@
-import { Facebook, Instagram, Twitter } from "lucide-react";
 import Link from "next/link";
+
+import { Facebook, Instagram, Twitter } from "lucide-react";
 
 const Footer = () => {
   return (
-    <div className="flex items-center w-full h-12 text-xs bg-zinc-900">
+    <div className="relative flex items-center w-full h-12 text-xs bg-zinc-900">
       <div className="max-w-7xl mx-auto w-full px-4">
         <div className="flex items-center justify-between w-full">
           <Link href="/">

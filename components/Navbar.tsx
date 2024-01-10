@@ -74,7 +74,7 @@ const Navbar = () => {
           className={cn(
             "flex items-center justify-between border-black rounded-full max-w-7xl w-full h-full mx-auto text-xs px-4 transition-all ease-in-out duration-500",
             scrolled &&
-              "my-2 border border-zinc-800 backdrop-blur-[2px] bg-black/70"
+              "my-2 border border-zinc-800 backdrop-blur-sm bg-black/70"
           )}
         >
           <Link href="/">
