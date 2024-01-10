@@ -1,3 +1,5 @@
+import { Rating } from "@prisma/client";
+
 import { ProductDetails } from "@/types/ProductVariants";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -7,7 +9,7 @@ const ProductTabs = ({
   rating,
 }: {
   product: ProductDetails;
-  rating: any;
+  rating: Rating[];
 }) => {
   console.log(rating);
   return (

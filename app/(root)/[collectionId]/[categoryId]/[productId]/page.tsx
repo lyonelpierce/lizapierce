@@ -111,7 +111,7 @@ const ProductPage = async ({ params }: { params: { productId: string } }) => {
 
   return (
     <div className="h-full bg-black pt-32">
-      <div className="max-w-7xl mx-auto text-sm font-medium h-full space-y-12">
+      <div className="max-w-7xl mx-auto text-sm font-medium h-full space-y-16 pb-16">
         <div className="flex gap-8">
           <div className="w-2/3">
             <Render />
@@ -143,7 +143,7 @@ const ProductPage = async ({ params }: { params: { productId: string } }) => {
             </CardFooter>
           </Card>
         </div>
-        <ProductTabs product={product} rating={productRating} />
+        {/* <ProductTabs product={product} rating={productRating} /> */}
         <CarouselComponent
           products={relatedProducts}
           className="text-2xl"
