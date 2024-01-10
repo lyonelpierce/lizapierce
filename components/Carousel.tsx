@@ -1,29 +1,37 @@
 "use client";
 
+import Link from "next/link";
 import Image from "next/image";
+import { formatter } from "@/lib/utils";
+import { Product } from "@prisma/client";
+
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
 } from "@/components/ui/carousel";
 import {
   Card,
-  CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Badge } from "./ui/badge";
-import { Product } from "@prisma/client";
-import { Button } from "./ui/button";
-import { Settings } from "lucide-react";
-import { useParams } from "next/navigation";
-import { formatter } from "@/lib/utils";
+import { Badge } from "@/components/ui/badge";
 
-const CarouselComponent = ({ products }: { products: Product[] }) => {
+interface ProductWithDetails extends Product {
+  collection: {
+    slug: string;
+  };
+  category: {
+    slug: string;
+  };
+}
+
+const CarouselComponent = ({
+  products,
+}: {
+  products: ProductWithDetails[];
+}) => {
   return (
     <div className="bg-black">
       <div className="max-w-7xl mx-auto px-4">
@@ -34,35 +42,34 @@ const CarouselComponent = ({ products }: { products: Product[] }) => {
             </Badge>
             <span className="text-4xl mt-8 -ml-8">Collection</span>
           </div>
-          <Carousel className="w-full">
-            <CarouselContent>
+          <Carousel className="w-full h-full">
+            <CarouselContent className="h-full">
               {products.map((product) => (
-                <CarouselItem className="basis-1/4">
-                  <Card className="bg-zinc-950 border rounded-3xl text-white overflow-hidden">
-                    <Image
-                      src={product.image}
-                      alt="Heart Ring"
-                      width={600}
-                      height={600}
-                      className="w-full h-full rounded-3xl aspect-square object-cover"
-                    />
-                    <CardHeader>
-                      <CardTitle className="text-lg">{product.name}</CardTitle>
-                      <CardDescription>{product.description}</CardDescription>
-                    </CardHeader>
-                    <CardFooter>
-                      <div className="flex items-center border rounded-full w-full gap-3">
-                        <Button variant="white" className="gap-1">
-                          <Settings className="w-4 h-4" />
-                          Customize
-                        </Button>
-                        <span className="text-xs font-medium">
-                          {formatter.format(product.minPrice)} -{" "}
-                          {formatter.format(product.maxPrice)}
-                        </span>
-                      </div>
-                    </CardFooter>
-                  </Card>
+                <CarouselItem
+                  className="basis-1/5 h-96 flex items-center"
+                  key={product.id}
+                >
+                  <Link
+                    href={`${product.collection.slug}/${product.category.slug}/${product.slug}`}
+                  >
+                    <Card className="bg-zinc-950 border rounded-3xl text-white overflow-hidden transition-all hover:bg-zinc-900 hover:border-white hover:scale-105 cursor-pointer">
+                      <Image
+                        src={product.image}
+                        alt="Heart Ring"
+                        width={600}
+                        height={600}
+                        className="w-full h-full rounded-3xl aspect-square object-cover"
+                      />
+                      <CardHeader>
+                        <CardTitle className="text-lg">
+                          {product.name}
+                        </CardTitle>
+                        <CardDescription className="text-zinc-500">
+                          {formatter.format(product.minPrice)} +
+                        </CardDescription>
+                      </CardHeader>
+                    </Card>
+                  </Link>
                 </CarouselItem>
               ))}
             </CarouselContent>

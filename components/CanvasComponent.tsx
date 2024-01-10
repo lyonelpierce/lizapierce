@@ -43,18 +43,13 @@ const CanvasComponent = ({
     <>
       <Canvas
         camera={{ position: [5, 10, 5], fov: 45 }}
-        className={cn("w-full z-10", className)}
+        className={cn("w-full z-10 cursor-pointer", className)}
         gl={{ antialias: true }}
       >
-        <ambientLight intensity={0.5} />
+        <ambientLight intensity={0} />
         <spotLight position={[5, 5, -10]} angle={0.15} penumbra={1} />
         <pointLight position={[-10, -10, -10]} />
-        <PresentationControls
-          polar={[-Math.PI / 3, Math.PI / 3]}
-          azimuth={[-Math.PI / 1.4, Math.PI / 2]}
-        >
-          <Suspense fallback={null}>{children}</Suspense>
-        </PresentationControls>
+        <Suspense fallback={null}>{children}</Suspense>
         <Environment files="https://demo-assets.pixotronics.com/pixo/presets/environment/env-metal-1.hdr" />
         <OrbitControls
           makeDefault

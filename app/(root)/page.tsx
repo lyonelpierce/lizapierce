@@ -9,7 +9,21 @@ export default async function Home() {
     where: {
       forSale: true,
     },
+    include: {
+      collection: {
+        select: {
+          slug: true,
+        },
+      },
+      category: {
+        select: {
+          slug: true,
+        },
+      },
+    },
   });
+
+  console.log(products);
 
   return (
     <>
