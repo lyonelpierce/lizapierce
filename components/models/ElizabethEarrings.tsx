@@ -2,8 +2,11 @@ import * as THREE from "three";
 import React, { useRef } from "react";
 import { MeshRefractionMaterial, useGLTF } from "@react-three/drei";
 import { GLTF } from "three-stdlib";
-import { useLoader } from "@react-three/fiber";
+import { useFrame, useLoader } from "@react-three/fiber";
 import { RGBELoader } from "three-stdlib";
+import { gemOptions, materialOptions } from "@/constants/options";
+import { easing } from "maath";
+import { OptionProps } from "@/types/OptionsProps";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -68,13 +71,33 @@ type ContextType = Record<
 >;
 
 export default function ElizabethEarrings(
-  props: JSX.IntrinsicElements["group"]
+  props: OptionProps & JSX.IntrinsicElements["group"]
 ) {
   const { nodes, materials } = useGLTF("/models/earrings.glb") as GLTFResult;
   const texture = useLoader(
     RGBELoader,
     "https://demo-assets.pixotronics.com/pixo/presets/environment/env-gem-1.hdr"
   );
+
+  let currentMaterial = new THREE.MeshStandardMaterial({
+    color: new THREE.Color(0.5, 0.5, 0.5),
+    roughness: 0,
+    metalness: 1,
+  });
+
+  const selectedMaterial = materialOptions.find(
+    (mat) => mat.name === props.material
+  );
+
+  const selectedMaterialColor = (selectedMaterial?.color as string) || "#fff";
+
+  const selectedColor = gemOptions.find((gem) => gem.name === props.gem);
+
+  let gemColor = selectedColor?.color as string;
+
+  useFrame((state, delta) => {
+    easing.dampC(currentMaterial.color, selectedMaterialColor, 0.5, delta);
+  });
 
   return (
     <group {...props} dispose={null}>
@@ -131,6 +154,7 @@ export default function ElizabethEarrings(
                 fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
+                color={gemColor}
               />
             </mesh>
             <mesh
@@ -144,6 +168,7 @@ export default function ElizabethEarrings(
                 fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
+                color={gemColor}
               />
             </mesh>
             <mesh
@@ -183,6 +208,7 @@ export default function ElizabethEarrings(
                 fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
+                color={gemColor}
               />
             </mesh>
             <mesh
@@ -235,6 +261,7 @@ export default function ElizabethEarrings(
                 fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
+                color={gemColor}
               />
             </mesh>
             <mesh
@@ -248,6 +275,7 @@ export default function ElizabethEarrings(
                 fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
+                color={gemColor}
               />
             </mesh>
             <mesh
@@ -261,6 +289,7 @@ export default function ElizabethEarrings(
                 fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
+                color={gemColor}
               />
             </mesh>
             <mesh
@@ -339,6 +368,7 @@ export default function ElizabethEarrings(
                 fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
+                color={gemColor}
               />
             </mesh>
             <mesh
@@ -352,6 +382,7 @@ export default function ElizabethEarrings(
                 fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
+                color={gemColor}
               />
             </mesh>
             <mesh
@@ -369,13 +400,13 @@ export default function ElizabethEarrings(
             </mesh>
             <mesh
               geometry={nodes["earpendant-down"].geometry}
-              material={materials["Gold White"]}
+              material={currentMaterial}
               position={[0.982, 10.879, 4.123]}
               scale={0.761}
             />
             <mesh
               geometry={nodes["earpendant-top"].geometry}
-              material={materials["Gold White"]}
+              material={currentMaterial}
               position={[0.002, 19.628, 7.195]}
               scale={0.761}
             />
@@ -408,6 +439,7 @@ export default function ElizabethEarrings(
                 fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
+                color={gemColor}
               />
             </mesh>
             <mesh
@@ -434,6 +466,7 @@ export default function ElizabethEarrings(
                 fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
+                color={gemColor}
               />
             </mesh>
             <mesh
@@ -460,6 +493,7 @@ export default function ElizabethEarrings(
                 fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
+                color={gemColor}
               />
             </mesh>
             <mesh
@@ -486,6 +520,7 @@ export default function ElizabethEarrings(
                 fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
+                color={gemColor}
               />
             </mesh>
             <mesh
@@ -499,6 +534,7 @@ export default function ElizabethEarrings(
                 fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
+                color={gemColor}
               />
             </mesh>
             <mesh
@@ -579,6 +615,7 @@ export default function ElizabethEarrings(
                 fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
+                color={gemColor}
               />
             </mesh>
             <mesh
@@ -619,6 +656,7 @@ export default function ElizabethEarrings(
                 fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
+                color={gemColor}
               />
             </mesh>
             <mesh
@@ -660,6 +698,7 @@ export default function ElizabethEarrings(
                 fastChroma={true}
                 aberrationStrength={0.02}
                 toneMapped={false}
+                color={gemColor}
               />
             </mesh>
             <mesh
@@ -678,13 +717,13 @@ export default function ElizabethEarrings(
             </mesh>
             <mesh
               geometry={nodes["earpendant-down001"].geometry}
-              material={materials["Gold White"]}
+              material={currentMaterial}
               position={[0.982, 10.879, 4.123]}
               scale={0.761}
             />
             <mesh
               geometry={nodes["earpendant-top001"].geometry}
-              material={materials["Gold White"]}
+              material={currentMaterial}
               position={[0.002, 19.628, 7.195]}
               scale={0.761}
             />

@@ -7,6 +7,7 @@ import { easing } from "maath";
 import { gemOptions, materialOptions } from "@/constants/options";
 
 import { GLTF } from "three-stdlib";
+import { OptionProps } from "@/types/OptionsProps";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -238,14 +239,8 @@ type ContextType = Record<
   React.ForwardRefExoticComponent<JSX.IntrinsicElements["mesh"]>
 >;
 
-interface ElizabethRingProps {
-  material?: string;
-  gem?: string;
-  positionY: number;
-  scale: number;
-}
 export default function ElizabethRing(
-  props: ElizabethRingProps & JSX.IntrinsicElements["group"]
+  props: OptionProps & JSX.IntrinsicElements["group"]
 ) {
   const { nodes, materials } = useGLTF("/models/scene.glb") as GLTFResult;
   const texture = useLoader(

@@ -2,7 +2,7 @@ export const gemOptions = [
   { name: "diamond", color: "#fff" },
   { name: "ruby", color: "#ff0000" },
   { name: "sapphire", color: "#0000ff" },
-  { name: "emerald", color: "#00ff00" },
+  { name: "emerald", color: "#50c878" },
 ];
 
 export const materialOptions = [
