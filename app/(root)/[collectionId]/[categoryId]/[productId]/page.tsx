@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { auth } from "@clerk/nextjs";
 import prismadb from "@/lib/prismadb";
 
 import { ProductDetails } from "@/types/ProductVariants";
@@ -109,6 +110,36 @@ const ProductPage = async ({ params }: { params: { productId: string } }) => {
     },
   });
 
+  const { userId } = auth();
+  let hasOrdered = false;
+
+  if (userId) {
+    const user = await prismadb.user.findUnique({
+      where: {
+        externalId: userId,
+      },
+      select: {
+        id: true,
+      },
+    });
+
+    const userOrders = await prismadb.order.findMany({
+      where: {
+        userId: user?.id,
+        isPaid: true,
+        orderItems: {
+          some: {
+            variant: {
+              productId: product.id,
+            },
+          },
+        },
+      },
+    });
+
+    hasOrdered = userOrders.length > 0;
+  }
+
   return (
     <div className="h-full bg-black pt-32">
       <div className="max-w-7xl mx-auto text-sm font-medium h-full space-y-16 pb-16">
@@ -143,7 +174,12 @@ const ProductPage = async ({ params }: { params: { productId: string } }) => {
             </CardFooter>
           </Card>
         </div>
-        {/* <ProductTabs product={product} rating={productRating} /> */}
+        <ProductTabs
+          product={product}
+          rating={productRating}
+          ordered={hasOrdered}
+          user={userId}
+        />
         <CarouselComponent
           products={relatedProducts}
           className="text-2xl"
