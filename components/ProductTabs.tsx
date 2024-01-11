@@ -1,13 +1,22 @@
 "use client";
 
-import { Order, Review } from "@prisma/client";
+import { SignInButton } from "@clerk/nextjs";
 
+import { useUrl } from "@/hooks/use-url";
+import { Order, OrderItem, Review } from "@prisma/client";
 import { ProductDetails } from "@/types/ProductVariants";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { SignInButton } from "@clerk/nextjs";
-import { useUrl } from "@/hooks/use-url";
+
 import ReviewModal from "./ReviewModal";
+
+interface OrderWithItems extends Order {
+  orderItems: {
+    variant: {
+      title: string;
+    };
+  }[];
+}
 
 const ProductTabs = ({
   product,
@@ -17,14 +26,18 @@ const ProductTabs = ({
 }: {
   product: ProductDetails;
   rating: Review[];
-  order: Order | null;
+  order: OrderWithItems | null;
   user: string | null;
 }) => {
   const url = useUrl();
 
   return (
     <>
-      {/* <ReviewModal /> */}
+      <ReviewModal
+        name={product.name}
+        image={product.image}
+        variantName={order?.orderItems[0].variant.title}
+      />
       <Tabs defaultValue="description">
         <TabsList className="border-t border-x border-zinc-800 overflow-hidden">
           <TabsTrigger value="description">Description</TabsTrigger>

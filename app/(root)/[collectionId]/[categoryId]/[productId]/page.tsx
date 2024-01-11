@@ -132,6 +132,17 @@ const ProductPage = async ({ params }: { params: { productId: string } }) => {
           },
         },
       },
+      include: {
+        orderItems: {
+          select: {
+            variant: {
+              select: {
+                title: true,
+              },
+            },
+          },
+        },
+      },
     });
   }
 
