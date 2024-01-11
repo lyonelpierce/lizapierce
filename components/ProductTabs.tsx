@@ -3,41 +3,29 @@
 import { SignInButton } from "@clerk/nextjs";
 
 import { useUrl } from "@/hooks/use-url";
-import { Order, OrderItem, Review } from "@prisma/client";
-import { ProductDetails } from "@/types/ProductVariants";
+import { Review } from "@prisma/client";
+import { OrderWithItems, ProductDetails } from "@/types/ProductVariants";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 import ReviewModal from "./ReviewModal";
 
-interface OrderWithItems extends Order {
-  orderItems: {
-    variant: {
-      title: string;
-    };
-  }[];
-}
-
 const ProductTabs = ({
   product,
   rating,
-  order,
+  orders,
   user,
 }: {
   product: ProductDetails;
   rating: Review[];
-  order: OrderWithItems | null;
+  orders: OrderWithItems[] | null;
   user: string | null;
 }) => {
   const url = useUrl();
 
   return (
     <>
-      <ReviewModal
-        name={product.name}
-        image={product.image}
-        variantName={order?.orderItems[0].variant.title}
-      />
+      <ReviewModal name={product.name} image={product.image} orders={orders} />
       <Tabs defaultValue="description">
         <TabsList className="border-t border-x border-zinc-800 overflow-hidden">
           <TabsTrigger value="description">Description</TabsTrigger>
@@ -62,7 +50,7 @@ const ProductTabs = ({
                 </div>
               ) : (
                 <div>
-                  {order ? (
+                  {orders?.length !== 0 ? (
                     <p className="transition-colors ease-in-out hover:text-zinc-200 cursor-pointer">
                       Leave a review
                     </p>

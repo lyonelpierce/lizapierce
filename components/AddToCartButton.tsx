@@ -2,12 +2,11 @@
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
+import { Variant } from "@prisma/client";
 import { VariantOptions } from "@/types/ProductVariants";
 
 import useCart from "@/hooks/use-cart";
-import { useOrigin } from "@/hooks/use-origin";
-
-import { Variant } from "@prisma/client";
+import { cn } from "@/lib/utils";
 
 import { ShoppingBag } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -30,7 +29,7 @@ function SubmitButton({
 
   if (!variant)
     return (
-      <Button variant="white" className="w-full" disabled>
+      <Button variant="white" className="w-5/6" disabled>
         Select Options
       </Button>
     );
@@ -40,7 +39,7 @@ function SubmitButton({
   return (
     <Button
       variant="white"
-      className="gap-1 w-full"
+      className="gap-1 w-5/6"
       disabled={!forSale}
       onClick={() => cart.addItem(product)}
     >
@@ -78,21 +77,32 @@ const AddToCart = ({
   );
 
   return (
-    <div className="flex gap-1">
+    <div
+      className={cn(
+        "flex items-center border rounded-full",
+        !variant ? "border-zinc-500" : "border-white"
+      )}
+    >
       <SubmitButton
         forSale={forSale}
         variant={variant}
         name={name}
         image={image}
       />
-      <Button
-        onClick={() => router.replace(pathname)}
-        variant="outline"
-        className="bg-black rounded-full h-10 w-10 p-2.5"
-        disabled={!variant}
-      >
-        <AiOutlineClear className="w-5 h-5" />
-      </Button>
+      <div className="flex items-center justify-center w-1/6">
+        <Button
+          size="icon"
+          disabled={!variant}
+          variant="link"
+          className="w-4 h-4"
+        >
+          <AiOutlineClear
+            className="w-4 h-4 text-white transition-all ease-in-out hover:scale-125 -ml-1"
+            disabled={!variant}
+            onClick={() => router.replace(pathname)}
+          />
+        </Button>
+      </div>
     </div>
   );
 };

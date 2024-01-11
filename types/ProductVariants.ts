@@ -1,4 +1,4 @@
-import { Product, ProductOptions, Variant } from "@prisma/client";
+import { Order, Product, ProductOptions, Variant } from "@prisma/client";
 
 type ProductDetails = Product & {
   variants: VariantOptions[];
@@ -20,3 +20,12 @@ type CartItem = Variant & {
 };
 
 export type { CartItem };
+
+interface OrderWithItems extends Order {
+  orderItems: {
+    variant: {
+      title: string;
+    };
+  }[];
+}
+export type { OrderWithItems };

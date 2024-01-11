@@ -109,6 +109,7 @@ const ProductPage = async ({ params }: { params: { productId: string } }) => {
 
   const { userId } = auth();
   let userOrders = null;
+  let orderVariants = null;
 
   if (userId) {
     const user = await prismadb.user.findUnique({
@@ -120,7 +121,7 @@ const ProductPage = async ({ params }: { params: { productId: string } }) => {
       },
     });
 
-    userOrders = await prismadb.order.findFirst({
+    userOrders = await prismadb.order.findMany({
       where: {
         userId: user?.id,
         isPaid: true,
@@ -134,12 +135,8 @@ const ProductPage = async ({ params }: { params: { productId: string } }) => {
       },
       include: {
         orderItems: {
-          select: {
-            variant: {
-              select: {
-                title: true,
-              },
-            },
+          include: {
+            variant: true,
           },
         },
       },
@@ -183,7 +180,7 @@ const ProductPage = async ({ params }: { params: { productId: string } }) => {
         <ProductTabs
           product={product}
           rating={productRating}
-          order={userOrders}
+          orders={userOrders}
           user={userId}
         />
         <CarouselComponent
