@@ -13,6 +13,7 @@ model User {
   externalId    String @unique
   attributes    Json
   orders        Order[]
+  reviews       Review[]
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
 }
@@ -50,7 +51,7 @@ model Product{
   collection    Collection @relation("CollectionToProduct", fields: [collectionId], references: [id])
   variants      Variant[]
   options       ProductOptions[]
-  ratings       Rating[]
+  ratings       Review[]
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
 }
@@ -63,23 +64,18 @@ model ProductOptions {
   values        String[]
 }
 
-model Rating {
+model Review {
   id            String    @id @default(uuid())
-  value         Int       
+  rate          Int   
+  review        String    
+  userId        String
+  user          User      @relation(fields: [userId], references: [id])
   productId     String
-  reviews       Review[]
   product       Product   @relation(fields: [productId], references: [id])
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
-}
 
-model Review {
-  id            String    @id @default(uuid())
-  text          String    
-  ratingId      String
-  rating        Rating    @relation(fields: [ratingId], references: [id])
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
+  @@unique([productId, userId])
 }
 
 model Variant {

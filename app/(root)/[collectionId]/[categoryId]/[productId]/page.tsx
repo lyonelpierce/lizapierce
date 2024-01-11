@@ -101,12 +101,9 @@ const ProductPage = async ({ params }: { params: { productId: string } }) => {
     },
   });
 
-  const productRating = await prismadb.rating.findMany({
+  const productRating = await prismadb.review.findMany({
     where: {
       productId: product.id,
-    },
-    include: {
-      reviews: true,
     },
   });
 

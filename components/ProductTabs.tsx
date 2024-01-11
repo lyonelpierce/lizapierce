@@ -1,9 +1,12 @@
-import { Rating } from "@prisma/client";
+"use client";
+
+import { Review } from "@prisma/client";
 
 import { ProductDetails } from "@/types/ProductVariants";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { SignInButton } from "@clerk/nextjs";
+import { useUrl } from "@/hooks/use-url";
 
 const ProductTabs = ({
   product,
@@ -12,11 +15,12 @@ const ProductTabs = ({
   user,
 }: {
   product: ProductDetails;
-  rating: Rating[];
+  rating: Review[];
   ordered: boolean;
   user: string | null;
 }) => {
-  console.log(ordered);
+  const url = useUrl();
+
   return (
     <Tabs defaultValue="description">
       <TabsList className="border-t border-x border-zinc-800 overflow-hidden">
@@ -38,12 +42,14 @@ const ProductTabs = ({
             There are currently no ratings
             {!user ? (
               <div>
-                <SignInButton afterSignInUrl="" /> to leave a review.
+                <SignInButton afterSignInUrl={url} /> to leave a review.
               </div>
             ) : (
               <div>
                 {ordered ? (
-                  <p className="cursor-pointer">Leave a review</p>
+                  <p className="transition-colors ease-in-out hover:text-zinc-200 cursor-pointer">
+                    Leave a review
+                  </p>
                 ) : (
                   "Only customers who have ordered this product can leave a review"
                 )}
