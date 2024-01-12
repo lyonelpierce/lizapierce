@@ -32,14 +32,14 @@ export function DataTable<TData, TValue>({
   });
 
   return (
-    <div className="rounded-md border">
+    <div className="rounded-md border border-zinc-800">
       <Table>
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow key={headerGroup.id}>
               {headerGroup.headers.map((header) => {
                 return (
-                  <TableHead key={header.id}>
+                  <TableHead key={header.id} className="text-white">
                     {header.isPlaceholder
                       ? null
                       : flexRender(
@@ -58,6 +58,7 @@ export function DataTable<TData, TValue>({
               <TableRow
                 key={row.id}
                 data-state={row.getIsSelected() && "selected"}
+                className="text-zinc-400"
               >
                 {row.getVisibleCells().map((cell) => (
                   <TableCell key={cell.id}>

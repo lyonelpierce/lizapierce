@@ -10,7 +10,13 @@ import { cn } from "@/lib/utils";
 import NavbarActions from "./NavbarActions";
 
 import { Button } from "@/components/ui/button";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Receipt } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const Navbar = () => {
   const pathname = usePathname();
@@ -86,9 +92,22 @@ const Navbar = () => {
           </ul>
           <div className="flex items-center gap-6 border border-zinc-800 rounded-full pl-6">
             {userId && (
-              <Link href="/dashboard">
-                <ChevronDown className="w-4 h-4 hover:scale-125 hover:rotate-180 ease-in-out transition-transform" />
-              </Link>
+              <DropdownMenu>
+                <DropdownMenuTrigger>
+                  <ChevronDown className="w-4 h-4 hover:scale-125 ease-in-out transition-transform cursor-pointer" />
+                </DropdownMenuTrigger>
+                <DropdownMenuContent>
+                  <DropdownMenuItem className="cursor-pointer hover:bg-zinc-800">
+                    <Link
+                      href="/orders"
+                      className="flex gap-1 text-xs font-medium"
+                    >
+                      <Receipt className="w-4 h-4" strokeWidth={1.5} />
+                      Orders
+                    </Link>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
             )}
             <NavbarActions />
             <Link href="/sign-in">
