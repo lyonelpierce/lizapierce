@@ -9,37 +9,49 @@ import { OrderWithItems, ProductDetails } from "@/types/ProductVariants";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 import ReviewModal from "./ReviewModal";
+import { useState } from "react";
 
 const ProductTabs = ({
   product,
   rating,
-  orders,
+  order,
   user,
 }: {
   product: ProductDetails;
   rating: Review[];
-  orders: OrderWithItems[] | null;
+  order: OrderWithItems | null;
   user: string | null;
 }) => {
+  const [open, setOpen] = useState(false);
+
   const url = useUrl();
 
   return (
     <>
-      <ReviewModal name={product.name} image={product.image} orders={orders} />
+      <ReviewModal
+        name={product.name}
+        image={product.image}
+        open={open}
+        onOpenChange={() => setOpen(!open)}
+      />
       <Tabs defaultValue="description">
         <TabsList className="border-t border-x border-zinc-800 overflow-hidden">
-          <TabsTrigger value="description">Description</TabsTrigger>
-          <TabsTrigger value="reviews">Reviews</TabsTrigger>
+          <TabsTrigger value="description" className="text-xs px-4">
+            Description
+          </TabsTrigger>
+          <TabsTrigger value="reviews" className="text-xs px-4">
+            Reviews
+          </TabsTrigger>
         </TabsList>
         <TabsContent
           value="description"
-          className="border rounded-t-none border-zinc-800 rounded-b-lg rounded-r-lg p-5 bg-zinc-950 h-32"
+          className="border rounded-t-none border-zinc-800 rounded-b-lg rounded-tr-lg p-5 bg-zinc-950 h-32"
         >
           {product.description}
         </TabsContent>
         <TabsContent
           value="reviews"
-          className="border rounded-t-none border-zinc-800 rounded-b-lg rounded-r-lg p-5 bg-zinc-950 h-32"
+          className="border rounded-t-none border-zinc-800 rounded-b-lg rounded-tr-lg p-5 bg-zinc-950 h-32"
         >
           {rating.length === 0 ? (
             <div className="flex flex-col gap-2 justify-center items-center h-full">
@@ -50,8 +62,11 @@ const ProductTabs = ({
                 </div>
               ) : (
                 <div>
-                  {orders?.length !== 0 ? (
-                    <p className="transition-colors ease-in-out hover:text-zinc-200 cursor-pointer">
+                  {!order ? (
+                    <p
+                      className="transition-colors ease-in-out hover:text-zinc-200 cursor-pointer"
+                      onClick={() => setOpen(true)}
+                    >
                       Leave a review
                     </p>
                   ) : (

@@ -69,7 +69,6 @@ model Review {
   rate          Int   
   review        String    
   title         String
-  variant       String
   userId        String
   user          User      @relation(fields: [userId], references: [id])
   productId     String

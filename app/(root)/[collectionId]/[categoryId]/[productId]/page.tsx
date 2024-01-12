@@ -121,7 +121,7 @@ const ProductPage = async ({ params }: { params: { productId: string } }) => {
       },
     });
 
-    userOrders = await prismadb.order.findMany({
+    userOrders = await prismadb.order.findFirst({
       where: {
         userId: user?.id,
         isPaid: true,
@@ -135,8 +135,12 @@ const ProductPage = async ({ params }: { params: { productId: string } }) => {
       },
       include: {
         orderItems: {
-          include: {
-            variant: true,
+          select: {
+            variant: {
+              select: {
+                title: true,
+              },
+            },
           },
         },
       },
@@ -180,7 +184,7 @@ const ProductPage = async ({ params }: { params: { productId: string } }) => {
         <ProductTabs
           product={product}
           rating={productRating}
-          orders={userOrders}
+          order={userOrders}
           user={userId}
         />
         <CarouselComponent
