@@ -15,6 +15,7 @@ import {
   CardHeader,
 } from "@/components/ui/card";
 import Checkout from "@/components/Checkout";
+import Heading from "@/components/ui/Heading";
 
 const Cart = () => {
   const cart = useCart();
@@ -32,7 +33,7 @@ const Cart = () => {
 
   return (
     <>
-      <h2 className="text-xl">Shopping Bag ({cart.items.length})</h2>
+      <Heading text="Shopping Bag" cart={cart.items.length} />
       <div className="flex gap-5">
         <div
           className={cn("h-screen", items.length !== 0 ? "w-2/3" : "w-full")}
