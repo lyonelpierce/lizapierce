@@ -41,7 +41,7 @@ model Product{
   name          String
   minPrice      Int
   maxPrice      Int
-  description   String
+  description   String  @db.Text
   slug          String  @unique
   image         String
   forSale       Boolean @default(true)

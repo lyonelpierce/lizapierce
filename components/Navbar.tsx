@@ -10,6 +10,8 @@ import { cn } from "@/lib/utils";
 import NavbarActions from "./NavbarActions";
 
 import { Button } from "@/components/ui/button";
+import { LayoutDashboard } from "lucide-react";
+import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 
 const Navbar = () => {
   const pathname = usePathname();
@@ -94,6 +96,16 @@ const Navbar = () => {
             ))}
           </ul>
           <div className="flex items-center gap-6 border border-zinc-800 rounded-full pl-6">
+            {userId && (
+              <Tooltip>
+                <TooltipTrigger>
+                  <Link href="/dashboard">
+                    <LayoutDashboard className="w-4 h-4 hover:scale-125 ease-in-out transition-transform" />
+                  </Link>
+                </TooltipTrigger>
+                <TooltipContent>Dashboard</TooltipContent>
+              </Tooltip>
+            )}
             <NavbarActions />
             <Link href="/sign-in">
               {userId ? (

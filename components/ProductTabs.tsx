@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { SignInButton } from "@clerk/nextjs";
 
 import { useUrl } from "@/hooks/use-url";
@@ -9,7 +10,6 @@ import { OrderWithItems, ProductDetails } from "@/types/ProductVariants";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 import ReviewModal from "./ReviewModal";
-import { useState } from "react";
 
 const ProductTabs = ({
   product,
@@ -47,7 +47,7 @@ const ProductTabs = ({
           value="description"
           className="border rounded-t-none border-zinc-800 rounded-b-lg rounded-tr-lg p-5 bg-zinc-950 h-32"
         >
-          {product.description}
+          <div dangerouslySetInnerHTML={{ __html: product.description }} />
         </TabsContent>
         <TabsContent
           value="reviews"

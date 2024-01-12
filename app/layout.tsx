@@ -6,6 +6,12 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
 import { Toaster } from "@/components/ui/sonner";
 import Cart from "@/components/CartModal";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 export const metadata: Metadata = {
   title: {
@@ -26,20 +32,22 @@ export default function RootLayout({
         baseTheme: dark,
       }}
     >
-      <html lang="en">
-        <body
-          className={`relative ${GeistSans.className} bg-zinc-900 text-white min-h-screen antialiased scrollbar`}
-        >
-          {children}
-          <Cart />
-          <Toaster
-            position="top-center"
-            richColors
-            className="bg-zinc-800"
-            theme="dark"
-          />
-        </body>
-      </html>
+      <TooltipProvider>
+        <html lang="en">
+          <body
+            className={`relative ${GeistSans.className} bg-zinc-900 text-white min-h-screen antialiased scrollbar`}
+          >
+            {children}
+            <Cart />
+            <Toaster
+              position="top-center"
+              richColors
+              className="bg-zinc-800"
+              theme="dark"
+            />
+          </body>
+        </html>
+      </TooltipProvider>
     </ClerkProvider>
   );
 }
