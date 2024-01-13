@@ -40,8 +40,8 @@ const Dashboard = async () => {
   const orders = await getOrder();
 
   return (
-    <div className="bg-black pt-32">
-      <div className="max-w-7xl mx-auto px-4 h-screen space-y-8">
+    <div className="bg-black pt-32 flex-grow h-screen">
+      <div className="max-w-7xl mx-auto px-4 h-full space-y-8">
         <Heading text="Orders" />
         <DashboardComponent orders={orders} />
       </div>

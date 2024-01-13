@@ -56,6 +56,7 @@ export async function POST(req: Request) {
       order = await prismadb.order.create({
         data: {
           isPaid: false,
+          total: 0,
           user: {
             connect: {
               id: user.id,
@@ -79,6 +80,7 @@ export async function POST(req: Request) {
     order = await prismadb.order.create({
       data: {
         isPaid: false,
+        total: 0,
         orderItems: {
           create: productIds.map((variantId: string) => ({
             variant: {

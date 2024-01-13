@@ -59,7 +59,6 @@ model Product{
 model ProductOptions {
   id            String    @id @default(uuid())
   name          String
-  productId     String
   product       Product[]
   values        String[]
 }
@@ -103,6 +102,7 @@ model Order {
   address       String  @default("")
   email         String  @default("")
   isPaid        Boolean @default(false)
+  total         Int
   user          User?   @relation(fields: [userId], references: [id])
   userId        String?
   orderItems    OrderItem[]

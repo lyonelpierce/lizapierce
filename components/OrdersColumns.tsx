@@ -1,8 +1,9 @@
 "use client";
 
 import { OrderWithItems } from "@/types/ProductVariants";
-import { Order } from "@prisma/client";
+import { format } from "date-fns";
 import { ColumnDef } from "@tanstack/react-table";
+import { formatter } from "@/lib/utils";
 
 export const columns: ColumnDef<OrderWithItems>[] = [
   {
@@ -21,5 +22,19 @@ export const columns: ColumnDef<OrderWithItems>[] = [
   {
     accessorKey: "createdAt",
     header: "Date",
+    cell: ({ row }) => (
+      <div className="flex items-center gap-x-2">
+        {format(row.original.createdAt, "dd/MM/yyyy")}
+      </div>
+    ),
+  },
+  {
+    accessorKey: "total",
+    header: "Total",
+    cell: ({ row }) => (
+      <div className="flex items-center gap-x-2">
+        {formatter.format(row.original.total / 100)}
+      </div>
+    ),
   },
 ];

@@ -1,15 +1,15 @@
+import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FooterMenu from "@/components/FooterMenu";
-import Navbar from "@/components/Navbar";
 
 const HomePage = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="w-full h-screen absolute">
+    <>
       <Navbar />
-      <div className="flex-grow">{children}</div>
+      <div className="flex-grow h-full">{children}</div>
       <FooterMenu />
       <Footer />
-    </div>
+    </>
   );
 };
 

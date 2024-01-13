@@ -22,6 +22,7 @@ const Navbar = () => {
   const pathname = usePathname();
   const { userId } = useAuth();
   const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -92,12 +93,17 @@ const Navbar = () => {
           </ul>
           <div className="flex items-center gap-6 border border-zinc-800 rounded-full pl-6">
             {userId && (
-              <DropdownMenu>
+              <DropdownMenu onOpenChange={() => setOpen(!open)}>
                 <DropdownMenuTrigger>
-                  <ChevronDown className="w-4 h-4 hover:scale-125 ease-in-out transition-transform cursor-pointer" />
+                  <ChevronDown
+                    className={cn(
+                      "w-4 h-4 hover:scale-125 ease-in-out transition-transform cursor-pointer",
+                      open && "transform rotate-180 duration-500"
+                    )}
+                  />
                 </DropdownMenuTrigger>
                 <DropdownMenuContent>
-                  <DropdownMenuItem className="cursor-pointer hover:bg-zinc-800">
+                  <DropdownMenuItem className="cursor-pointer">
                     <Link
                       href="/orders"
                       className="flex gap-1 text-xs font-medium"

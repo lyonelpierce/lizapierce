@@ -1,18 +1,9 @@
 "use client";
 
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Receipt, Truck } from "lucide-react";
+import { Tabs, TabsContent } from "@/components/ui/tabs";
 import { DataTable } from "./DataTable";
 import { columns } from "./OrdersColumns";
 import { OrderWithItems } from "@/types/ProductVariants";
-
-const DashboardMenu = [
-  {
-    name: "Orders",
-    value: "orders",
-    icon: <Receipt className="w-4 h-4" />,
-  },
-];
 
 const DashboardComponent = ({
   orders,
