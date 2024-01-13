@@ -5,7 +5,12 @@ import ThankYouComponent from "@/components/ThankYouComponent";
 import prismadb from "@/lib/prismadb";
 import { Separator } from "@/components/ui/separator";
 import { formatter } from "@/lib/utils";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+} from "@/components/ui/card";
 import { Order } from "@prisma/client";
 
 export const metadata: Metadata = {
@@ -94,6 +99,10 @@ const ThankYou = async ({
                     </p>
                   </div>
                 ))}
+                <div className="flex justify-between">
+                  <span className="font-medium">Total: </span>
+                  {formatter.format(order.total / 100)}
+                </div>
               </div>
             </CardContent>
           </Card>
