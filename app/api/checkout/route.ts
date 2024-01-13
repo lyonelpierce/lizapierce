@@ -5,18 +5,26 @@ import { NextResponse } from "next/server";
 import prismadb from "@/lib/prismadb";
 import { stripe } from "@/lib/stripe";
 
+interface VariantType {
+  id: string;
+  productId: string;
+}
+
 export async function POST(req: Request) {
-  const { productIds } = await req.json();
+  const { variants } = await req.json();
   const { userId } = auth();
 
-  if (!productIds || productIds.length === 0) {
+  if (!variants || variants.length === 0) {
     return new NextResponse("Product ID is required", { status: 400 });
   }
 
-  const variants = await prismadb.variant.findMany({
+  const existingVariants = await prismadb.variant.findMany({
     where: {
       id: {
-        in: productIds,
+        in: variants.map((variant: VariantType) => variant.id),
+      },
+      productId: {
+        in: variants.map((variant: VariantType) => variant.productId),
       },
     },
     include: {
@@ -26,7 +34,7 @@ export async function POST(req: Request) {
 
   const line_items: Stripe.Checkout.SessionCreateParams.LineItem[] = [];
 
-  variants.forEach((variant) => {
+  existingVariants.forEach((variant) => {
     line_items.push({
       quantity: 1,
       price_data: {
@@ -63,10 +71,15 @@ export async function POST(req: Request) {
             },
           },
           orderItems: {
-            create: productIds.map((variantId: string) => ({
+            create: variants.map((variant: VariantType) => ({
               variant: {
                 connect: {
-                  id: variantId,
+                  id: variant.id,
+                },
+              },
+              product: {
+                connect: {
+                  id: variant.productId,
                 },
               },
             })),
@@ -82,20 +95,24 @@ export async function POST(req: Request) {
         isPaid: false,
         total: 0,
         orderItems: {
-          create: productIds.map((variantId: string) => ({
+          create: variants.map((variant: VariantType) => ({
             variant: {
               connect: {
-                id: variantId,
+                id: variant.id,
+              },
+            },
+            product: {
+              connect: {
+                id: variant.productId,
               },
             },
           })),
         },
       },
     });
-  }
-
-  if (!order) {
-    return NextResponse.json("Internal Server Error", { status: 500 });
+    if (!order) {
+      return NextResponse.json("Internal Server Error", { status: 500 });
+    }
   }
 
   const session = await stripe.checkout.sessions.create({

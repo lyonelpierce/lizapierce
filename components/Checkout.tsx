@@ -1,24 +1,21 @@
-"use client";
-
-import { useState } from "react";
-
 import { Button } from "@/components/ui/button";
 import { CartItem } from "@/types/ProductVariants";
 import { BadgeCheck } from "lucide-react";
 
 const Checkout = ({ items }: { items: CartItem[] }) => {
-  const [isLoading, setIsLoading] = useState(false);
-
   const onCheckout = async () => {
-    setIsLoading(true);
     const response = await fetch("/api/checkout", {
       method: "POST",
       body: JSON.stringify({
-        productIds: items.map((item) => item.id),
+        variants: items.map((item) => ({
+          id: item.id,
+          productId: item.productId,
+        })),
       }),
     });
 
     const data = await response.json();
+    console.log(data);
     window.location = data.url;
   };
 
