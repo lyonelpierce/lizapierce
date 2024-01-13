@@ -1,9 +1,16 @@
+"use client";
+
+import { useState } from "react";
+
 import { Button } from "@/components/ui/button";
 import { CartItem } from "@/types/ProductVariants";
 import { BadgeCheck } from "lucide-react";
 
 const Checkout = ({ items }: { items: CartItem[] }) => {
+  const [isLoading, setIsLoading] = useState(false);
+
   const onCheckout = async () => {
+    setIsLoading(true);
     const response = await fetch("/api/checkout", {
       method: "POST",
       body: JSON.stringify({

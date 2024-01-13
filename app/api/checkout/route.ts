@@ -105,7 +105,7 @@ export async function POST(req: Request) {
     phone_number_collection: {
       enabled: true,
     },
-    success_url: `http://localhost:3000/thank-you?success=1`,
+    success_url: `http://localhost:3000/thank-you?success=1&orderId=${order.id}`,
     cancel_url: "http://localhost:3000/cart?canceled=1",
     metadata: {
       orderId: order.id,
