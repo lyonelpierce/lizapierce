@@ -48,6 +48,7 @@ export async function POST(req: Request) {
         phone: session?.customer_details?.phone || "",
         email: session?.customer_details?.email || "",
         total: session?.amount_total || 0,
+        name: session?.customer_details?.name || "",
       },
       include: {
         orderItems: {

@@ -100,7 +100,7 @@ const Navbar = () => {
                   )}
                 />
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="rounded-lg">
+              <DropdownMenuContent className="rounded-lg" sideOffset={12}>
                 <DropdownMenuItem className="cursor-pointer">
                   <Link
                     href="/orders"

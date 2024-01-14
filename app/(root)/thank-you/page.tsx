@@ -5,13 +5,7 @@ import ThankYouComponent from "@/components/ThankYouComponent";
 import prismadb from "@/lib/prismadb";
 import { Separator } from "@/components/ui/separator";
 import { formatter } from "@/lib/utils";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-} from "@/components/ui/card";
-import { Order } from "@prisma/client";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 
 export const metadata: Metadata = {
   title: "Thank You",
@@ -26,6 +20,7 @@ const getOrder = async (orderId: string) => {
       orderItems: {
         include: {
           variant: true,
+          product: true,
         },
       },
     },
@@ -66,6 +61,10 @@ const ThankYou = async ({
             <CardContent>
               <div className="space-y-4 divide-y divide-zinc-800 text-sm">
                 <p className="flex justify-between capitalize">
+                  <span className="font-medium">Name: </span>
+                  {order.name}
+                </p>
+                <p className="flex justify-between capitalize">
                   <span className="font-medium">Address: </span>
                   {order.address}
                 </p>
@@ -76,6 +75,10 @@ const ThankYou = async ({
                 <p className="flex justify-between">
                   <span className="font-medium">Phone: </span>
                   {order.phone}
+                </p>
+                <p className="flex justify-between">
+                  <span className="font-medium">Date: </span>
+                  {order.createdAt.toLocaleDateString()}
                 </p>
               </div>
             </CardContent>
@@ -88,15 +91,12 @@ const ThankYou = async ({
             <CardContent>
               <div className="space-y-4 divide-y divide-zinc-800 text-sm">
                 {order.orderItems.map((orderItem) => (
-                  <div key={orderItem.id}>
-                    <p className="flex justify-between">
-                      <span className="font-medium">Product: </span>
-                      {orderItem.variant.title}
-                    </p>
-                    <p className="flex justify-between">
-                      <span className="font-medium">Price: </span>
+                  <div key={orderItem.id} className="flex flex-col">
+                    <p className="flex justify-between font-medium w-full">
+                      <span>{orderItem.product.name}</span>
                       {formatter.format(orderItem.variant.price)}
                     </p>
+                    <p className="text-zinc-500">{orderItem.variant.title}</p>
                   </div>
                 ))}
                 <div className="flex justify-between">

@@ -99,6 +99,7 @@ model VariantOptions {
 
 model Order {
   id            String  @id @default(uuid())
+  name          String  @default("")  
   phone         String  @default("")
   address       String  @default("")
   email         String  @default("")
