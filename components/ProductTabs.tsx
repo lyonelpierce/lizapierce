@@ -4,12 +4,24 @@ import { useState } from "react";
 import { SignInButton } from "@clerk/nextjs";
 
 import { useUrl } from "@/hooks/use-url";
-import { Review } from "@prisma/client";
-import { OrderWithItems, ProductDetails } from "@/types/ProductVariants";
+import { Order, Review } from "@prisma/client";
+import { ProductDetails } from "@/types/ProductVariants";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 import ReviewModal from "./ReviewModal";
+
+interface Variant {
+  title: string;
+}
+
+interface OrderItem {
+  variant: Variant;
+}
+
+interface OrderWithTitle extends Order {
+  orderItems: OrderItem[];
+}
 
 const ProductTabs = ({
   product,
@@ -19,7 +31,7 @@ const ProductTabs = ({
 }: {
   product: ProductDetails;
   rating: Review[];
-  order: OrderWithItems | null;
+  order: OrderWithTitle | null;
   user: string | null;
 }) => {
   const [open, setOpen] = useState(false);

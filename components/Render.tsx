@@ -23,7 +23,7 @@ const Render = () => {
     <CanvasComponent level={6} intensity={0.3}>
       <ElizabethComponent
         positionY={-2.5}
-        scale={1.6}
+        scale={1.5}
         gem={gem as string}
         material={material as string}
       />

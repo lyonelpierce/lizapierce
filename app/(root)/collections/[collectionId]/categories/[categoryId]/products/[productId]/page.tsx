@@ -109,7 +109,6 @@ const ProductPage = async ({ params }: { params: { productId: string } }) => {
 
   const { userId } = auth();
   let userOrders = null;
-  let orderVariants = null;
 
   if (userId) {
     const user = await prismadb.user.findUnique({
@@ -150,11 +149,11 @@ const ProductPage = async ({ params }: { params: { productId: string } }) => {
   return (
     <div className="h-full bg-black pt-32">
       <div className="max-w-7xl mx-auto text-sm font-medium h-full space-y-16 pb-16">
-        <div className="flex gap-8">
-          <div className="w-2/3">
+        <div className="flex flex-col md:flex-row gap-8">
+          <div className="w-full md:w-2/3 aspect-square h-96 md:h-[40rem]">
             <Render />
           </div>
-          <Card className="w-1/3 h-full">
+          <Card className="w-full md:w-1/3 h-max">
             <CardHeader>
               <CardTitle className="text-2xl font-medium">
                 {product.name}

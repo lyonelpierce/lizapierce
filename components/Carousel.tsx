@@ -37,7 +37,7 @@ const CarouselComponent = ({
   title: string;
 }) => {
   return (
-    <div className="bg-black">
+    <div className="bg-black mt-16">
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex flex-col items-center justify-center w-full space-y-8">
           <div className="flex h-20">
