@@ -147,7 +147,7 @@ const ProductPage = async ({ params }: { params: { productId: string } }) => {
   }
 
   return (
-    <div className="h-full bg-black pt-32">
+    <div className="h-full bg-black pt-20 md:pt-32">
       <div className="max-w-7xl mx-auto text-sm font-medium h-full space-y-16 pb-16">
         <div className="flex flex-col md:flex-row gap-8">
           <div className="w-full md:w-2/3 aspect-square h-96 md:h-[40rem]">
