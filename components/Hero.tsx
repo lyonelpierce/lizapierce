@@ -12,7 +12,7 @@ const Hero = () => {
   return (
     <div className="bg-black h-full">
       <div className="h-full">
-        <div className="relative h-dvh flex justify-center">
+        <div className="relative h-dvh flex justify-center w-full">
           <CanvasComponent level={9} intensity={0.85} className="w-dvw">
             <ElizabethRing
               material="silver"
@@ -21,13 +21,13 @@ const Hero = () => {
               gem="diamond"
             />
           </CanvasComponent>
-          <div className="absolute lg:top-28 2xl:top-60 left-1/2 transform -translate-x-1/2 z-0">
-            <h2 className="xl:text-[10rem] xl 2xl:text-[12rem] font-black uppercase text-end leading-none text-zinc-950">
+          <div className="absolute top-12 lg:top-28 2xl:top-60 left-1/2 transform -translate-x-1/2 z-0">
+            <h2 className="text-6xl xl:text-[10rem] 2xl:text-[12rem] font-black uppercase text-end leading-none text-zinc-950">
               Elizabeth Ring
             </h2>
           </div>
-          <div className="absolute max-w-7xl px-4 md:bottom-12 lg:bottom-20 2xl:bottom-40 z-20">
-            <h1 className="uppercase text-7xl font-semibold w-1/2">
+          <div className="absolute max-w-7xl px-4 bottom-8 lg:bottom-20 2xl:bottom-40 z-20">
+            <h1 className="uppercase text-4xl md:text-7xl font-semibold w-full md:w-1/2">
               Craft your masterpiece in real time
             </h1>
             <div className="border rounded-full flex mt-8 w-fit">

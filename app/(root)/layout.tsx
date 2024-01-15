@@ -5,10 +5,10 @@ import FooterMenu from "@/components/FooterMenu";
 const HomePage = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
       <div className="flex-grow h-full">{children}</div>
-      <FooterMenu />
-      <Footer />
+      {/* <FooterMenu /> */}
+      {/* <Footer /> */}
     </>
   );
 };

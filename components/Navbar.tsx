@@ -45,7 +45,7 @@ const Navbar = () => {
     },
     {
       label: "Collections",
-      href: "/",
+      href: "/collections",
       active: pathname === "/collections",
     },
     {

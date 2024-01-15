@@ -24,7 +24,7 @@ export default async function Home() {
   });
 
   return (
-    <>
+    <div className="space-y-12 md:space-y-4 bg-black">
       <Hero />
       <CarouselComponent
         products={products}
@@ -32,6 +32,6 @@ export default async function Home() {
         title="New Collection"
       />
       <Partnership />
-    </>
+    </div>
   );
 }
