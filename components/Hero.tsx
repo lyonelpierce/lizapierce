@@ -21,7 +21,7 @@ const Hero = () => {
               gem="diamond"
             />
           </CanvasComponent>
-          <div className="absolute top-12 lg:top-28 2xl:top-60 left-1/2 transform -translate-x-1/2 z-0">
+          <div className="absolute top-24 lg:top-28 2xl:top-60 left-1/2 transform -translate-x-1/2 z-0">
             <h2 className="text-6xl xl:text-[10rem] 2xl:text-[12rem] font-black uppercase text-end leading-none text-zinc-950">
               Elizabeth Ring
             </h2>
