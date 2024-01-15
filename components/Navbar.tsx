@@ -66,7 +66,7 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="fixed top-0 w-screen h-20 z-30 py-2">
+    <nav className="fixed top-0 w-screen h-20 z-30 py-2 px-2 md:px-0">
       <div
         className={cn(
           "flex items-center justify-between border-black rounded-full max-w-7xl w-full h-full mx-auto text-xs px-4 transition-all ease-in-out duration-500",
@@ -74,9 +74,11 @@ const Navbar = () => {
         )}
       >
         <Link href="/">
-          <h1 className="text-2xl font-semibold uppercase">Eliza Pierce</h1>
+          <h1 className="text-sm md:text-2xl font-semibold uppercase">
+            Eliza Pierce
+          </h1>
         </Link>
-        <ul className="flex items-center gap-8 font-medium uppercase h-full text-gray-500">
+        <ul className="hidden md:flex items-center gap-8 font-medium uppercase h-full text-gray-500">
           {Menu.map((item) => (
             <li
               key={item.label}
@@ -89,7 +91,7 @@ const Navbar = () => {
             </li>
           ))}
         </ul>
-        <div className="flex items-center gap-6 border border-zinc-800 rounded-full pl-6">
+        <div className="flex items-center gap-4 md:gap-6 border border-zinc-800 rounded-full pl-4 md:pl-6">
           {userId && (
             <DropdownMenu onOpenChange={() => setOpen(!open)}>
               <DropdownMenuTrigger>
