@@ -34,12 +34,10 @@ const Cart = () => {
   return (
     <>
       <Heading text="Shopping Bag" cart={cart.items.length} />
-      <div className="flex gap-5">
-        <div
-          className={cn("h-screen", items.length !== 0 ? "w-2/3" : "w-full")}
-        >
+      <div className="flex flex-col md:flex-row gap-5">
+        <div className={cn(items.length !== 0 ? "w-full md:w-2/3" : "w-full")}>
           {cart.items.length === 0 ? (
-            <div className="text-sm flex items-center justify-center h-full">
+            <div className="text-sm flex items-center justify-center h-screen">
               No items added to your shopping bag.
             </div>
           ) : (
@@ -51,7 +49,7 @@ const Cart = () => {
           )}
         </div>
         {items.length !== 0 && (
-          <Card className="w-1/3 h-full">
+          <Card className="w-full md:w-1/3 h-full">
             <CardHeader>Order Summary</CardHeader>
             <CardContent>
               <CartSummary items={items} />
