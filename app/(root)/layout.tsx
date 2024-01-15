@@ -7,8 +7,8 @@ const HomePage = ({ children }: { children: React.ReactNode }) => {
     <>
       {/* <Navbar /> */}
       <div className="flex-grow h-full">{children}</div>
-      {/* <FooterMenu /> */}
-      {/* <Footer /> */}
+      <FooterMenu />
+      <Footer />
     </>
   );
 };

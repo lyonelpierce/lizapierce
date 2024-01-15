@@ -1,9 +1,5 @@
 export const Categories = [
   {
-    label: "Collections",
-    href: "/",
-  },
-  {
     label: "Rings",
     href: "/rings",
   },
