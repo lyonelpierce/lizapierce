@@ -31,3 +31,14 @@ interface OrderWithItems extends Order {
   orderItems: OrderItem[];
 }
 export type { OrderWithItems };
+
+interface ProductWithDetails extends Product {
+  collection: {
+    slug: string;
+  };
+  category: {
+    slug: string;
+  };
+}
+
+export type { ProductWithDetails };

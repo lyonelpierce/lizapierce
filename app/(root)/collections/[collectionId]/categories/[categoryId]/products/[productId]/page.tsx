@@ -1,6 +1,7 @@
 import { Metadata } from "next";
-import { notFound } from "next/navigation";
 import { auth } from "@clerk/nextjs";
+import { notFound } from "next/navigation";
+
 import prismadb from "@/lib/prismadb";
 
 import { ProductDetails } from "@/types/ProductVariants";
