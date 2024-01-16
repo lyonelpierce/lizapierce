@@ -3,12 +3,12 @@ import { notFound } from "next/navigation";
 
 import prismadb from "@/lib/prismadb";
 
-import WidthWrapper from "@/components/WidthWrapper";
 import { Category } from "@prisma/client";
+
+import WidthWrapper from "@/components/WidthWrapper";
 import ImageComponent from "@/components/ImageComponent";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import Image from "next/image";
 import ProductCards from "@/components/ProductCards";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 async function getCategory({
   params,
@@ -70,11 +70,21 @@ const CategoryPage = async ({ params }: { params: { categoryId: string } }) => {
 
   return (
     <WidthWrapper>
-      <ImageComponent image="/images/partner.jpg" text="Rings" />
-      <div className="grid grid-cols-6">
-        {products.map((product) => (
-          <ProductCards product={product} />
-        ))}
+      <ImageComponent image="/images/partner.jpg" text={params.categoryId} />
+      <div className="flex gap-5">
+        <div className="w-1/4">
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-lg">Filter</CardTitle>
+            </CardHeader>
+            <CardContent></CardContent>
+          </Card>
+        </div>
+        <div className="grid grid-cols-5 w-3/4">
+          {products.map((product) => (
+            <ProductCards key={product.name} product={product} />
+          ))}
+        </div>
       </div>
     </WidthWrapper>
   );

@@ -45,13 +45,13 @@ const Navbar = () => {
     },
     {
       label: "Rings",
-      href: "#",
-      active: pathname === "/rings",
+      href: "/collections/elizabeth/categories/rings",
+      active: pathname === "/collections/elizabeth/categories/rings",
     },
     {
       label: "Earrings",
-      href: "#",
-      active: pathname === "/earrings",
+      href: "/collections/elizabeth/categories/earrings",
+      active: pathname === "/collections/elizabeth/categories/earrings",
     },
     {
       label: "Design Your Own",
