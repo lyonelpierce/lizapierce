@@ -70,7 +70,7 @@ export async function generateMetadata({
 const ProductPage = async ({ params }: { params: { productId: string } }) => {
   const product = await getProduct({ params });
 
-  const relatedProducts = await prismadb.product.findMany({
+  const relatedProducts = prismadb.product.findMany({
     take: 4,
     where: {
       AND: [
@@ -101,11 +101,13 @@ const ProductPage = async ({ params }: { params: { productId: string } }) => {
     },
   });
 
-  const productRating = await prismadb.review.findMany({
+  const productRating = prismadb.review.findMany({
     where: {
       productId: product.id,
     },
   });
+
+  const [related, rating] = await Promise.all([relatedProducts, productRating]);
 
   const { userId } = auth();
   let userOrders = null;
@@ -182,12 +184,12 @@ const ProductPage = async ({ params }: { params: { productId: string } }) => {
         </div>
         <ProductTabs
           product={product}
-          rating={productRating}
+          rating={rating}
           order={userOrders}
           user={userId}
         />
         <CarouselComponent
-          products={relatedProducts}
+          products={related}
           className="text-2xl"
           title="Related Products"
         />

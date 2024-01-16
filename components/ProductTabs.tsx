@@ -74,7 +74,7 @@ const ProductTabs = ({
                 </div>
               ) : (
                 <div>
-                  {!order ? (
+                  {order ? (
                     <p
                       className="transition-colors ease-in-out hover:text-zinc-200 cursor-pointer"
                       onClick={() => setOpen(true)}
