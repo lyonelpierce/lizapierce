@@ -45,17 +45,17 @@ const Navbar = () => {
     },
     {
       label: "Rings",
-      href: "/rings",
+      href: "#",
       active: pathname === "/rings",
     },
     {
       label: "Earrings",
-      href: "/earrings",
+      href: "#",
       active: pathname === "/earrings",
     },
     {
       label: "Design Your Own",
-      href: "/customize",
+      href: "#",
       active: pathname === "/customize",
     },
   ];

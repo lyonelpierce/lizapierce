@@ -1,66 +1,59 @@
 export const Categories = [
   {
     label: "Rings",
-    href: "/rings",
+    href: "3",
   },
   {
     label: "Bracelets",
-    href: "/bracelets",
+    href: "#",
   },
   {
     label: "Necklaces",
-    href: "/necklaces",
+    href: "#",
   },
   {
     label: "Earrings",
-    href: "/earrings",
-  },
-];
-
-export const Collections = [
-  {
-    label: "Elizabeth",
-    href: "/elizabeth",
+    href: "#",
   },
 ];
 
 export const WeAre = [
   {
     label: "About Us",
-    href: "/about",
+    href: "#",
   },
   {
     label: "Contact Us",
-    href: "/contact",
+    href: "#",
   },
 ];
 
 export const Contracts = [
   {
     label: "Terms & Conditions",
-    href: "/terms",
+    href: "#",
   },
   {
     label: "Privacy Policy",
-    href: "/privacy",
+    href: "#",
   },
   {
     label: "Cookie Policy",
-    href: "/cookie",
+    href: "#",
   },
 ];
 
 export const Help = [
   {
     label: "FAQ",
-    href: "/faq",
+    href: "#",
   },
   {
     label: "Shipping & Returns",
-    href: "/shipping",
+    href: "#",
   },
   {
-    label: "Ring Size Guide",
-    href: "/ring-size-guide",
+    label: "Size Guide",
+    href: "#",
   },
 ];

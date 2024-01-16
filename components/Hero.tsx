@@ -40,7 +40,7 @@ const Hero = () => {
                   Customize
                 </Button>
               </Link>
-              <Link href="/elizabeth" className="w-1/2">
+              <Link href="#" className="w-1/2">
                 <Button variant="link" className="text-white text-xs w-full">
                   View Collection
                 </Button>

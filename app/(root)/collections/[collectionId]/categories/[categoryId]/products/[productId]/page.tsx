@@ -150,7 +150,7 @@ const ProductPage = async ({ params }: { params: { productId: string } }) => {
   }
 
   return (
-    <WidthWrapper>
+    <WidthWrapper className="md:h-full">
       <div className="flex flex-col md:flex-row gap-8">
         <div className="w-full md:w-2/3 aspect-square h-96 md:h-[40rem]">
           <Render />
