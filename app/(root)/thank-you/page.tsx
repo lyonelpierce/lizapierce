@@ -1,12 +1,14 @@
 import { Metadata } from "next";
-import { notFound } from "next/navigation";
 import { auth } from "@clerk/nextjs";
+import { notFound } from "next/navigation";
 
-import ThankYouComponent from "@/components/ThankYouComponent";
 import prismadb from "@/lib/prismadb";
-import { Separator } from "@/components/ui/separator";
 import { formatter } from "@/lib/utils";
+
+import { Separator } from "@/components/ui/separator";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
+
+import ImageComponent from "@/components/ImageComponent";
 
 export const metadata: Metadata = {
   title: "Thank You",
@@ -69,7 +71,7 @@ const ThankYou = async ({
   return (
     <div className="bg-black pt-20 md:pt-24 flex-grow h-full md:h-screen">
       <div className="max-w-7xl mx-auto px-4 space-y-8">
-        <ThankYouComponent />
+        <ImageComponent image="/images/thankyou.jpg" text="Thank You!" />
         <div className="flex flex-col md:flex-row gap-3 h-full">
           <Card className="w-full md:w-1/2">
             <CardHeader>

@@ -1,20 +1,27 @@
 import Image from "next/image";
+import { cn } from "@/lib/utils";
 
-const Partnership = () => {
+const ImageComponent = ({
+  image,
+  text,
+  className,
+}: {
+  image: string;
+  text: string;
+  className?: string;
+}) => {
   return (
-    <div className="bg-black py-8">
-      <div className="max-w-7xl mx-auto px-4">
+    <div className="bg-black">
+      <div className={cn("max-w-7xl mx-auto", className)}>
         <div className="relative w-full h-96">
           <Image
-            src="/images/partner.jpg"
+            src={image}
             alt="Woman in beach"
             fill
             className="rounded-3xl object-cover opacity-40"
           />
           <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-1/2 md:w-1/3">
-            <h2 className="text-4xl md:text-5xl text-center">
-              Let&apos;s become a partnership!
-            </h2>
+            <h2 className="text-4xl md:text-5xl text-center">{text}</h2>
           </div>
         </div>
       </div>
@@ -22,4 +29,4 @@ const Partnership = () => {
   );
 };
 
-export default Partnership;
+export default ImageComponent;

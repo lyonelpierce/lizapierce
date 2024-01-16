@@ -21,6 +21,7 @@ import AddToCart from "@/components/AddToCartButton";
 import DynamicPrice from "@/components/DynamicPrice";
 import CarouselComponent from "@/components/Carousel";
 import ProductTabs from "@/components/ProductTabs";
+import WidthWrapper from "@/components/WidthWrapper";
 
 async function getProduct({
   params,
@@ -149,52 +150,50 @@ const ProductPage = async ({ params }: { params: { productId: string } }) => {
   }
 
   return (
-    <div className="h-full bg-black pt-20 md:pt-32">
-      <div className="max-w-7xl mx-auto text-sm font-medium h-full space-y-16 pb-16">
-        <div className="flex flex-col md:flex-row gap-8">
-          <div className="w-full md:w-2/3 aspect-square h-96 md:h-[40rem]">
-            <Render />
-          </div>
-          <Card className="w-full md:w-1/3 h-max">
-            <CardHeader>
-              <CardTitle className="text-2xl font-medium">
-                {product.name}
-              </CardTitle>
-              <DynamicPrice
-                variants={product.variants}
-                minPrice={product.minPrice}
-                maxPrice={product.maxPrice}
-              />
-              <Separator className="bg-zinc-800 my-4" />
-            </CardHeader>
-            <CardContent className="px-5">
-              <Variants options={product.options} variants={product.variants} />
-              <AddToCart
-                forSale={product.forSale}
-                variants={product.variants}
-                name={product.name}
-                image={product.image}
-              />
-              <Separator className="bg-zinc-800 my-4" />
-            </CardContent>
-            <CardFooter>
-              <SafePayment />
-            </CardFooter>
-          </Card>
+    <WidthWrapper>
+      <div className="flex flex-col md:flex-row gap-8">
+        <div className="w-full md:w-2/3 aspect-square h-96 md:h-[40rem]">
+          <Render />
         </div>
-        <ProductTabs
-          product={product}
-          rating={rating}
-          order={userOrders}
-          user={userId}
-        />
-        <CarouselComponent
-          products={related}
-          className="text-2xl"
-          title="Related Products"
-        />
+        <Card className="w-full md:w-1/3 h-max">
+          <CardHeader>
+            <CardTitle className="text-2xl font-medium">
+              {product.name}
+            </CardTitle>
+            <DynamicPrice
+              variants={product.variants}
+              minPrice={product.minPrice}
+              maxPrice={product.maxPrice}
+            />
+            <Separator className="bg-zinc-800 my-4" />
+          </CardHeader>
+          <CardContent className="px-5">
+            <Variants options={product.options} variants={product.variants} />
+            <AddToCart
+              forSale={product.forSale}
+              variants={product.variants}
+              name={product.name}
+              image={product.image}
+            />
+            <Separator className="bg-zinc-800 my-4" />
+          </CardContent>
+          <CardFooter>
+            <SafePayment />
+          </CardFooter>
+        </Card>
       </div>
-    </div>
+      <ProductTabs
+        product={product}
+        rating={rating}
+        order={userOrders}
+        user={userId}
+      />
+      <CarouselComponent
+        products={related}
+        className="text-2xl"
+        title="Related Products"
+      />
+    </WidthWrapper>
   );
 };
 

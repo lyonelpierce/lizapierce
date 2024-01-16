@@ -6,12 +6,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
 import { Toaster } from "@/components/ui/sonner";
 import Cart from "@/components/CartModal";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
+import { TooltipProvider } from "@/components/ui/tooltip";
 
 export const metadata: Metadata = {
   title: {
@@ -30,6 +25,10 @@ export default function RootLayout({
     <ClerkProvider
       appearance={{
         baseTheme: dark,
+        variables: {
+          colorPrimary: "white",
+          colorTextOnPrimaryBackground: "black",
+        },
       }}
     >
       <TooltipProvider>

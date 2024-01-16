@@ -4,6 +4,7 @@ import prismadb from "@/lib/prismadb";
 
 import Heading from "@/components/ui/Heading";
 import DashboardComponent from "@/components/DashboardComponent";
+import WidthWrapper from "@/components/WidthWrapper";
 
 export const metadata: Metadata = {
   title: "Dashboard",
@@ -40,12 +41,10 @@ const Dashboard = async () => {
   const orders = await getOrder();
 
   return (
-    <div className="bg-black pt-32 flex-grow h-screen">
-      <div className="max-w-7xl mx-auto px-4 h-full space-y-8">
-        <Heading text="Orders" />
-        <DashboardComponent orders={orders} />
-      </div>
-    </div>
+    <WidthWrapper>
+      <Heading text="Orders" />
+      <DashboardComponent orders={orders} />
+    </WidthWrapper>
   );
 };
 

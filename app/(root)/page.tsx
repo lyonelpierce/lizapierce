@@ -1,7 +1,7 @@
 import prismadb from "@/lib/prismadb";
 
 import Hero from "@/components/Hero";
-import Partnership from "@/components/Partnership";
+import ImageComponent from "@/components/ImageComponent";
 import CarouselComponent from "@/components/Carousel";
 
 export default async function Home() {
@@ -31,7 +31,11 @@ export default async function Home() {
         className="text-4xl"
         title="New Collection"
       />
-      <Partnership />
+      <ImageComponent
+        image="/images/partner.jpg"
+        text="Let's become a partnership!"
+        className="px-4"
+      />
     </div>
   );
 }
