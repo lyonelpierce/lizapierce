@@ -18,7 +18,7 @@ const ProductCards = ({ product }: { product: ProductWithDetails }) => {
       href={`/${product.collection.slug}/${product.category.slug}/${product.slug}`}
       className="w-full h-full"
     >
-      <Card className="bg-zinc-950 h-full border rounded-3xl text-white overflow-hidden transition-all hover:bg-zinc-900 hover:border-white hover:scale-105 cursor-pointer">
+      <Card className="bg-zinc-950 h-full border rounded-3xl text-white overflow-hidden transition-all hover:bg-zinc-900 hover:border-white hover:scale-[1.03] cursor-pointer">
         <Image
           src={product.image}
           alt="Heart Ring"

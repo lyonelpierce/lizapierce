@@ -12,7 +12,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 
 import WidthWrapper from "./WidthWrapper";
-import ProductCards from "./ProductCards";
+import ProductCards from "./ProductCard";
 
 const CarouselComponent = ({
   products,

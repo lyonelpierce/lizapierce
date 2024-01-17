@@ -1,6 +1,6 @@
 "use client";
 
-import ProductCards from "@/components/ProductCards";
+import ProductCards from "@/components/ProductCard";
 import { useSearchParams } from "next/navigation";
 import {
   Product,
