@@ -8,7 +8,11 @@ import { Category } from "@prisma/client";
 import WidthWrapper from "@/components/WidthWrapper";
 import ImageComponent from "@/components/ImageComponent";
 import ProductCards from "@/components/ProductCards";
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import Filter from "@/components/Filter";
+
+export const revalidate = 0;
 
 async function getCategory({
   params,
@@ -65,6 +69,7 @@ const CategoryPage = async ({ params }: { params: { categoryId: string } }) => {
           slug: true,
         },
       },
+      options: true,
     },
   });
 
@@ -77,10 +82,12 @@ const CategoryPage = async ({ params }: { params: { categoryId: string } }) => {
             <CardHeader>
               <CardTitle className="text-lg">Filter</CardTitle>
             </CardHeader>
-            <CardContent></CardContent>
+            <CardContent>
+              <Filter products={products} />
+            </CardContent>
           </Card>
         </div>
-        <div className="grid grid-cols-5 w-3/4">
+        <div className="grid grid-cols-4 w-3/4 h-min">
           {products.map((product) => (
             <ProductCards key={product.name} product={product} />
           ))}
