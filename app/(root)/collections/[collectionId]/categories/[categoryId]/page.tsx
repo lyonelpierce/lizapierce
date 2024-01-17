@@ -76,8 +76,8 @@ const CategoryPage = async ({ params }: { params: { categoryId: string } }) => {
   return (
     <WidthWrapper>
       <ImageComponent image="/images/partner.jpg" text={params.categoryId} />
-      <div className="flex gap-5">
-        <div className="w-1/4">
+      <div className="flex flex-col md:flex-row gap-5">
+        <div className="w-full md:w-1/4">
           <Card>
             <CardHeader>
               <CardTitle className="text-lg">Filter</CardTitle>
@@ -87,7 +87,7 @@ const CategoryPage = async ({ params }: { params: { categoryId: string } }) => {
             </CardContent>
           </Card>
         </div>
-        <div className="grid grid-cols-4 w-3/4 h-min">
+        <div className="grid grid-cols-2 md:grid-cols-4 w-full md:w-3/4 h-min">
           {products.map((product) => (
             <ProductCards key={product.name} product={product} />
           ))}
