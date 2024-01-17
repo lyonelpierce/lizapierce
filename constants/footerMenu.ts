@@ -1,7 +1,7 @@
 export const Categories = [
   {
     label: "Rings",
-    href: "3",
+    href: "/elizabeth/rings",
   },
   {
     label: "Bracelets",
@@ -13,7 +13,7 @@ export const Categories = [
   },
   {
     label: "Earrings",
-    href: "#",
+    href: "/elizabeth/earrings",
   },
 ];
 
