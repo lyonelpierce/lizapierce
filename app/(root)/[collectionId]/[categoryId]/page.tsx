@@ -11,6 +11,7 @@ import ImageComponent from "@/components/ImageComponent";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Filter from "@/components/Filter";
 import FilteredProducts from "@/components/FilteredProducts";
+import { Button } from "@/components/ui/button";
 
 export const revalidate = 0;
 

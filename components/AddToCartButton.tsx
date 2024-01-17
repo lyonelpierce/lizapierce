@@ -92,13 +92,13 @@ const AddToCart = ({
       <div className="flex items-center justify-center w-1/6">
         <Button
           size="icon"
-          disabled={!variant}
+          disabled={searchParams.toString() === ""}
           variant="link"
           className="w-4 h-4"
         >
           <AiOutlineClear
             className="w-4 h-4 text-white transition-all ease-in-out hover:scale-125 -ml-1"
-            disabled={!variant}
+            disabled={searchParams.toString() === ""}
             onClick={() => router.replace(pathname)}
           />
         </Button>
