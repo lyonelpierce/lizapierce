@@ -31,10 +31,7 @@ const Hero = () => {
               Craft your masterpiece in real time
             </h1>
             <div className="border rounded-full flex mt-8 w-fit">
-              <Link
-                href="/collections/elizabeth/categories/rings/products/elizabeth-ring"
-                className="w-1/2"
-              >
+              <Link href="/elizabeth/rings/elizabeth-ring" className="w-1/2">
                 <Button variant="white" className="flex gap-1 w-full">
                   <Settings className="w-4 h-4" />
                   Customize

@@ -13,10 +13,7 @@ const Filter = ({ products }: { products: ProductWithOptions[] }) => {
     <div className="w-full">
       {options.map((option, i) => {
         return (
-          <div
-            className="flex flex-col gap-4 text-sm font-medium divide-y divide-zinc-800"
-            key={i}
-          >
+          <div className="flex flex-col gap-4 text-sm font-medium" key={i}>
             {option.map((opt, i) => {
               return (
                 <div key={i}>

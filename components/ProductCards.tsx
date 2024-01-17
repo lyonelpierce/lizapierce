@@ -15,7 +15,7 @@ import {
 const ProductCards = ({ product }: { product: ProductWithDetails }) => {
   return (
     <Link
-      href={`/collections/${product.collection.slug}/categories/${product.category.slug}/products/${product.slug}`}
+      href={`/${product.collection.slug}/${product.category.slug}/${product.slug}`}
       className="w-full h-full"
     >
       <Card className="bg-zinc-950 h-full border rounded-3xl text-white overflow-hidden transition-all hover:bg-zinc-900 hover:border-white hover:scale-105 cursor-pointer">
