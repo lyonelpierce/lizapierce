@@ -7,10 +7,10 @@ import { Category } from "@prisma/client";
 
 import WidthWrapper from "@/components/WidthWrapper";
 import ImageComponent from "@/components/ImageComponent";
-import ProductCards from "@/components/ProductCards";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Filter from "@/components/Filter";
+import FilteredProducts from "@/components/FilteredProducts";
 
 export const revalidate = 0;
 
@@ -70,28 +70,29 @@ const CategoryPage = async ({ params }: { params: { categoryId: string } }) => {
         },
       },
       options: true,
+      variants: {
+        include: {
+          options: true,
+        },
+      },
     },
   });
 
   return (
-    <WidthWrapper>
+    <WidthWrapper className="md:h-full">
       <ImageComponent image="/images/partner.jpg" text={params.categoryId} />
       <div className="flex flex-col md:flex-row gap-5">
-        <div className="w-full md:w-1/4">
+        <div className="w-full md:w-80 md:min-w-80 md:max-w-80 md:min-h-min">
           <Card>
             <CardHeader>
-              <CardTitle className="text-lg">Filter</CardTitle>
+              <CardTitle className="text-base">Filter</CardTitle>
             </CardHeader>
             <CardContent>
               <Filter products={products} />
             </CardContent>
           </Card>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 w-full md:w-3/4 h-min">
-          {products.map((product) => (
-            <ProductCards key={product.name} product={product} />
-          ))}
-        </div>
+        <FilteredProducts products={products} />
       </div>
     </WidthWrapper>
   );
