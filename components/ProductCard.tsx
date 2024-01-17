@@ -24,7 +24,7 @@ const ProductCards = ({ product }: { product: ProductWithDetails }) => {
           alt="Heart Ring"
           width={600}
           height={600}
-          className="w-full rounded-3xl aspect-square object-cover"
+          className="w-full rounded-b-3xl aspect-square object-cover"
         />
         <CardHeader className="flex flex-col justify-between">
           <CardTitle className="text-base md:text-lg">{product.name}</CardTitle>
