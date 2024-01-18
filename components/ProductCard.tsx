@@ -27,7 +27,7 @@ const ProductCards = ({ product }: { product: ProductWithDetails }) => {
           className="w-full rounded-b-3xl aspect-square object-cover"
         />
         <CardHeader className="flex flex-col justify-between">
-          <CardTitle className="text-base md:text-lg">{product.name}</CardTitle>
+          <CardTitle className="text-sm md:text-base">{product.name}</CardTitle>
           <CardDescription className="text-zinc-500">
             {formatter.format(product.minPrice)} +
           </CardDescription>
