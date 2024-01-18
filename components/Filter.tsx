@@ -24,7 +24,7 @@ const Filter = ({ products }: { products: ProductWithOptions[] }) => {
       {options.map((option) => (
         <div key={option.id} className="w-full mb-4">
           <Label className="text-xs">{option.name}</Label>
-          <div className="flex flex-wrap gap-3 mt-1">
+          <div className="flex flex-wrap gap-1 mt-1">
             {option.values.map((value) => {
               const optionNameLower = option.name.toLowerCase();
               const optionSearchParams = new URLSearchParams(
