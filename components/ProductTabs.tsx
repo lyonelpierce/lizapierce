@@ -63,7 +63,7 @@ const ProductTabs = ({
         </TabsContent>
         <TabsContent
           value="reviews"
-          className="border rounded-t-none border-zinc-800 rounded-b-lg rounded-tr-lg p-5 bg-zinc-950 h-32"
+          className="border rounded-t-none border-zinc-800 rounded-b-lg rounded-tr-lg p-5 bg-zinc-950 h-32 text-sm"
         >
           {rating.length === 0 ? (
             <div className="flex flex-col gap-2 justify-center items-center h-full">

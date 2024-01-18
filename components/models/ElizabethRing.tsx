@@ -264,6 +264,10 @@ export default function ElizabethRing(
 
   let gemColor = selectedColor?.color as string;
 
+  let currentColor = {
+    color: new THREE.Color(1, 1, 1),
+  };
+
   useFrame((state, delta) => {
     easing.dampC(currentMaterial.color, selectedMaterialColor, 0.5, delta);
   });
