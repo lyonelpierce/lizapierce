@@ -70,7 +70,7 @@ const ProductTabs = ({
               There are currently no reviews.
               {!user ? (
                 <div>
-                  <SignInButton afterSignInUrl={url} /> to leave a review.
+                  <SignInButton afterSignInUrl={url} mode="modal" />
                 </div>
               ) : (
                 <div>
