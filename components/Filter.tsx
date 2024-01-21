@@ -1,12 +1,14 @@
 "use client";
 
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+
 import { Product, ProductOptions } from "@prisma/client";
+
+import { cn, createUrl } from "@/lib/utils";
+
 import { Label } from "./ui/label";
 import { Button } from "./ui/button";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { cn, createUrl } from "@/lib/utils";
 import { AiOutlineClear } from "react-icons/ai";
-import { useUrl } from "@/hooks/use-url";
 
 interface ProductWithOptions extends Product {
   options: ProductOptions[];

@@ -29,7 +29,12 @@ const getOrder = async () => {
         isPaid: true,
       },
       include: {
-        orderItems: true,
+        orderItems: {
+          include: {
+            variant: true,
+            product: true,
+          },
+        },
       },
     });
 
@@ -42,7 +47,7 @@ const Dashboard = async () => {
 
   return (
     <WidthWrapper>
-      <Heading text="Orders" />
+      <Heading text="Orders" cart={orders?.length} />
       <DashboardComponent orders={orders} />
     </WidthWrapper>
   );
