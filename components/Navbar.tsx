@@ -69,8 +69,8 @@ const Navbar = () => {
         )}
       >
         <Link href="/">
-          <h1 className="flex gap-1 text-sm md:text-2xl font-semibold uppercase">
-            <Gem className="w-6 h-6 md:w-8 md:h-8" strokeWidth={1.5} />
+          <h1 className="flex items-center gap-1 text-sm md:text-2xl font-semibold uppercase">
+            <Gem className="w-6 h-6" strokeWidth={2} />
             Eliza Pierce
           </h1>
         </Link>
