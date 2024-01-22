@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils";
 import NavbarActions from "./NavbarActions";
 
 import { Button } from "@/components/ui/button";
-import { ChevronDown, Receipt } from "lucide-react";
+import { ChevronDown, Gem, Receipt } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -69,7 +69,8 @@ const Navbar = () => {
         )}
       >
         <Link href="/">
-          <h1 className="text-sm md:text-2xl font-semibold uppercase">
+          <h1 className="flex gap-1 text-sm md:text-2xl font-semibold uppercase">
+            <Gem className="w-6 h-6 md:w-8 md:h-8" strokeWidth={1.5} />
             Eliza Pierce
           </h1>
         </Link>
