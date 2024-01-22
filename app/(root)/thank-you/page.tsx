@@ -1,5 +1,4 @@
 import { Metadata } from "next";
-import { auth } from "@clerk/nextjs";
 import { notFound } from "next/navigation";
 
 import prismadb from "@/lib/prismadb";
@@ -15,10 +14,6 @@ export const metadata: Metadata = {
 };
 
 const getOrder = async (orderId: string) => {
-  const { userId } = auth();
-
-  if (!userId) notFound();
-
   const order = prismadb.order.findUnique({
     where: {
       id: orderId,
@@ -33,17 +28,7 @@ const getOrder = async (orderId: string) => {
     },
   });
 
-  const user = prismadb.user.findUnique({
-    where: {
-      externalId: userId,
-    },
-  });
-
-  const [orders, users] = await Promise.all([order, user]);
-
-  const data = { orders, users };
-
-  return data;
+  return order;
 };
 
 const ThankYou = async ({
@@ -51,20 +36,15 @@ const ThankYou = async ({
 }: {
   searchParams?: { [orderId: string]: string };
 }) => {
-  const { userId } = auth();
   const { orderId } = searchParams || {};
 
   if (!orderId) {
     notFound();
   }
 
-  const data = await getOrder(orderId);
+  const order = await getOrder(orderId);
 
-  if (!data) {
-    notFound();
-  }
-
-  if (userId !== data.users?.externalId) {
+  if (!order) {
     notFound();
   }
 
@@ -82,23 +62,23 @@ const ThankYou = async ({
               <div className="space-y-4 divide-y divide-zinc-800 text-sm">
                 <p className="flex justify-between capitalize">
                   <span className="font-medium">Name: </span>
-                  {data.orders?.name}
+                  {order.name}
                 </p>
                 <p className="flex justify-between capitalize">
                   <span className="font-medium">Address: </span>
-                  {data.orders?.address}
+                  {order.address}
                 </p>
                 <p className="flex justify-between">
                   <span className="font-medium">E-mail: </span>
-                  {data.orders?.email}
+                  {order.email}
                 </p>
                 <p className="flex justify-between">
                   <span className="font-medium">Phone: </span>
-                  {data.orders?.phone}
+                  {order.phone}
                 </p>
                 <p className="flex justify-between">
                   <span className="font-medium">Date: </span>
-                  {data.orders?.createdAt.toLocaleDateString()}
+                  {order.createdAt.toLocaleDateString()}
                 </p>
               </div>
             </CardContent>
@@ -110,7 +90,7 @@ const ThankYou = async ({
             </CardHeader>
             <CardContent>
               <div className="space-y-4 divide-y divide-zinc-800 text-sm">
-                {data.orders?.orderItems.map((orderItem) => (
+                {order.orderItems.map((orderItem) => (
                   <div key={orderItem.id} className="flex flex-col">
                     <p className="flex justify-between font-medium w-full">
                       <span>{orderItem.product.name}</span>
@@ -121,7 +101,7 @@ const ThankYou = async ({
                 ))}
                 <div className="flex justify-between">
                   <span className="font-medium">Total: </span>
-                  {formatter.format((data.orders?.total ?? 0) / 100)}
+                  {formatter.format((order.total ?? 0) / 100)}
                 </div>
               </div>
             </CardContent>
