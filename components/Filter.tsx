@@ -32,23 +32,17 @@ const Filter = ({ products }: { products: ProductWithOptions[] }) => {
               const optionSearchParams = new URLSearchParams(
                 searchParams.toString()
               );
+              optionSearchParams.set(optionNameLower, value);
 
-              // Toggle option in URL
-              const currentValues = optionSearchParams.getAll(optionNameLower);
-              if (currentValues.includes(value)) {
-                currentValues.splice(currentValues.indexOf(value), 1);
+              const isActive = searchParams.get(optionNameLower) === value;
+
+              if (isActive) {
+                optionSearchParams.delete(optionNameLower);
               } else {
-                currentValues.push(value);
+                optionSearchParams.set(optionNameLower, value);
               }
-
-              optionSearchParams.delete(optionNameLower);
-              currentValues.forEach((val) =>
-                optionSearchParams.append(optionNameLower, val)
-              );
-
               const optionUrl = createUrl(pathname, optionSearchParams);
 
-              const isActive = !currentValues.includes(value);
               return (
                 <Button
                   key={value}
@@ -58,8 +52,7 @@ const Filter = ({ products }: { products: ProductWithOptions[] }) => {
                   className={cn(
                     "flex items-center rounded-full border border-zinc-800 bg-zinc-900 px-4 py-1 text-xs font-semibold hover:bg-zinc-800",
                     {
-                      "cursor-default ring-1 ring-white hover:bg-zinc-800":
-                        isActive,
+                      "ring-1 ring-white hover:bg-zinc-800": isActive,
                     }
                   )}
                   size="sm"
