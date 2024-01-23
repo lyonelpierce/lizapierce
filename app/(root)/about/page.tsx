@@ -15,7 +15,7 @@ const AboutPage = () => {
           src="/images/partner.jpg"
           alt="About"
           fill
-          className="object-cover absolute"
+          className="object-cover absolute blur-[1px] opacity-60"
         />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
           <h2 className="text-4xl font-semibold">About Us</h2>
