@@ -8,6 +8,7 @@ import { UserButton, useAuth } from "@clerk/nextjs";
 import { cn } from "@/lib/utils";
 
 import NavbarActions from "./NavbarActions";
+import { NavbarMenu } from "@/constants/navbarMenu";
 
 import { Button } from "@/components/ui/button";
 import { ChevronDown, Gem, Receipt } from "lucide-react";
@@ -21,6 +22,7 @@ import {
 const Navbar = () => {
   const pathname = usePathname();
   const { userId } = useAuth();
+
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -37,29 +39,6 @@ const Navbar = () => {
     };
   }, []);
 
-  const Menu = [
-    {
-      label: "Home",
-      href: "/",
-      active: pathname === "/",
-    },
-    {
-      label: "Rings",
-      href: "/elizabeth/rings",
-      active: pathname === "/elizabeth/rings",
-    },
-    {
-      label: "Earrings",
-      href: "/elizabeth/earrings",
-      active: pathname === "/elizabeth/earrings",
-    },
-    {
-      label: "Design Your Own",
-      href: "#",
-      active: pathname === "/customize",
-    },
-  ];
-
   return (
     <nav className="fixed top-0 w-screen h-20 z-30 py-2 px-2 md:px-0">
       <div
@@ -75,12 +54,12 @@ const Navbar = () => {
           </h1>
         </Link>
         <ul className="hidden md:flex items-center gap-8 font-medium uppercase h-full text-gray-500">
-          {Menu.map((item) => (
+          {NavbarMenu.map((item) => (
             <li
               key={item.label}
               className={cn(
                 "text-zinc-500 transition-colors ease-in-out hover:text-white",
-                item.active && "text-white"
+                pathname === item.href && "text-white"
               )}
             >
               <Link href={item.href}>{item.label}</Link>

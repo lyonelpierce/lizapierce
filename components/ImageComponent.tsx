@@ -21,9 +21,7 @@ const ImageComponent = ({
             className="rounded-3xl object-cover opacity-40"
           />
           <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-1/2 md:w-1/3">
-            <h2 className="text-4xl md:text-5xl text-center capitalize">
-              {text}
-            </h2>
+            <h2 className="text-4xl md:text-5xl text-center">{text}</h2>
           </div>
         </div>
       </div>

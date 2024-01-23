@@ -8,6 +8,7 @@ export default authMiddleware({
     "/api/webhook(.*)",
     "/api/checkout",
     "/thank-you",
+    "/about",
   ],
 });
 

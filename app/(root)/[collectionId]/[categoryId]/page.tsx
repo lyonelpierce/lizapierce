@@ -5,13 +5,12 @@ import prismadb from "@/lib/prismadb";
 
 import { Category } from "@prisma/client";
 
+import Filter from "@/components/Filter";
 import WidthWrapper from "@/components/WidthWrapper";
 import ImageComponent from "@/components/ImageComponent";
+import FilteredProducts from "@/components/FilteredProducts";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import Filter from "@/components/Filter";
-import FilteredProducts from "@/components/FilteredProducts";
-import { Button } from "@/components/ui/button";
 
 export const revalidate = 0;
 
@@ -81,7 +80,13 @@ const CategoryPage = async ({ params }: { params: { categoryId: string } }) => {
 
   return (
     <WidthWrapper className="md:h-full">
-      <ImageComponent image="/images/partner.jpg" text={params.categoryId} />
+      <ImageComponent
+        image="/images/partner.jpg"
+        text={
+          params.categoryId.charAt(0).toUpperCase() +
+          params.categoryId.slice(1).toLowerCase()
+        }
+      />
       <div className="flex flex-col md:flex-row gap-5">
         <div className="w-full md:w-80 md:min-w-80 md:max-w-80 md:min-h-min">
           <Card>
