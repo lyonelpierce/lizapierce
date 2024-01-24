@@ -90,3 +90,12 @@
 .scrollbar::-webkit-scrollbar-thumb:hover {
   background: #d1d1d1;
 }
+.cl-modalContent {
+  height: 100% !important;
+  width: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
