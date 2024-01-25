@@ -79,18 +79,22 @@
   width: 10px;
   height: 10px;
 }
+
 .scrollbar::-webkit-scrollbar-track {
   border-radius: 100vh;
   background: #2c2c2c;
 }
+
 .scrollbar::-webkit-scrollbar-thumb {
   background: #8b8b8b;
   border-radius: 100vh;
 }
+
 .scrollbar::-webkit-scrollbar-thumb:hover {
   background: #d1d1d1;
 }
-.cl-modalContent {
+
+/* .cl-modalContent {
   height: 100% !important;
   width: 100% !important;
   display: flex !important;
@@ -98,4 +102,4 @@
   justify-content: center !important;
   padding: 0 !important;
   margin: 0 !important;
-}
+} */

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { SignInButton } from "@clerk/nextjs";
+import { format } from "date-fns";
 
 import { useUrl } from "@/hooks/use-url";
 import { Order, Review } from "@prisma/client";
@@ -10,6 +11,8 @@ import { ProductDetails } from "@/types/ProductVariants";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 import ReviewModal from "./ReviewModal";
+import { Rating } from "@smastrom/react-rating";
+import { style } from "@/constants/ratingStyle";
 
 interface Variant {
   title: string;
@@ -35,12 +38,12 @@ const ProductTabs = ({
   user: string | null;
 }) => {
   const [open, setOpen] = useState(false);
-
   const url = useUrl();
 
   return (
     <>
       <ReviewModal
+        id={product.id}
         name={product.name}
         image={product.image}
         open={open}
@@ -88,7 +91,31 @@ const ProductTabs = ({
               )}
             </div>
           ) : (
-            <div>Hello</div>
+            <div className="divide-y divide-zinc-800">
+              {rating.map((review) => (
+                <div key={review.id} className="flex flex-col gap-3">
+                  <div className="flex flex-col gap-1">
+                    <div className="flex justify-between">
+                      <Rating
+                        value={review.rate}
+                        style={{ maxWidth: 100 }}
+                        itemStyles={style}
+                        isDisabled
+                      />
+                      <p className="text-sm text-zinc-500">
+                        {format(review.createdAt, "dd/MM/yyyy")}
+                      </p>
+                    </div>
+                    <div className="flex gap-2">
+                      <p className="text-sm font-semibold capitalize">
+                        {review.title}
+                      </p>
+                    </div>
+                  </div>
+                  <p className="text-xs font-medium">{review.review}</p>
+                </div>
+              ))}
+            </div>
           )}
         </TabsContent>
       </Tabs>

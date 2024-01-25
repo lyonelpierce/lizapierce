@@ -22,29 +22,34 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Label } from "@/components/ui/label";
-import { Star } from "lucide-react";
+import { Rating } from "@smastrom/react-rating";
+import { style } from "@/constants/ratingStyle";
+import { toast } from "sonner";
 
 const formSchema = z.object({
-  variant: z.string().min(10, {
-    message: "Username must be at least 10 characters.",
-  }),
   review: z.string().min(10, {
     message: "Username must be at least 10 characters.",
   }),
   title: z.string().min(2, {
     message: "Username must be at least 2 characters.",
   }),
-  rating: z.enum(["1", "2", "3", "4", "5"]),
+  rating: z.union([
+    z.literal(1),
+    z.literal(2),
+    z.literal(3),
+    z.literal(4),
+    z.literal(5),
+  ]),
 });
 
 const ReviewModal = ({
+  id,
   name,
   image,
   open,
   onOpenChange,
 }: {
+  id: string;
   name: string;
   image: string;
   open: boolean;
@@ -57,12 +62,31 @@ const ReviewModal = ({
     defaultValues: {
       review: "",
       title: "",
-      rating: "5",
+      rating: 5,
     },
   });
 
-  const onSubmit = (data: z.infer<typeof formSchema>) => {
-    console.log(data);
+  const onSubmit = async (data: z.infer<typeof formSchema>) => {
+    try {
+      const response = fetch("http://localhost:3000/api/reviews", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ ...data, id }),
+      });
+
+      const json = await response;
+
+      if (json.ok) {
+        onOpenChange();
+        toast.success("Review submitted!");
+      } else {
+        toast.error("You already submitted a review on this product.");
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
@@ -123,88 +147,18 @@ const ReviewModal = ({
               render={({ field }) => (
                 <FormItem>
                   <FormLabel className="text-xs">Rate</FormLabel>
-                  <FormControl></FormControl>
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="rating"
-              render={({ field }) => (
-                <FormItem className="space-y-3">
                   <FormControl>
-                    <RadioGroup defaultValue="5" className="flex gap-2">
-                      <div>
-                        <RadioGroupItem
-                          value="1"
-                          id="rating"
-                          className="peer sr-only"
-                        />
-                        <Label
-                          htmlFor="rating"
-                          className="text-zinc-500 hover:text-white peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary cursor-pointer"
-                        >
-                          <Star className="h-4 w-4" />
-                        </Label>
-                      </div>
-                      <div>
-                        <RadioGroupItem
-                          value="2"
-                          id="paypal"
-                          className="peer sr-only"
-                        />
-                        <Label
-                          htmlFor="paypal"
-                          className="text-zinc-500 hover:text-white peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary cursor-pointer"
-                        >
-                          <Star className="h-4 w-4" />
-                        </Label>
-                      </div>
-                      <div>
-                        <RadioGroupItem
-                          value="3"
-                          id="apple"
-                          className="peer sr-only"
-                        />
-                        <Label
-                          htmlFor="apple"
-                          className="text-zinc-500 hover:text-white peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary cursor-pointer"
-                        >
-                          <Star className="h-4 w-4" />
-                        </Label>
-                      </div>
-                      <div>
-                        <RadioGroupItem
-                          value="4"
-                          id="apple"
-                          className="peer sr-only"
-                        />
-                        <Label
-                          htmlFor="apple"
-                          className="text-zinc-500 hover:text-white peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary cursor-pointer"
-                        >
-                          <Star className="h-4 w-4" />
-                        </Label>
-                      </div>
-                      <div>
-                        <RadioGroupItem
-                          value="5"
-                          id="apple"
-                          className="peer sr-only"
-                        />
-                        <Label
-                          htmlFor="apple"
-                          className="text-zinc-500 hover:text-white peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary cursor-pointer"
-                        >
-                          <Star className="h-4 w-4" />
-                        </Label>
-                      </div>
-                    </RadioGroup>
+                    <Rating
+                      style={{ maxWidth: 120 }}
+                      itemStyles={style}
+                      {...field}
+                      value={field.value as number}
+                    />
                   </FormControl>
                 </FormItem>
               )}
             />
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 pt-4">
               <Button
                 variant="white"
                 size="sm"
