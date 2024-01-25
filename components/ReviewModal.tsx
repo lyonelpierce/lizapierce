@@ -78,11 +78,13 @@ const ReviewModal = ({
 
       const json = await response;
 
-      if (json.ok) {
-        onOpenChange();
+      if (json.status === 200) {
+        // onOpenChange();
         toast.success("Review submitted!");
-      } else {
+      } else if (json.status === 201) {
         toast.error("You already submitted a review on this product.");
+      } else {
+        toast.error("Something went wrong!");
       }
     } catch (error) {
       console.log(error);
@@ -172,6 +174,7 @@ const ReviewModal = ({
                 size="sm"
                 className="text-xs text-white"
                 onClick={onOpenChange}
+                type="button"
               >
                 Cancel
               </Button>

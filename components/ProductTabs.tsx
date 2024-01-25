@@ -62,7 +62,10 @@ const ProductTabs = ({
           value="description"
           className="border rounded-t-none border-zinc-800 rounded-b-lg rounded-tr-lg p-5 bg-zinc-950 h-32"
         >
-          <div dangerouslySetInnerHTML={{ __html: product.description }} />
+          <div
+            dangerouslySetInnerHTML={{ __html: product.description }}
+            className="text-sm"
+          />
         </TabsContent>
         <TabsContent
           value="reviews"
@@ -96,20 +99,20 @@ const ProductTabs = ({
                 <div key={review.id} className="flex flex-col gap-3">
                   <div className="flex flex-col gap-1">
                     <div className="flex justify-between">
-                      <Rating
-                        value={review.rate}
-                        style={{ maxWidth: 100 }}
-                        itemStyles={style}
-                        isDisabled
-                      />
+                      <p className="text-sm font-semibold capitalize">
+                        {review.title}
+                      </p>
                       <p className="text-sm text-zinc-500">
                         {format(review.createdAt, "dd/MM/yyyy")}
                       </p>
                     </div>
                     <div className="flex gap-2">
-                      <p className="text-sm font-semibold capitalize">
-                        {review.title}
-                      </p>
+                      <Rating
+                        value={review.rate}
+                        style={{ maxWidth: 80 }}
+                        itemStyles={style}
+                        isDisabled
+                      />
                     </div>
                   </div>
                   <p className="text-xs font-medium">{review.review}</p>

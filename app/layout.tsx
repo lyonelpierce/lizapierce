@@ -60,6 +60,15 @@ export default function RootLayout({
               richColors
               className="bg-zinc-800"
               theme="dark"
+              toastOptions={{
+                unstyled: true,
+                classNames: {
+                  toast:
+                    "rounded-full z-50 p-4 flex items-center gap-2 w-full border border-zinc-800",
+                  title: "text-xs font-medium flex-1",
+                  description: "text-xs",
+                },
+              }}
             />
           </body>
         </html>

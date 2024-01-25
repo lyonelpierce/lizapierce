@@ -12,9 +12,22 @@ export async function POST(req: Request) {
 
   const { id, rating, review, title } = body;
 
+  const user = await prismadb.user.findUnique({
+    where: {
+      externalId: userId,
+    },
+    select: {
+      id: true,
+    },
+  });
+
+  if (!user) {
+    return new NextResponse("User not found", { status: 404 });
+  }
+
   const existingReview = await prismadb.review.findFirst({
     where: {
-      userId,
+      userId: user.id,
       productId: id,
     },
   });
@@ -33,19 +46,6 @@ export async function POST(req: Request) {
 
   if (!product) {
     return new NextResponse("Product not found", { status: 404 });
-  }
-
-  const user = await prismadb.user.findUnique({
-    where: {
-      externalId: userId,
-    },
-    select: {
-      id: true,
-    },
-  });
-
-  if (!user) {
-    return new NextResponse("User not found", { status: 404 });
   }
 
   const newReview = await prismadb.review.create({
