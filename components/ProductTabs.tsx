@@ -101,21 +101,24 @@ const ProductTabs = ({
               {rating.map((review) => (
                 <div key={review.id} className="flex flex-col gap-3 py-4">
                   <div className="flex flex-col gap-1">
-                    <div className="flex justify-between">
-                      <p className="text-sm font-semibold capitalize">
-                        {review.title}
-                      </p>
+                    <div className="flex items-center justify-between">
+                      <div className="flex gap-1 items-center">
+                        <Rating
+                          value={review.rate}
+                          style={{ maxWidth: 90 }}
+                          itemStyles={style}
+                          readOnly
+                        />
+                        <p className="text-sm font-semibold">{review.name}</p>
+                      </div>
                       <p className="text-sm text-zinc-500">
                         {format(review.createdAt, "dd/MM/yyyy")}
                       </p>
                     </div>
-                    <div className="flex gap-2">
-                      <Rating
-                        value={review.rate}
-                        style={{ maxWidth: 80 }}
-                        itemStyles={style}
-                        isDisabled
-                      />
+                    <div className="flex justify-between">
+                      <p className="text-sm font-semibold capitalize">
+                        {review.title}
+                      </p>
                     </div>
                   </div>
                   <p className="text-xs font-medium">{review.review}</p>

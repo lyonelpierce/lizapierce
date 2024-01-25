@@ -96,6 +96,8 @@ model VariantOptions {
   name          String
   value         String
   variant       Variant[]
+
+  @@unique([name, value])
 }
 
 model Order {

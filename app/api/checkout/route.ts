@@ -87,7 +87,7 @@ export async function POST(req: Request) {
         },
       });
     } else {
-      return NextResponse.json("Internal Server Error", { status: 500 });
+      return NextResponse.json("User not found", { status: 400 });
     }
   } else {
     order = await prismadb.order.create({
