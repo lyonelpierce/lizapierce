@@ -21,11 +21,12 @@ import { useEffect, useState } from "react";
 
 const Cart = () => {
   const [isMounted, setIsMounted] = useState(false);
-  useEffect(() => setIsMounted(true), []);
 
   const cartTrigger = useCartTrigger();
   const cart = useCart();
   const items = useCart((state) => state.items);
+
+  useEffect(() => setIsMounted(true), []);
 
   if (!isMounted) return null;
 

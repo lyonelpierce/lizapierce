@@ -13,6 +13,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ReviewModal from "./ReviewModal";
 import { Rating } from "@smastrom/react-rating";
 import { style } from "@/constants/ratingStyle";
+import { Button } from "@/components/ui/button";
 
 interface Variant {
   title: string;
@@ -51,10 +52,10 @@ const ProductTabs = ({
       />
       <Tabs defaultValue="description">
         <TabsList className="border-t border-x border-zinc-800 overflow-hidden">
-          <TabsTrigger value="description" className="text-xs px-4">
+          <TabsTrigger value="description" className="text-xs font-medium px-4">
             Description
           </TabsTrigger>
-          <TabsTrigger value="reviews" className="text-xs px-4">
+          <TabsTrigger value="reviews" className="text-xs font-medium px-4">
             Reviews
           </TabsTrigger>
         </TabsList>
@@ -64,7 +65,7 @@ const ProductTabs = ({
         >
           <div
             dangerouslySetInnerHTML={{ __html: product.description }}
-            className="text-sm"
+            className="text-sm py-4"
           />
         </TabsContent>
         <TabsContent
@@ -72,7 +73,7 @@ const ProductTabs = ({
           className="border rounded-t-none border-zinc-800 rounded-b-lg rounded-tr-lg p-5 bg-zinc-950 text-sm h-full"
         >
           {rating.length === 0 ? (
-            <div className="flex flex-col gap-2 justify-center items-center h-full">
+            <div className="flex flex-col gap-2 justify-center items-center h-full py-4">
               There are currently no reviews.
               {!user ? (
                 <div>
@@ -81,12 +82,13 @@ const ProductTabs = ({
               ) : (
                 <div>
                   {order ? (
-                    <p
-                      className="transition-colors ease-in-out hover:text-zinc-200 cursor-pointer"
+                    <Button
                       onClick={() => setOpen(true)}
+                      variant="link"
+                      className="text-white text-sm"
                     >
                       Leave a review
-                    </p>
+                    </Button>
                   ) : (
                     "Only customers who have ordered this product can leave a review"
                   )}
