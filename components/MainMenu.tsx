@@ -26,6 +26,28 @@ const MainMenu = ({
     setIsMounted(true);
   }, []);
 
+  const isMobile = window.innerWidth < 768;
+
+  const handleResize = () => {
+    if (window.innerWidth >= 768) {
+      setOpen();
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [isMounted, setOpen]);
+
+  useEffect(() => {
+    if (isMobile) {
+      setOpen();
+    }
+  }, [isMobile]);
+
   if (!isMounted) return null;
 
   return (
