@@ -35,7 +35,7 @@ const NavbarActions = () => {
       onClick={handleClick}
     >
       <ShoppingBag className="w-4 h-4" />
-      <p>{cart.items.length}</p>
+      <p className="hidden sm:block">{cart.items.length}</p>
     </div>
   );
 };

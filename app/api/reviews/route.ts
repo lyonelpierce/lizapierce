@@ -40,7 +40,7 @@ export async function POST(req: Request) {
   });
 
   if (!existingOrder) {
-    return new NextResponse("You can only review products you bought", {
+    return new NextResponse("You can only review products you bought.", {
       status: 201,
     });
   }
@@ -53,7 +53,7 @@ export async function POST(req: Request) {
   });
 
   if (existingReview) {
-    return new NextResponse("You already reviewed this product", {
+    return new NextResponse("You already reviewed this product.", {
       status: 201,
     });
   }
@@ -70,6 +70,7 @@ export async function POST(req: Request) {
 
   const newReview = await prismadb.review.create({
     data: {
+      name: existingOrder.name,
       userId: user.id,
       productId: id,
       rate: rating,
@@ -78,5 +79,5 @@ export async function POST(req: Request) {
     },
   });
 
-  return new NextResponse("Review submitted successfully", { status: 200 });
+  return new NextResponse("Review submitted successfully.", { status: 200 });
 }

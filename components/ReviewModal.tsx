@@ -89,18 +89,6 @@ const ReviewModal = ({
       } else {
         toast.error("Something went wrong!");
       }
-
-      // console.log(json);
-
-      // if (json.status === 200) {
-      //   onOpenChange();
-      //   toast.success("Review submitted!");
-      //   router.refresh();
-      // } else if (json.status === 201) {
-      //   toast.error("");
-      // } else {
-      //   toast.error("Something went wrong!");
-      // }
     } catch (error) {
       console.log(error);
     }
@@ -113,7 +101,7 @@ const ReviewModal = ({
   if (!isMounted) return null;
 
   return (
-    <Dialog open onOpenChange={onOpenChange}>
+    <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Leave a Review</DialogTitle>

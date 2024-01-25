@@ -12,7 +12,11 @@ export const NavbarMenu = [
     href: "/elizabeth/earrings",
   },
   {
-    label: "About Us",
-    href: "/about",
+    label: "Bracelets",
+    href: "/elizabeth/bracelets",
+  },
+  {
+    label: "Necklaces",
+    href: "/elizabeth/necklaces",
   },
 ];
