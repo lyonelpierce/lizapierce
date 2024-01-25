@@ -7,8 +7,13 @@ import { cn } from "@/lib/utils";
 
 import { NavbarMenu } from "@/constants/navbarMenu";
 
-import { ChevronRight, Gem } from "lucide-react";
-import { Sheet, SheetContent, SheetHeader } from "@/components/ui/sheet";
+import { ChevronRight, Facebook, Gem, Instagram, Twitter } from "lucide-react";
+import {
+  Sheet,
+  SheetContent,
+  SheetFooter,
+  SheetHeader,
+} from "@/components/ui/sheet";
 import { useEffect, useState } from "react";
 
 const MainMenu = ({
@@ -26,34 +31,15 @@ const MainMenu = ({
     setIsMounted(true);
   }, []);
 
-  const isMobile = window.innerWidth < 768;
-
-  const handleResize = () => {
-    if (window.innerWidth >= 768) {
-      setOpen();
-    }
-  };
-
-  useEffect(() => {
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, [isMounted, setOpen]);
-
-  useEffect(() => {
-    if (isMobile) {
-      setOpen();
-    }
-  }, [isMobile]);
-
   if (!isMounted) return null;
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
-      <SheetContent side="left" className="border-zinc-800">
-        <SheetHeader className="py-2">
+      <SheetContent
+        side="left"
+        className="border-zinc-800 flex flex-col justify-between"
+      >
+        <SheetHeader className="py-2 h-8">
           <Link href="/">
             <h1 className="flex items-center gap-1 text-xl font-semibold uppercase w-full">
               <Gem className="w-5 h-5 flex-none" />
@@ -61,7 +47,7 @@ const MainMenu = ({
             </h1>
           </Link>
         </SheetHeader>
-        <ul className="flex flex-col gap-4 text-xl font-medium uppercase h-full text-white pt-5">
+        <ul className="flex flex-col gap-4 text-xl font-medium uppercase text-white pt-5 h-full">
           {NavbarMenu.map((item) => (
             <li
               key={item.label}
@@ -81,6 +67,11 @@ const MainMenu = ({
             </li>
           ))}
         </ul>
+        <div className="flex gap-5 h-8">
+          <Facebook className="w-5 h-5" />
+          <Instagram className="w-5 h-5" />
+          <Twitter className="w-5 h-5" />
+        </div>
       </SheetContent>
     </Sheet>
   );
