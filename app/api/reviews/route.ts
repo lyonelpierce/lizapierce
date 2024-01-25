@@ -25,6 +25,26 @@ export async function POST(req: Request) {
     return new NextResponse("User not found", { status: 404 });
   }
 
+  const existingOrder = await prismadb.order.findFirst({
+    where: {
+      userId: user.id,
+      isPaid: true,
+      orderItems: {
+        some: {
+          variant: {
+            productId: id,
+          },
+        },
+      },
+    },
+  });
+
+  if (!existingOrder) {
+    return new NextResponse("You can only review products you bought", {
+      status: 201,
+    });
+  }
+
   const existingReview = await prismadb.review.findFirst({
     where: {
       userId: user.id,
@@ -58,5 +78,5 @@ export async function POST(req: Request) {
     },
   });
 
-  return NextResponse.json("Successful", { status: 200 });
+  return new NextResponse("Review submitted successfully", { status: 200 });
 }

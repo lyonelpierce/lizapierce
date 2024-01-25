@@ -25,6 +25,7 @@ import { Button } from "@/components/ui/button";
 import { Rating } from "@smastrom/react-rating";
 import { style } from "@/constants/ratingStyle";
 import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
   review: z.string().min(10, {
@@ -55,6 +56,7 @@ const ReviewModal = ({
   open: boolean;
   onOpenChange: () => void;
 }) => {
+  const router = useRouter();
   const [isMounted, setIsMounted] = useState(false);
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -68,7 +70,7 @@ const ReviewModal = ({
 
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
     try {
-      const response = fetch("http://localhost:3000/api/reviews", {
+      const response = await fetch("http://localhost:3000/api/reviews", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -76,16 +78,29 @@ const ReviewModal = ({
         body: JSON.stringify({ ...data, id }),
       });
 
-      const json = await response;
+      const message = await response.text();
 
-      if (json.status === 200) {
-        // onOpenChange();
-        toast.success("Review submitted!");
-      } else if (json.status === 201) {
-        toast.error("You already submitted a review on this product.");
+      if (response.status === 200) {
+        onOpenChange();
+        toast.success(message);
+        router.refresh();
+      } else if (response.status === 201) {
+        toast.error(message);
       } else {
         toast.error("Something went wrong!");
       }
+
+      // console.log(json);
+
+      // if (json.status === 200) {
+      //   onOpenChange();
+      //   toast.success("Review submitted!");
+      //   router.refresh();
+      // } else if (json.status === 201) {
+      //   toast.error("");
+      // } else {
+      //   toast.error("Something went wrong!");
+      // }
     } catch (error) {
       console.log(error);
     }
@@ -98,7 +113,7 @@ const ReviewModal = ({
   if (!isMounted) return null;
 
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
+    <Dialog open onOpenChange={onOpenChange}>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Leave a Review</DialogTitle>

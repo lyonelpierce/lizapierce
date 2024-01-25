@@ -74,10 +74,11 @@ const ProductTabs = ({
         >
           {rating.length === 0 ? (
             <div className="flex flex-col gap-2 justify-center items-center h-full py-4">
-              There are currently no reviews.
+              There are currently no reviews on this product.
               {!user ? (
                 <div>
-                  <SignInButton afterSignInUrl={url} mode="modal" />
+                  <SignInButton afterSignInUrl={url} mode="modal" /> to leave a
+                  review.
                 </div>
               ) : (
                 <div>
