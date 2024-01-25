@@ -17,11 +17,17 @@ import {
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { ShoppingBag } from "lucide-react";
+import { useEffect, useState } from "react";
 
 const Cart = () => {
+  const [isMounted, setIsMounted] = useState(false);
+  useEffect(() => setIsMounted(true), []);
+
   const cartTrigger = useCartTrigger();
   const cart = useCart();
   const items = useCart((state) => state.items);
+
+  if (!isMounted) return null;
 
   return (
     <Sheet open={cartTrigger.isOpen} onOpenChange={cartTrigger.onClose}>
