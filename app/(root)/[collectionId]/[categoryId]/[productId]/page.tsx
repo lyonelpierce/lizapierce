@@ -23,6 +23,8 @@ import DynamicPrice from "@/components/DynamicPrice";
 import CarouselComponent from "@/components/Carousel";
 import ProductTabs from "@/components/ProductTabs";
 import WidthWrapper from "@/components/WidthWrapper";
+import { Rating } from "@smastrom/react-rating";
+import { style } from "@/constants/ratingStyle";
 
 async function getProduct({
   params,
@@ -150,6 +152,20 @@ const ProductPage = async ({ params }: { params: { productId: string } }) => {
     });
   }
 
+  const ratingMath = () => {
+    if (rating.length === 0) {
+      return 0;
+    }
+
+    let sum = 0;
+
+    rating.forEach((review) => {
+      sum += review.rate;
+    });
+
+    return sum / rating.length;
+  };
+
   return (
     <WidthWrapper className="md:h-full">
       <div className="flex flex-col md:flex-row gap-8">
@@ -158,9 +174,17 @@ const ProductPage = async ({ params }: { params: { productId: string } }) => {
         </div>
         <Card className="w-full md:w-1/3 h-max">
           <CardHeader>
-            <CardTitle className="text-2xl font-medium">
-              {product.name}
-            </CardTitle>
+            <div className="flex justify-between items-center">
+              <CardTitle className="text-2xl font-medium">
+                {product.name}
+              </CardTitle>
+              <Rating
+                value={ratingMath()}
+                style={{ maxWidth: 90 }}
+                itemStyles={style}
+                readOnly
+              />
+            </div>
             <DynamicPrice
               variants={product.variants}
               minPrice={product.minPrice}

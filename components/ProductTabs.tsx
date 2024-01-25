@@ -60,7 +60,7 @@ const ProductTabs = ({
         </TabsList>
         <TabsContent
           value="description"
-          className="border rounded-t-none border-zinc-800 rounded-b-lg rounded-tr-lg p-5 bg-zinc-950 h-32"
+          className="border rounded-t-none border-zinc-800 rounded-b-lg rounded-tr-lg p-5 bg-zinc-950 h-full"
         >
           <div
             dangerouslySetInnerHTML={{ __html: product.description }}
@@ -69,7 +69,7 @@ const ProductTabs = ({
         </TabsContent>
         <TabsContent
           value="reviews"
-          className="border rounded-t-none border-zinc-800 rounded-b-lg rounded-tr-lg p-5 bg-zinc-950 h-32 text-sm"
+          className="border rounded-t-none border-zinc-800 rounded-b-lg rounded-tr-lg p-5 bg-zinc-950 text-sm h-full"
         >
           {rating.length === 0 ? (
             <div className="flex flex-col gap-2 justify-center items-center h-full">
@@ -94,9 +94,9 @@ const ProductTabs = ({
               )}
             </div>
           ) : (
-            <div className="divide-y divide-zinc-800">
+            <div className="flex flex-col divide-y divide-zinc-800">
               {rating.map((review) => (
-                <div key={review.id} className="flex flex-col gap-3">
+                <div key={review.id} className="flex flex-col gap-3 py-4">
                   <div className="flex flex-col gap-1">
                     <div className="flex justify-between">
                       <p className="text-sm font-semibold capitalize">
