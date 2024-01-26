@@ -44,7 +44,7 @@ const Navbar = () => {
   return (
     <>
       <MainMenu open={openMenu} setOpen={() => setOpenMenu(!openMenu)} />
-      <nav className="fixed top-0 w-screen h-20 z-30 py-2 px-2 md:px-0">
+      <nav className="fixed top-0 w-screen h-20 z-30 py-2 px-2 md:px-2 lg:px-0">
         <div
           className={cn(
             "flex items-center justify-between border-black rounded-full max-w-7xl w-full h-full mx-auto text-xs px-4 transition-all ease-in-out duration-500 gap-2",
