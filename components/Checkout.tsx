@@ -7,7 +7,7 @@ import { CartItem } from "@/types/ProductVariants";
 
 import { BadgeCheck } from "lucide-react";
 
-const Checkout = ({ items }: { items: CartItem[] }) => {
+const Checkout = ({ items, text }: { items: CartItem[]; text: string }) => {
   const { userId } = useAuth();
 
   const onCheckout = async () => {
@@ -37,7 +37,7 @@ const Checkout = ({ items }: { items: CartItem[] }) => {
       {userId ? (
         <>
           <BadgeCheck className="w-4 h-4 mr-1" />
-          <p>Continue to payment</p>
+          <p>{text}</p>
         </>
       ) : (
         <p>Continue as a guest</p>

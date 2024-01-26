@@ -57,7 +57,7 @@ const CheckoutPageComponent = () => {
             </CardContent>
             {!userId ? (
               <div className="flex flex-col gap-2 w-full p-4">
-                <Checkout items={items} />
+                <Checkout items={items} text="Checkout as a guest" />
                 <SignInButton mode="modal" redirectUrl="/checkout">
                   <Button
                     variant="white"
@@ -70,7 +70,7 @@ const CheckoutPageComponent = () => {
               </div>
             ) : (
               <div className="px-4">
-                <Checkout items={items} />
+                <Checkout items={items} text="Continue to payment" />
               </div>
             )}
             <div className="pt-4">

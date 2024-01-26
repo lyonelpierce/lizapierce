@@ -1,7 +1,7 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
-import { useAuth } from "@clerk/nextjs";
 
 import useCart from "@/hooks/use-cart";
 import { useCartTrigger } from "@/hooks/use-cart";
@@ -16,14 +16,11 @@ import {
   SheetTitle,
 } from "@/components/ui/sheet";
 import { BadgeCheck, ShoppingBag } from "lucide-react";
-import PopoverCheckout from "./PopoverCheckout";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
 
 const Cart = () => {
   const [isMounted, setIsMounted] = useState(false);
 
-  const { userId } = useAuth();
   const cartTrigger = useCartTrigger();
   const cart = useCart();
   const items = useCart((state) => state.items);
@@ -57,16 +54,16 @@ const Cart = () => {
         {cart.items.length > 0 && (
           <div className="flex flex-col gap-4">
             <CartSummary items={items} />
-            {userId ? (
-              <Link href="/checkout" className="w-full">
-                <Button variant="white" className="gap-1 w-full">
-                  <BadgeCheck className="w-4 h-4" />
-                  Continue to checkout
-                </Button>
-              </Link>
-            ) : (
-              <PopoverCheckout items={items} />
-            )}
+            <Link
+              href="/checkout"
+              className="w-full"
+              onClick={cartTrigger.onClose}
+            >
+              <Button variant="white" className="gap-1 w-full">
+                <BadgeCheck className="w-4 h-4" />
+                Continue to checkout
+              </Button>
+            </Link>
           </div>
         )}
       </SheetContent>

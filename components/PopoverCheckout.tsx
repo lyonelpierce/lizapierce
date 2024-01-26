@@ -39,7 +39,7 @@ const PopoverCheckout = ({ items }: { items: CartItem[] }) => {
           <p className="text-base font-semibold">Checkout</p>
           <p className="font-medium">How would you like to checkout?</p>
         </div>
-        <Checkout items={items} />
+        <Checkout items={items} text="Checkout as a guest" />
         <SignInButton mode="modal" redirectUrl="/checkout">
           <Button variant="white" onClick={cartTrigger.onClose}>
             Sign in to my account
