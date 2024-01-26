@@ -46,7 +46,7 @@ const Dashboard = async () => {
   const orders = await getOrder();
 
   return (
-    <WidthWrapper>
+    <WidthWrapper className="h-dvh">
       <Heading text="Orders" cart={orders?.length} />
       <DashboardComponent orders={orders} />
     </WidthWrapper>

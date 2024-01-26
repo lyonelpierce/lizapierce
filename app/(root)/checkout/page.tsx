@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 const Checkout = () => {
   return (
-    <WidthWrapper>
+    <WidthWrapper className="h-dvh">
       <CheckoutPageComponent />
     </WidthWrapper>
   );
