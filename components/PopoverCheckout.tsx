@@ -32,7 +32,7 @@ const PopoverCheckout = ({ items }: { items: CartItem[] }) => {
         </div>
       </PopoverTrigger>
       <PopoverContent
-        className="flex flex-col gap-3 text-xs py-4 border-zinc-800 bg-black/40 backdrop-blur"
+        className="flex flex-col gap-3 text-xs py-4 border-zinc-800 bg-black/10 backdrop-blur"
         sideOffset={12}
       >
         <div className="py-2">
