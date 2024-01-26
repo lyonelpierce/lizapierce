@@ -1,6 +1,7 @@
 "use client";
 
-import Link from "next/link";
+import { useEffect, useState } from "react";
+import { useAuth } from "@clerk/nextjs";
 
 import useCart from "@/hooks/use-cart";
 import { useCartTrigger } from "@/hooks/use-cart";
@@ -15,13 +16,13 @@ import {
   SheetHeader,
   SheetTitle,
 } from "@/components/ui/sheet";
-import { Button } from "@/components/ui/button";
 import { ShoppingBag } from "lucide-react";
-import { useEffect, useState } from "react";
+import PopoverCheckout from "./PopoverCheckout";
 
 const Cart = () => {
   const [isMounted, setIsMounted] = useState(false);
 
+  const { userId } = useAuth();
   const cartTrigger = useCartTrigger();
   const cart = useCart();
   const items = useCart((state) => state.items);
@@ -55,15 +56,11 @@ const Cart = () => {
         {cart.items.length > 0 && (
           <div className="flex flex-col gap-4">
             <CartSummary items={items} />
-            <Link href="/cart" className="w-full" onClick={cartTrigger.onClose}>
-              <Button
-                className="bg-transparent rounded-full text-xs delay-150 w-full"
-                variant="outline"
-              >
-                View shopping bag
-              </Button>
-            </Link>
-            <Checkout items={items} />
+            {userId ? (
+              <Checkout items={items} />
+            ) : (
+              <PopoverCheckout items={items} />
+            )}
           </div>
         )}
       </SheetContent>

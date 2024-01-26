@@ -1,23 +1,24 @@
 "use client";
 
+import { SignInButton, useAuth } from "@clerk/nextjs";
 import { useEffect, useState } from "react";
 
 import { cn } from "@/lib/utils";
-import useCart from "@/hooks/use-cart";
+import useCart, { useCartTrigger } from "@/hooks/use-cart";
 
 import CartItem from "@/components/CartItem";
-import CartSummary from "@/components/CartSummary";
-
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-} from "@/components/ui/card";
 import Checkout from "@/components/Checkout";
 import Heading from "@/components/ui/Heading";
+import CartSummary from "@/components/CartSummary";
+import SafePayment from "@/components/SafePayment";
 
-const Cart = () => {
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+
+const CheckoutPageComponent = () => {
+  const { userId } = useAuth();
+  const cartTrigger = useCartTrigger();
+
   const cart = useCart();
   const items = useCart((state) => state.items);
 
@@ -49,14 +50,32 @@ const Cart = () => {
           )}
         </div>
         {items.length !== 0 && (
-          <Card className="w-full md:w-1/3 h-full">
+          <Card className="w-full md:w-1/3 h-full pb-4 px-2">
             <CardHeader>Order Summary</CardHeader>
             <CardContent>
               <CartSummary items={items} />
             </CardContent>
-            <CardFooter>
-              <Checkout items={items} />
-            </CardFooter>
+            {!userId ? (
+              <div className="flex flex-col gap-2 w-full p-4">
+                <Checkout items={items} />
+                <SignInButton mode="modal" redirectUrl="/cart?success=1">
+                  <Button
+                    variant="white"
+                    className="w-full"
+                    onClick={cartTrigger.onClose}
+                  >
+                    Sign in to my account
+                  </Button>
+                </SignInButton>
+              </div>
+            ) : (
+              <div className="px-4">
+                <Checkout items={items} />
+              </div>
+            )}
+            <div className="pt-4">
+              <SafePayment />
+            </div>
           </Card>
         )}
       </div>
@@ -64,4 +83,4 @@ const Cart = () => {
   );
 };
 
-export default Cart;
+export default CheckoutPageComponent;

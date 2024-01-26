@@ -1,4 +1,4 @@
-import CartPageComponent from "@/components/CartPageComponent";
+import CheckoutPageComponent from "@/components/CheckoutPageComponent";
 import WidthWrapper from "@/components/WidthWrapper";
 import type { Metadata } from "next";
 
@@ -6,12 +6,12 @@ export const metadata: Metadata = {
   title: "Shopping Bag",
 };
 
-const Cart = () => {
+const Checkout = () => {
   return (
     <WidthWrapper>
-      <CartPageComponent />
+      <CheckoutPageComponent />
     </WidthWrapper>
   );
 };
 
-export default Cart;
+export default Checkout;

@@ -1,8 +1,15 @@
+import { useAuth } from "@clerk/nextjs";
+
+import { cn } from "@/lib/utils";
+
 import { Button } from "@/components/ui/button";
 import { CartItem } from "@/types/ProductVariants";
+
 import { BadgeCheck } from "lucide-react";
 
 const Checkout = ({ items }: { items: CartItem[] }) => {
+  const { userId } = useAuth();
+
   const onCheckout = async () => {
     const response = await fetch("/api/checkout", {
       method: "POST",
@@ -15,18 +22,26 @@ const Checkout = ({ items }: { items: CartItem[] }) => {
     });
 
     const data = await response.json();
-    console.log(data);
     window.location = data.url;
   };
 
   return (
     <Button
-      className="flex items-center gap-1 w-full"
-      variant="white"
+      className={cn(
+        "w-full rounded-full text-xs",
+        userId ? "bg-white text-black" : "bg-transparent text-white"
+      )}
+      variant="outline"
       onClick={onCheckout}
     >
-      <BadgeCheck className="w-4 h-4" />
-      Continue to checkout
+      {userId ? (
+        <>
+          <BadgeCheck className="w-4 h-4 mr-1" />
+          <p>Continue to checkout</p>
+        </>
+      ) : (
+        <p>Continue as a guest</p>
+      )}
     </Button>
   );
 };
