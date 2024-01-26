@@ -1,13 +1,9 @@
 "use client";
 
 import { Canvas } from "@react-three/fiber";
-import {
-  Environment,
-  Loader,
-  OrbitControls,
-  PresentationControls,
-} from "@react-three/drei";
+import { Environment, Loader, OrbitControls } from "@react-three/drei";
 import { Suspense } from "react";
+import { Perf } from "r3f-perf";
 import { EffectComposer, Bloom } from "@react-three/postprocessing";
 
 import { cn } from "@/lib/utils";
@@ -43,9 +39,10 @@ const CanvasComponent = ({
     <>
       <Canvas
         camera={{ position: [5, 10, 5], fov: 45 }}
-        className={cn("w-full z-10 cursor-pointer", className)}
+        className={cn("w-full z-10", className)}
         gl={{ antialias: true }}
       >
+        <Perf />
         <ambientLight intensity={0} />
         <spotLight position={[5, 5, -10]} angle={0.15} penumbra={1} />
         <pointLight position={[-10, -10, -10]} />

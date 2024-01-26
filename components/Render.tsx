@@ -20,7 +20,7 @@ const Render = () => {
       : dynamic(() => import("./models/ElizabethEarrings"));
 
   return (
-    <CanvasComponent level={6} intensity={0.3}>
+    <CanvasComponent level={6} intensity={0.3} className="cursor-pointer">
       <ElizabethComponent
         positionY={-2.5}
         scale={1.5}

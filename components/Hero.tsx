@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 
 import CanvasComponent from "./CanvasComponent";
 import ElizabethRing from "@/components/models/ElizabethRing";
+import { Model } from "./models/Scene";
 
 const Hero = () => {
   return (
@@ -27,7 +28,7 @@ const Hero = () => {
             </h2>
           </div>
           <div className="absolute max-w-7xl px-4 bottom-8 lg:bottom-20 2xl:bottom-40 z-20">
-            <h1 className="uppercase text-4xl md:text-7xl font-semibold w-full md:w-1/2">
+            <h1 className="uppercase text-4xl md:text-7xl font-semibold w-full md:w-1/2 select-none">
               Craft your masterpiece in real time
             </h1>
             <div className="border rounded-full flex mt-8 w-fit">
