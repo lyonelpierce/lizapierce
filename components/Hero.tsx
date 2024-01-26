@@ -7,7 +7,6 @@ import { Button } from "@/components/ui/button";
 
 import CanvasComponent from "./CanvasComponent";
 import ElizabethRing from "@/components/models/ElizabethRing";
-import { Model } from "./models/Scene";
 
 const Hero = () => {
   return (

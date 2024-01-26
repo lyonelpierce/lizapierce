@@ -2,7 +2,7 @@
 
 import { Canvas } from "@react-three/fiber";
 import { Environment, Loader, OrbitControls } from "@react-three/drei";
-import { Suspense } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { Perf } from "r3f-perf";
 import { EffectComposer, Bloom } from "@react-three/postprocessing";
 
@@ -35,6 +35,16 @@ const CanvasComponent = ({
   level: number;
   intensity: number;
 }) => {
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (!isMounted) {
+    return null;
+  }
+
   return (
     <>
       <Canvas
@@ -42,7 +52,7 @@ const CanvasComponent = ({
         className={cn("w-full z-10", className)}
         gl={{ antialias: true }}
       >
-        <Perf />
+        {/* <Perf /> */}
         <ambientLight intensity={0} />
         <spotLight position={[5, 5, -10]} angle={0.15} penumbra={1} />
         <pointLight position={[-10, -10, -10]} />
