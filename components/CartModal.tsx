@@ -8,7 +8,6 @@ import { useCartTrigger } from "@/hooks/use-cart";
 
 import CartItem from "@/components/CartItem";
 import CartSummary from "@/components/CartSummary";
-import Checkout from "@/components/Checkout";
 
 import {
   Sheet,
@@ -16,8 +15,10 @@ import {
   SheetHeader,
   SheetTitle,
 } from "@/components/ui/sheet";
-import { ShoppingBag } from "lucide-react";
+import { BadgeCheck, ShoppingBag } from "lucide-react";
 import PopoverCheckout from "./PopoverCheckout";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 const Cart = () => {
   const [isMounted, setIsMounted] = useState(false);
@@ -57,7 +58,12 @@ const Cart = () => {
           <div className="flex flex-col gap-4">
             <CartSummary items={items} />
             {userId ? (
-              <Checkout items={items} />
+              <Link href="/checkout" className="w-full">
+                <Button variant="white" className="gap-1 w-full">
+                  <BadgeCheck className="w-4 h-4" />
+                  Continue to checkout
+                </Button>
+              </Link>
             ) : (
               <PopoverCheckout items={items} />
             )}

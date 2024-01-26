@@ -34,7 +34,7 @@ const CheckoutPageComponent = () => {
 
   return (
     <>
-      <Heading text="Shopping Bag" cart={cart.items.length} />
+      <Heading text="Checkout" cart={cart.items.length} />
       <div className="flex flex-col md:flex-row gap-5">
         <div className={cn(items.length !== 0 ? "w-full md:w-2/3" : "w-full")}>
           {cart.items.length === 0 ? (
@@ -58,7 +58,7 @@ const CheckoutPageComponent = () => {
             {!userId ? (
               <div className="flex flex-col gap-2 w-full p-4">
                 <Checkout items={items} />
-                <SignInButton mode="modal" redirectUrl="/cart?success=1">
+                <SignInButton mode="modal" redirectUrl="/checkout">
                   <Button
                     variant="white"
                     className="w-full"

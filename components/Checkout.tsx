@@ -37,7 +37,7 @@ const Checkout = ({ items }: { items: CartItem[] }) => {
       {userId ? (
         <>
           <BadgeCheck className="w-4 h-4 mr-1" />
-          <p>Continue to checkout</p>
+          <p>Continue to payment</p>
         </>
       ) : (
         <p>Continue as a guest</p>

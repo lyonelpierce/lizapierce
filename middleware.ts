@@ -4,7 +4,7 @@ export default authMiddleware({
   publicRoutes: [
     "/",
     "/elizabeth/:path*",
-    "/cart",
+    "/checkout",
     "/api/webhook(.*)",
     "/api/checkout",
     "/thank-you",
