@@ -64,7 +64,7 @@ export default function RootLayout({
                 unstyled: true,
                 classNames: {
                   toast:
-                    "rounded-full z-50 p-4 flex items-center gap-2 w-full border border-zinc-800",
+                    "rounded-full z-50 p-4 flex items-center gap-2 w-full border border-zinc-800 bg-black/10 backdrop-blur-sm",
                   title: "text-xs font-medium flex-1",
                   description: "text-xs",
                 },

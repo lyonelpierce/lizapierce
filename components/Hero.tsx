@@ -11,24 +11,20 @@ import { useEffect, useState } from "react";
 
 const Hero = () => {
   const [isMounted, setIsMounted] = useState(false);
-  const [isMd, setIsMd] = useState(false); // New state variable for window size check
+  const [isMd, setIsMd] = useState(false);
 
   useEffect(() => {
     setIsMounted(true);
 
-    // Function to check window size and update state
     const handleResize = () => {
       const windowWidth = window.innerWidth;
       setIsMd(windowWidth >= 768 && windowWidth < 1024);
     };
 
-    // Initial check on mount
     handleResize();
 
-    // Event listener for window resize
     window.addEventListener("resize", handleResize);
 
-    // Cleanup the event listener on component unmount
     return () => {
       window.removeEventListener("resize", handleResize);
     };

@@ -3,15 +3,37 @@
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 import { Variant } from "@prisma/client";
-import { VariantOptions } from "@/types/ProductVariants";
 
-import useCart from "@/hooks/use-cart";
 import { cn } from "@/lib/utils";
+import useCart from "@/hooks/use-cart";
+import { useUrl } from "@/hooks/use-url";
 
 import { ShoppingBag } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { AiOutlineClear } from "react-icons/ai";
-import { useUrl } from "@/hooks/use-url";
+import { useOrigin } from "@/hooks/use-origin";
+import { VariantOptions } from "@/types/ProductVariants";
+
+interface Options {
+  name: string;
+  value: string;
+}
+
+interface VariantWithOption extends Variant {
+  options: Options[];
+}
+
+function buildVariantUrl(options: Options[] | undefined) {
+  const origin = useOrigin();
+  const pathname = usePathname();
+  const params = new URLSearchParams();
+
+  options?.forEach((option) => {
+    params.append(option.name.toLowerCase(), option.value);
+  });
+
+  return `${origin}${pathname}?${params.toString()}`;
+}
 
 function SubmitButton({
   forSale,
@@ -20,12 +42,12 @@ function SubmitButton({
   image,
 }: {
   forSale: boolean;
-  variant: Variant | undefined;
+  variant: VariantWithOption | undefined;
   name: string;
   image: string;
 }) {
   const cart = useCart();
-  const url = useUrl();
+  const url = buildVariantUrl(variant?.options);
 
   if (!variant)
     return (
@@ -62,7 +84,7 @@ const AddToCart = ({
   image,
 }: {
   forSale: boolean;
-  variants: VariantOptions[];
+  variants: VariantWithOption[];
   name: string;
   image: string;
 }) => {
