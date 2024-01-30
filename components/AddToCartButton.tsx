@@ -6,7 +6,6 @@ import { Variant } from "@prisma/client";
 
 import { cn } from "@/lib/utils";
 import useCart from "@/hooks/use-cart";
-import { useUrl } from "@/hooks/use-url";
 
 import { ShoppingBag } from "lucide-react";
 import { Button } from "@/components/ui/button";
