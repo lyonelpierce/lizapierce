@@ -6,13 +6,13 @@ import { Variant } from "@prisma/client";
 
 import { cn } from "@/lib/utils";
 import useCart from "@/hooks/use-cart";
+import { useUrl } from "@/hooks/use-url";
 
 import { ShoppingBag } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { AiOutlineClear } from "react-icons/ai";
 import { useOrigin } from "@/hooks/use-origin";
 import { VariantOptions } from "@/types/ProductVariants";
-import { useEffect } from "react";
 
 interface Options {
   name: string;
@@ -23,16 +23,14 @@ interface VariantWithOption extends Variant {
   options: Options[];
 }
 
-export function useBuildVariantUrl(options: Options[] | undefined) {
+function useBuildVariantUrl(options: Options[] | undefined) {
   const origin = useOrigin();
   const pathname = usePathname();
   const params = new URLSearchParams();
 
-  useEffect(() => {
-    options?.forEach((option) => {
-      params.append(option.name.toLowerCase(), option.value);
-    });
-  }, [options]);
+  options?.forEach((option) => {
+    params.append(option.name.toLowerCase(), option.value);
+  });
 
   return `${origin}${pathname}?${params.toString()}`;
 }
@@ -49,6 +47,7 @@ function SubmitButton({
   image: string;
 }) {
   const cart = useCart();
+
   const url = useBuildVariantUrl(variant?.options);
 
   if (!variant)
