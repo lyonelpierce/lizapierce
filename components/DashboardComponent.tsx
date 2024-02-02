@@ -3,12 +3,12 @@
 import { Tabs, TabsContent } from "@/components/ui/tabs";
 import { DataTable } from "./DataTable";
 import { columns } from "./OrdersColumns";
-import { OrderWithItems } from "@/types/ProductVariants";
+import { OrderShippingCardProps } from "@/types/ProductVariants";
 
 const DashboardComponent = ({
   orders,
 }: {
-  orders: OrderWithItems[] | undefined;
+  orders: OrderShippingCardProps[] | undefined;
 }) => {
   if (!orders) return;
 
