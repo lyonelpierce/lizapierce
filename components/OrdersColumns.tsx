@@ -4,6 +4,7 @@ import { OrderWithItems } from "@/types/ProductVariants";
 import { format } from "date-fns";
 import { ColumnDef } from "@tanstack/react-table";
 import { formatter } from "@/lib/utils";
+import CellActions from "./CellActions";
 
 export const columns: ColumnDef<OrderWithItems>[] = [
   {
@@ -36,5 +37,10 @@ export const columns: ColumnDef<OrderWithItems>[] = [
         {formatter.format(row.original.total / 100)}
       </div>
     ),
+  },
+  {
+    id: "actions",
+    cell: ({ row }) => <CellActions data={row.original} />,
+    header: "Actions",
   },
 ];
