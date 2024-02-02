@@ -42,3 +42,14 @@ interface ProductWithDetails extends Product {
 }
 
 export type { ProductWithDetails };
+
+interface OrderItemDetails extends OrderItem {
+  variant: Variant;
+  product: Product;
+}
+
+interface OrderShippingCardProps extends Order {
+  orderItems: OrderItemDetails[];
+}
+
+export type { OrderShippingCardProps };

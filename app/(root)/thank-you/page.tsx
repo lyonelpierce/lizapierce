@@ -8,6 +8,7 @@ import { Separator } from "@/components/ui/separator";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 
 import ImageComponent from "@/components/ImageComponent";
+import OrderShippingCard from "@/components/OrderShippingCard";
 
 export const metadata: Metadata = {
   title: "Thank You",
@@ -53,36 +54,7 @@ const ThankYou = async ({
       <div className="max-w-7xl mx-auto px-4 space-y-8">
         <ImageComponent image="/images/thankyou.jpg" text="Thank You!" />
         <div className="flex flex-col md:flex-row gap-3 h-full">
-          <Card className="w-full md:w-1/2">
-            <CardHeader>
-              <h3 className="text-xl font-semibold">Shipping Information</h3>
-              <Separator className="bg-zinc-800" />
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-4 divide-y divide-zinc-800 text-sm">
-                <p className="flex justify-between capitalize">
-                  <span className="font-medium">Name: </span>
-                  {order.name}
-                </p>
-                <p className="flex justify-between capitalize">
-                  <span className="font-medium">Address: </span>
-                  {order.address}
-                </p>
-                <p className="flex justify-between">
-                  <span className="font-medium">E-mail: </span>
-                  {order.email}
-                </p>
-                <p className="flex justify-between">
-                  <span className="font-medium">Phone: </span>
-                  {order.phone}
-                </p>
-                <p className="flex justify-between">
-                  <span className="font-medium">Date: </span>
-                  {order.createdAt.toLocaleDateString()}
-                </p>
-              </div>
-            </CardContent>
-          </Card>
+          <OrderShippingCard order={order} />
           <Card className="w=full md:w-1/2">
             <CardHeader>
               <h3 className="text-xl font-semibold">Order Details</h3>
