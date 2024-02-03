@@ -16,7 +16,12 @@ const CellActions = ({ data }: { data: OrderShippingCardProps }) => {
   return (
     <>
       <OrderDialog open={open} setOpen={() => setOpen(!open)} data={data} />
-      <div className="hidden sm:flex items-center gap-x-2">{data.id}</div>
+      <div
+        className="hidden sm:flex items-center gap-x-2 hover:underline hover:text-white hover:cursor-pointer"
+        onClick={() => setOpen(true)}
+      >
+        {data.id}
+      </div>
       <Eye className="w-4 h-4 flex sm:hidden" onClick={() => setOpen(true)} />
     </>
   );
