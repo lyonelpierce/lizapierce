@@ -24,13 +24,13 @@ const OrderDialog = ({
   if (!isMounted) return null;
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogContent className="flex flex-col">
+      <DialogContent className="flex flex-col max-w-2xl">
         <DialogHeader>
           <DialogTitle className="text-2xl font-semibold">
             Order Information
           </DialogTitle>
         </DialogHeader>
-        <OrderShippingCard order={data} />
+        <OrderShippingCard order={data} className="flex-col sm:flex-row" />
       </DialogContent>
     </Dialog>
   );

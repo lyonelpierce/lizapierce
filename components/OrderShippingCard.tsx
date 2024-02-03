@@ -11,8 +11,8 @@ const OrderShippingCard = ({
   className?: string;
 }) => {
   return (
-    <>
-      <Card className={cn("w-full md:w-1/2", className)}>
+    <div className={cn("flex flex-col gap-4", className)}>
+      <Card className="w-full md:w-1/2">
         <CardHeader>
           <h3 className="text-xl font-semibold">Shipping Information</h3>
           <Separator className="bg-zinc-800" />
@@ -65,7 +65,7 @@ const OrderShippingCard = ({
           </div>
         </CardContent>
       </Card>
-    </>
+    </div>
   );
 };
 
