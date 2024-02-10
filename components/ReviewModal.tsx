@@ -18,6 +18,7 @@ import {
   FormField,
   FormItem,
   FormLabel,
+  FormMessage,
 } from "@/components/ui/form";
 import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
@@ -131,6 +132,7 @@ const ReviewModal = ({
                   <FormControl>
                     <Input placeholder="One word title..." {...field} />
                   </FormControl>
+                  <FormMessage />
                 </FormItem>
               )}
             />
@@ -143,6 +145,7 @@ const ReviewModal = ({
                   <FormControl>
                     <Textarea placeholder="Write your review..." {...field} />
                   </FormControl>
+                  <FormMessage />
                 </FormItem>
               )}
             />
@@ -160,6 +163,7 @@ const ReviewModal = ({
                       value={field.value as number}
                     />
                   </FormControl>
+                  <FormMessage />
                 </FormItem>
               )}
             />
