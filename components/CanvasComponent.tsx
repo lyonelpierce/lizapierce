@@ -4,7 +4,6 @@ import { Canvas } from "@react-three/fiber";
 import { Environment, Loader, OrbitControls } from "@react-three/drei";
 import { Suspense, useEffect, useState } from "react";
 import { EffectComposer, Bloom } from "@react-three/postprocessing";
-import { VRButton, ARButton, XR, Controllers, Hands } from "@react-three/xr";
 
 import { cn } from "@/lib/utils";
 
@@ -47,37 +46,34 @@ const CanvasComponent = ({
 
   return (
     <>
-      <ARButton />
       <Canvas
         camera={{ position: [5, 10, 5], fov: 45 }}
         className={cn("w-full z-10", className)}
         gl={{ antialias: true }}
       >
-        <XR>
-          <ambientLight intensity={0} />
-          <spotLight position={[5, 5, -10]} angle={0.15} penumbra={1} />
-          <pointLight position={[-10, -10, -10]} />
-          <Suspense fallback={null}>{children}</Suspense>
-          <Environment files="https://demo-assets.pixotronics.com/pixo/presets/environment/env-metal-1.hdr" />
-          <OrbitControls
-            makeDefault
-            autoRotate
-            autoRotateSpeed={3}
-            minPolarAngle={0}
-            maxPolarAngle={Math.PI / 2}
-            enableZoom={false}
-            enablePan={false}
+        <ambientLight intensity={0} />
+        <spotLight position={[5, 5, -10]} angle={0.15} penumbra={1} />
+        <pointLight position={[-10, -10, -10]} />
+        <Suspense fallback={null}>{children}</Suspense>
+        <Environment files="https://demo-assets.pixotronics.com/pixo/presets/environment/env-metal-1.hdr" />
+        <OrbitControls
+          makeDefault
+          autoRotate
+          autoRotateSpeed={3}
+          minPolarAngle={0}
+          maxPolarAngle={Math.PI / 2}
+          enableZoom={false}
+          enablePan={false}
+        />
+        <EffectComposer multisampling={0} disableNormalPass={true}>
+          <Bloom
+            luminanceThreshold={1}
+            luminanceSmoothing={0.9}
+            intensity={intensity}
+            levels={level}
+            mipmapBlur
           />
-          <EffectComposer multisampling={0} disableNormalPass={true}>
-            <Bloom
-              luminanceThreshold={1}
-              luminanceSmoothing={0.9}
-              intensity={intensity}
-              levels={level}
-              mipmapBlur
-            />
-          </EffectComposer>
-        </XR>
+        </EffectComposer>
       </Canvas>
       <Loader containerStyles={containerStyles} dataStyles={textStyles} />
     </>
