@@ -3,8 +3,8 @@
 import { Canvas } from "@react-three/fiber";
 import { Environment, Loader, OrbitControls } from "@react-three/drei";
 import { Suspense, useEffect, useState } from "react";
-import { VRButton, ARButton, XR, Controllers, Hands } from "@react-three/xr";
 import { EffectComposer, Bloom } from "@react-three/postprocessing";
+import { VRButton, ARButton, XR, Controllers, Hands } from "@react-three/xr";
 
 import { cn } from "@/lib/utils";
 
@@ -47,16 +47,13 @@ const CanvasComponent = ({
 
   return (
     <>
-      <VRButton />
+      <ARButton />
       <Canvas
         camera={{ position: [5, 10, 5], fov: 45 }}
         className={cn("w-full z-10", className)}
         gl={{ antialias: true }}
       >
         <XR>
-          <Controllers />
-          <Hands />
-          {/* <Perf /> */}
           <ambientLight intensity={0} />
           <spotLight position={[5, 5, -10]} angle={0.15} penumbra={1} />
           <pointLight position={[-10, -10, -10]} />
